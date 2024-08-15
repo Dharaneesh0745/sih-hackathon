@@ -6,6 +6,7 @@ import { RxAvatar } from "react-icons/rx";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { server } from "../../server";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
@@ -56,13 +57,18 @@ const Signup = () => {
     axios
       .post(`${server}/user/create-user`, newForm, config)
       .then((res) => {
-        console.log(res);
-        if (res.data.success === true) {
-          navigate("/home");
-        }
+        // if (res.data.success === true) {
+        toast.success(`${res.data.message}`);
+        // navigate("/home");
+        // }
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPassword("");
+        setAvatar();
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(`${err.response.data.message}`);
       });
   };
 
