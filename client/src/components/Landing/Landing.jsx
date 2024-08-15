@@ -5,7 +5,9 @@ const Landing = () => {
   return (
     <div>
       <div>
-        <Link to={"/home"}>Get Started</Link>
+        <Link to={"/home"} className="bg-blue-500 px-2 py-3">
+          Get Started
+        </Link>
       </div>
     </div>
   );
