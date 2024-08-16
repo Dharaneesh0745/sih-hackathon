@@ -24,8 +24,8 @@ export const navItems = [
     icon: <SiKubernetes />,
   },
   {
-    title: "Feed",
-    url: "/feed",
+    title: "Community",
+    url: "/community",
     icon: <MdOutlineRssFeed />,
   },
 

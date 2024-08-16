@@ -46,7 +46,7 @@ const Header = ({ activeHeading }) => {
       <div className={`${styles.section}`}>
         <div className="hidden 800px:h-[50px] 800px:my-[20px] 800px:flex items-center justify-between">
           <div>
-            <Link to="/">
+            <Link to="/home">
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2MM3d3wXnnH-eA0UrWsYyXCfBLIPSOY-WAQ&s"
                 alt=""
@@ -145,10 +145,7 @@ const Header = ({ activeHeading }) => {
           <div className="flex gap-3">
             <div className={`${styles.normalFlex}`}>
               <div className="relative cursor-pointer mr[15px]">
-                <BiSolidMessageDetail
-                  size={28}
-                  color="rgb(255 255 255 / 83%)"
-                />
+                <BiSolidMessageDetail size={28} color="rgb(255 255 255)" />
                 <span className="absolute -right-1 -top-1 rounded-full bg-pink-500 w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
                   0{" "}
                 </span>
@@ -156,7 +153,7 @@ const Header = ({ activeHeading }) => {
             </div>
             <div className={`${styles.normalFlex}`}>
               <div className="relative cursor-pointer mr[15px]">
-                <AiOutlineHeart size={28} color="rgb(255 255 255 / 83%)" />
+                <AiOutlineHeart size={28} color="rgb(255 255 255)" />
                 <span className="absolute -right-1 -top-1 rounded-full bg-pink-500 w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
                   0{" "}
                 </span>
@@ -164,7 +161,7 @@ const Header = ({ activeHeading }) => {
             </div>
             <div className={`${styles.normalFlex}`}>
               <div className="relative cursor-pointer mr[15px]">
-                <IoMdNotifications size={28} color="rgb(255 255 255 / 83%)" />
+                <IoMdNotifications size={28} color="rgb(255 255 255)" />
                 <span className="absolute right-0 -top-1 rounded-full bg-pink-500 w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
                   0{" "}
                 </span>
@@ -173,7 +170,7 @@ const Header = ({ activeHeading }) => {
             <div className={`${styles.normalFlex}`}>
               <div className="relative cursor-pointer mr[15px]">
                 <Link to={"/login"}>
-                  <CgProfile size={26} color="rgb(255 255 255 / 83%)" />
+                  <CgProfile size={26} color="rgb(255 255 255)" />
                 </Link>
               </div>
             </div>

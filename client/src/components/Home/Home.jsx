@@ -1,11 +1,12 @@
 import React from "react";
+import Hero from "../Sections/Hero";
+import RecommendedJobs from "../Sections/RecommendedJobs";
 
 const Home = () => {
   return (
     <div>
-      <div>
-        <button>Home Page Content Testing Homepage</button>
-      </div>
+      <Hero />
+      <RecommendedJobs />
     </div>
   );
 };
