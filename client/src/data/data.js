@@ -591,19 +591,19 @@ export const footerProductLinks = [
 
 export const footercompanyLinks = [
   {
-    name: "Game & Video",
+    name: "Home",
   },
   {
-    name: "Phone &Tablets",
+    name: "Jobs",
   },
   {
-    name: "Computers & Laptop",
+    name: "Interview Preperation",
   },
   {
-    name: "Sport Watches",
+    name: "Skill Test",
   },
   {
-    name: "Events",
+    name: "Leaderboard",
   },
 ];
 
@@ -612,13 +612,13 @@ export const footerSupportLinks = [
     name: "FAQ",
   },
   {
-    name: "Reviews",
+    name: "Community",
   },
   {
     name: "Contact Us",
   },
   {
-    name: "Shipping",
+    name: "Courses",
   },
   {
     name: "Live chat",

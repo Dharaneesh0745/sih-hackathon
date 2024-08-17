@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 import styles from "../../../styles/styles";
-import { AiFillHeart, AiOutlineHeart, AiOutlineMessage } from "react-icons/ai";
+import { AiOutlineMessage } from "react-icons/ai";
 
 const JobDetailsCard = ({ setOpen, data }) => {
   const [count, setCount] = useState(1);

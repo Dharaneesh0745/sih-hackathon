@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import styles from "../../styles/styles";
-import JobCard from "./JobCard/JobCard";
-import { jobData } from "../../data/data";
+import styles from "../../../styles/styles";
+import JobCard from "../JobCard/JobCard";
+import { jobData } from "../../../data/data";
 
 const RecommendedJobs = () => {
   const [data, setData] = useState([]);
