@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "../../styles/styles";
+import styles from "../../../styles/styles";
 import {
   AiFillHeart,
   AiFillStar,
@@ -8,6 +8,7 @@ import {
   AiOutlineHeart,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
+import JobDetailsCard from "../JobDetailsCard/JobDetailsCard";
 
 const JobCard = ({ data }) => {
   const [click, setClick] = useState(false);
@@ -68,13 +69,9 @@ const JobCard = ({ data }) => {
           color="#333"
           title="Quick View"
         />
-        <AiOutlineShoppingCart
-          size={22}
-          className="cursor-pointer absolute right-2 top-24"
-          onClick={() => setOpen(!open)}
-          color="#444"
-          title="Add to cart"
-        />
+
+        {/* product details card component */}
+        {open ? <JobDetailsCard setOpen={setOpen} data={data} /> : null}
       </div>
     </div>
   );

@@ -36,13 +36,13 @@ export const navItems = [
   },
 
   {
-    title: "Skill Test",
+    title: "Test",
     url: "/test",
     icon: <SiCloudflarepages />,
   },
 
   {
-    title: "Leader Board",
+    title: "Rank",
     url: "/leaderboard",
     icon: <FaMedal />,
   },

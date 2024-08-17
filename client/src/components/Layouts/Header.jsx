@@ -10,10 +10,11 @@ import {
 } from "react-icons/io";
 import { BiMenuAltLeft, BiSolidMessageDetail } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
-import { PiMessengerLogoFill } from "react-icons/pi";
 import DropDown from "./DropDown";
 import Navbar from "./Navbar";
-import { SiMessenger } from "react-icons/si";
+import { FaFileInvoice } from "react-icons/fa6";
+import { MdDriveFileMove } from "react-icons/md";
+import { IoFileTrayFull } from "react-icons/io5";
 
 const Header = ({ activeHeading }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -165,6 +166,11 @@ const Header = ({ activeHeading }) => {
                 <span className="absolute right-0 -top-1 rounded-full bg-pink-500 w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
                   0{" "}
                 </span>
+              </div>
+            </div>
+            <div className={`${styles.normalFlex}`}>
+              <div className="relative cursor-pointer mr[15px]">
+                <IoFileTrayFull size={28} color="rgb(255 255 255)" />
               </div>
             </div>
             <div className={`${styles.normalFlex}`}>
