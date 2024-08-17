@@ -14,7 +14,7 @@ app.use("/test", (req, res) => {
 });
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://sih-hackathon.vercel.app"],
     credentials: true,
   })
 );
