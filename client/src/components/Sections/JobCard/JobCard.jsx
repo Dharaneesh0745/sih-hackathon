@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../../styles/styles";
-import {
-  AiFillHeart,
-  AiFillStar,
-  AiOutlineEye,
-  AiOutlineHeart,
-  AiOutlineShoppingCart,
-} from "react-icons/ai";
+import { AiFillHeart, AiOutlineEye, AiOutlineHeart } from "react-icons/ai";
 import JobDetailsCard from "../JobDetailsCard/JobDetailsCard";
 
 const JobCard = ({ data }) => {

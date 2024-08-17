@@ -4,6 +4,9 @@ import LoginPage from "../src/pages/LoginPage";
 import SignupPage from "../src/pages/SignupPage";
 import ActivationPage from "../src/pages/ActivationPage";
 import HomePage from "../src/pages/HomePage";
+import JobsPage from "../src/pages/JobsPage";
+import EventsPage from "../src/pages/EventsPage";
+import FAQPage from "../src/pages/FAQPage";
 
 export {
   LandingPage,
@@ -12,4 +15,7 @@ export {
   SignupPage,
   ActivationPage,
   HomePage,
+  JobsPage,
+  EventsPage,
+  FAQPage,
 };
