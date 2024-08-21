@@ -11,6 +11,7 @@ import {
   JobsPage,
   EventsPage,
   FAQPage,
+  JobDetailsPage,
 } from "./Routes.js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -42,6 +43,7 @@ const App = () => {
             <Route path="/jobs" element={<JobsPage />} />
             <Route path="/events" element={<EventsPage />} />
             <Route path="/faq" element={<FAQPage />} />
+            <Route path="/job/:name" element={<JobDetailsPage />} />
           </Routes>
           <ToastContainer
             position="top-center"

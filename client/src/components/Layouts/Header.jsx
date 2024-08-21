@@ -15,6 +15,8 @@ import Navbar from "./Navbar";
 import { IoFileTrayFull } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { backend_API_endpoint } from "../../server";
+import Notification from "../Notification/Notification";
+import Wishlist from "../Wishlist/Wishlist";
 
 const Header = ({ activeHeading }) => {
   const { isAuthenticated, user, isLoading } = useSelector(
@@ -25,6 +27,9 @@ const Header = ({ activeHeading }) => {
   const [searchData, setSearchData] = useState(null);
   const [dropDown, setDropDown] = useState(false);
   const [active, setActive] = useState(false);
+
+  const [openNotification, setOpenNotification] = useState(false);
+  const [openWishlist, setOpenWishlist] = useState(false);
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
@@ -159,7 +164,10 @@ const Header = ({ activeHeading }) => {
                   </div>
                 </div>
                 <div className={`${styles.normalFlex}`}>
-                  <div className="relative cursor-pointer mr[15px]">
+                  <div
+                    className="relative cursor-pointer mr[15px]"
+                    onClick={() => setOpenWishlist(!openWishlist)}
+                  >
                     <AiOutlineHeart size={28} color="rgb(255 255 255)" />
                     <span className="absolute -right-1 -top-1 rounded-full bg-pink-500 w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
                       0{" "}
@@ -167,7 +175,10 @@ const Header = ({ activeHeading }) => {
                   </div>
                 </div>
                 <div className={`${styles.normalFlex}`}>
-                  <div className="relative cursor-pointer mr[15px]">
+                  <div
+                    className="relative cursor-pointer mr[15px]"
+                    onClick={() => setOpenNotification(!openNotification)}
+                  >
                     <IoMdNotifications size={28} color="rgb(255 255 255)" />
                     <span className="absolute right-0 -top-1 rounded-full bg-pink-500 w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
                       0{" "}
@@ -194,18 +205,28 @@ const Header = ({ activeHeading }) => {
                       <Link to="/profile">
                         <img
                           src={`${backend_API_endpoint}${user.avatar}`}
-                          className="w-[35px] h-[35px] rounded-full"
+                          className="w-[30px] h-[30px] rounded-full"
                           alt=""
                         />
                         {/* <p>{user.email}</p> */}
                       </Link>
                     ) : (
                       <Link to="/login">
-                        <CgProfile size={30} color="rgb(255 255 255 / 83%)" />
+                        <CgProfile size={28} color="rgb(255 255 255 / 83%)" />
                       </Link>
                     )}
                   </div>
                 </div>
+
+                {/* notification sidebar */}
+                {openNotification ? (
+                  <Notification setOpenNotification={setOpenNotification} />
+                ) : null}
+
+                {/* wishlist sidebar */}
+                {openWishlist ? (
+                  <Wishlist setOpenWishlist={setOpenWishlist} />
+                ) : null}
               </div>
             </div>
           </div>

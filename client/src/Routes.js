@@ -7,6 +7,7 @@ import HomePage from "../src/pages/HomePage";
 import JobsPage from "../src/pages/JobsPage";
 import EventsPage from "../src/pages/EventsPage";
 import FAQPage from "../src/pages/FAQPage";
+import JobDetailsPage from "../src/pages/JobDetailsPage";
 
 export {
   LandingPage,
@@ -18,4 +19,5 @@ export {
   JobsPage,
   EventsPage,
   FAQPage,
+  JobDetailsPage,
 };

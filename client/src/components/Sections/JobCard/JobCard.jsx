@@ -12,9 +12,9 @@ const JobCard = ({ data }) => {
   const job_name = d.replace(/\s+/g, "-");
 
   return (
-    <div className="w-full h-[370px] bg-white rounded-lg shadow-sm p-3 relative cursor-pointer">
+    <div className="w-full h-[370px] bg-[#fff] rounded-lg shadow-sm p-3 relative cursor-pointer">
       <div className="flex justify-end"></div>
-      <Link to={`/jobs/${job_name}`}>
+      <Link to={`/job/${job_name}`}>
         <img
           src={data.image_Url[0].url}
           alt=""
@@ -24,7 +24,7 @@ const JobCard = ({ data }) => {
       <Link to={"/home"}>
         <h5 className={`${styles.shop_name}`}>{data.shop.name}</h5>
       </Link>
-      <Link to={`/jobs/${job_name}`}>
+      <Link to={`/job/${job_name}`}>
         <h4 className="pb-3 font-[500]">
           {data.name.length > 40 ? data.name.slice(0, 40) + "..." : data.name}
         </h4>
