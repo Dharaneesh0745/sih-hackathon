@@ -48,7 +48,7 @@ export const navItems = [
 
   {
     title: "Rank",
-    url: "/leaderboard",
+    url: "/rank",
     icon: <FaMedal />,
   },
 ];

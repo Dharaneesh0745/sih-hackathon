@@ -185,11 +185,11 @@ const Header = ({ activeHeading }) => {
                     </span>
                   </div>
                 </div>
-                <div className={`${styles.normalFlex}`}>
+                {/* <div className={`${styles.normalFlex}`}>
                   <div className="relative cursor-pointer mr[15px]">
                     <IoFileTrayFull size={28} color="rgb(255 255 255)" />
                   </div>
-                </div>
+                </div> */}
                 <div className={`${styles.normalFlex}`}>
                   <div className="relative cursor-pointer mr[15px]">
                     {/* {isAuthenticated ? (
