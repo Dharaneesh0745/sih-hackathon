@@ -8,6 +8,8 @@ import JobsPage from "../src/pages/JobsPage";
 import EventsPage from "../src/pages/EventsPage";
 import FAQPage from "../src/pages/FAQPage";
 import JobDetailsPage from "../src/pages/JobDetailsPage";
+import ProfilePage from "../src/pages/ProfilePage";
+import LeaderBoardPage from "../src/pages/LeaderBoardPage";
 
 export {
   LandingPage,
@@ -20,4 +22,6 @@ export {
   EventsPage,
   FAQPage,
   JobDetailsPage,
+  ProfilePage,
+  LeaderBoardPage,
 };
