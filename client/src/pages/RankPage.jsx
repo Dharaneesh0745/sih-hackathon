@@ -6,7 +6,7 @@ import Rank from "../components/Rank/Rank";
 const RankPage = () => {
   return (
     <div>
-      <Header />
+      <Header activeHeading={8} />
       <Rank />
       <Footer />
     </div>
