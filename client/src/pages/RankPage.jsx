@@ -1,16 +1,16 @@
 import React from "react";
 import Header from "../components/Layouts/Header";
 import Footer from "../components/Layouts/Footer";
-import LeaderBoard from "../components/LeaderBoard/LeaderBoard";
+import Rank from "../components/Rank/Rank";
 
-const LeaderBoardPage = () => {
+const RankPage = () => {
   return (
     <div>
       <Header />
-      <LeaderBoard />
+      <Rank />
       <Footer />
     </div>
   );
 };
 
-export default LeaderBoardPage;
+export default RankPage;

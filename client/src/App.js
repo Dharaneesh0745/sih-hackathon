@@ -13,7 +13,7 @@ import {
   FAQPage,
   JobDetailsPage,
   ProfilePage,
-  LeaderBoardPage,
+  RankPage,
 } from "./Routes.js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -47,7 +47,7 @@ const App = () => {
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/job/:name" element={<JobDetailsPage />} />
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/leaderboard" element={<LeaderBoardPage />} />
+            <Route path="/rank" element={<RankPage />} />
           </Routes>
           <ToastContainer
             position="top-center"
