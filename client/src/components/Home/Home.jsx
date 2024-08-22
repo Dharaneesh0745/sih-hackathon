@@ -1,11 +1,18 @@
 import React from "react";
+import Hero from "../Sections/Hero/Hero";
+import RecommendedJobs from "../Sections/RecommendedJobs/RecommendedJobs";
+import Events from "../Sections/Events/Events";
+import FeaturedJobs from "../Sections/FeaturedJobs/FeaturedJobs";
+import Footer from "../Layouts/Footer";
 
 const Home = () => {
   return (
     <div>
-      <div>
-        <button>Home Page Content Testing Homepage</button>
-      </div>
+      <Hero />
+      <RecommendedJobs />
+      <Events />
+      <FeaturedJobs />
+      <Footer />
     </div>
   );
 };
