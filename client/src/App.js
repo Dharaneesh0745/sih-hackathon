@@ -20,9 +20,10 @@ import "react-toastify/dist/ReactToastify.css";
 import Store from "./redux/store.js";
 import { loadUser } from "./redux/actions/user.js";
 import { useSelector } from "react-redux";
+import ProtectedRoute from "./ProtectedRoutes.js";
 
 const App = () => {
-  const { isLoading } = useSelector((state) => state.user);
+  const { isLoading, isAuthenticated } = useSelector((state) => state.user);
 
   useEffect(() => {
     Store.dispatch(loadUser());
@@ -41,12 +42,40 @@ const App = () => {
               path="/activation/:activation_token"
               element={<ActivationPage />}
             />
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/jobs" element={<JobsPage />} />
-            <Route path="/events" element={<EventsPage />} />
+            <Route
+              path="/home"
+              element={
+                <ProtectedRoute isAuthenticated={isAuthenticated}>
+                  <HomePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/jobs"
+              element={
+                <ProtectedRoute isAuthenticated={isAuthenticated}>
+                  <JobsPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/events"
+              element={
+                <ProtectedRoute isAuthenticated={isAuthenticated}>
+                  <EventsPage />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/job/:name" element={<JobDetailsPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute isAuthenticated={isAuthenticated}>
+                  <ProfilePage />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/rank" element={<RankPage />} />
           </Routes>
           <ToastContainer

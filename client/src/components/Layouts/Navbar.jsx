@@ -15,9 +15,11 @@ const Navbar = ({ active }) => {
                 active === index + 1
                   ? "text-pink-500 bg-white py-4 px-[10px] rounded-lg"
                   : "text-black 800px:text-[#fff]"
-              } pb-[30px] 800px:pb-0 font-[500] px-5 cursor-pointer flex flex-col items-center`}
+              } pb-[30px] 800px:pb-0 font-[500] px-5 cursor-pointer flex 800px:flex-col items-center`}
             >
-              <span className="mx-auto text-center -mt-1">{i.icon}</span>{" "}
+              <span className="mx-auto text-center 400px:mr-4 !800px:mr-4 800px:-mt-1">
+                {i.icon}
+              </span>{" "}
               {i.title}
             </Link>
           </div>
