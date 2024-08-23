@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { AiOutlineCamera } from "react-icons/ai";
 import styles from "../../styles/styles";
-import { DataGrid } from "@material-ui/data-grid";
+// import { DataGrid } from "@material-ui/data-grid";
 import { backend_API_endpoint } from "../../server";
 
 const ProfileContent = ({ active }) => {
@@ -829,13 +829,13 @@ const AppliedJobs = () => {
 
   return (
     <div className="pl-8 pt-1">
-      <DataGrid
+      {/* <DataGrid
         rows={row}
         columns={columns}
         pageSize={10}
         disableSelectionOnClick
         autoHeight
-      />
+      /> */}
     </div>
   );
 };
