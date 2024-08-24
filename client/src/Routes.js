@@ -10,6 +10,10 @@ import FAQPage from "../src/pages/FAQPage";
 import JobDetailsPage from "../src/pages/JobDetailsPage";
 import ProfilePage from "../src/pages/ProfilePage";
 import RankPage from "../src/pages/RankPage";
+import EmployerSignupPage from "../src/pages/Employer/EmployerSignupPage";
+import EmployerActivationPage from "../src/pages/Employer/EmployerActivationPage";
+import EmployerLoginPage from "../src/pages/Employer/EmployerLoginPage";
+import EmployerDashboardPage from "../src/pages/Employer/EmployerDashboardPage";
 
 export {
   LandingPage,
@@ -24,4 +28,8 @@ export {
   JobDetailsPage,
   ProfilePage,
   RankPage,
+  EmployerSignupPage,
+  EmployerActivationPage,
+  EmployerLoginPage,
+  EmployerDashboardPage,
 };

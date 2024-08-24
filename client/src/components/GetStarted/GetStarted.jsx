@@ -35,7 +35,7 @@ const GetStarted = () => {
                 Post job opportunities and find the right talent.
               </p>
               <Link
-                to={""}
+                to={"/employer/signup"}
                 className="mt-4 inline-block bg-yellow-500 text-white py-2 px-5 rounded-full hover:bg-yellow-700 transition duration-300 relative z-10"
               >
                 Get Started

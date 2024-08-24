@@ -20,6 +20,11 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
     }
 
     if (!req.file) {
+      if (!user) {
+        return next(new ErrorHandler("Please upload a file!", 400));
+      } else {
+        console.log("New Error Occurred: ", req.errored);
+      }
       return next(new ErrorHandler("File not uploaded!", 400));
     }
 
@@ -162,6 +167,27 @@ router.get(
       res.status(200).json({
         success: true,
         user,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
+// logout user
+router.get(
+  "/logout",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      res.cookie("token", null, {
+        expires: new Date(Date.now()),
+        httpOnly: true,
+        sameSite: "none",
+        secure: true,
+      });
+      res.status(201).json({
+        success: true,
+        message: "Log out successful!",
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));

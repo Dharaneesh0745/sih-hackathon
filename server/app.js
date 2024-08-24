@@ -8,7 +8,7 @@ const cors = require("cors");
 
 app.use(express.json());
 app.use(cookieParser());
-app.use("/server", express.static("uploads"));
+app.use("/", express.static("uploads"));
 app.use("/test", (req, res) => {
   res.send("Hello world!");
 });
@@ -30,8 +30,10 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 
 // import routes
 const user = require("./controllers/user");
+const employer = require("./controllers/employer");
 
 app.use("/api/v1/user", user);
+app.use("/api/v1/employer", employer);
 
 // handling uncaught exception errors
 app.use(ErrorHandler);

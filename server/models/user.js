@@ -15,6 +15,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter your email!"],
   },
+  recoveryEmail: {
+    type: String,
+  },
   password: {
     type: String,
     required: [true, "Please enter your password"],
