@@ -20,9 +20,6 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
     }
 
     if (!req.file) {
-      const res = req.file;
-      const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-      const random = arr[Math.floor(Math.random(1000, 100000))];
       if (!user) {
         return next(new ErrorHandler("Please upload a file!", 400));
       } else {

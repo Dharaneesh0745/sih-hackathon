@@ -30,8 +30,10 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 
 // import routes
 const user = require("./controllers/user");
+const employer = require("./controllers/employer");
 
 app.use("/api/v1/user", user);
+app.use("/api/v1/employer", employer);
 
 // handling uncaught exception errors
 app.use(ErrorHandler);
