@@ -14,6 +14,7 @@ import {
   JobDetailsPage,
   ProfilePage,
   RankPage,
+  TestPage,
 } from "./routes/Routes.js";
 import {
   EmployerSignupPage,
@@ -80,6 +81,14 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <EventsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/test"
+            element={
+              <ProtectedRoute>
+                <TestPage />
               </ProtectedRoute>
             }
           />
