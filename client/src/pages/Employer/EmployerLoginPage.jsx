@@ -4,14 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const EmployerLoginPage = () => {
-  const { isEmployer, employer } = useSelector((state) => state.employer);
+  const { isEmployer, isLoading } = useSelector((state) => state.employer);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (isEmployer === true) {
-      navigate(`/employer/dashboard`);
+      navigate(`/employer/home`);
     }
-  }, []);
+  }, [isLoading, isEmployer]);
   return (
     <div>
       <EmployerLogin />
