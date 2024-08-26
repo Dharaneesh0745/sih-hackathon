@@ -9,7 +9,7 @@ const EmployerSignupPage = () => {
 
   useEffect(() => {
     if (isEmployer === true) {
-      navigate(`/employer/dashboard`);
+      navigate(`/employer/home`);
     }
   }, []);
   return (

@@ -27,7 +27,7 @@ const EmployerLogin = () => {
       )
       .then((res) => {
         toast.success("Login Success!");
-        navigate("/employer/dashboard");
+        navigate("/employer/home");
         window.location.reload(true);
       })
       .catch((err) => {

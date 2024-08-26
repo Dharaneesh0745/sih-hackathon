@@ -171,7 +171,7 @@ router.post(
         return next(new ErrorHandler("Please provide the all fields!", 400));
       }
 
-      console.log(employerEmail);
+      // console.log(employerEmail);
 
       const employer = await Employer.findOne({ employerEmail }).select(
         "+password"
@@ -205,7 +205,7 @@ router.get(
   isEmployerAuthenticated,
   catchAsyncErrors(async (req, res, next) => {
     try {
-      console.log(req.employer);
+      // console.log(req.employer);
       const employer = await Employer.findById(req.employer.id);
 
       if (!employer) {
