@@ -1,7 +1,12 @@
-import React from "react";
+import React,{useState} from "react";
 import { Link } from "react-router-dom";
 
 const Landing = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
   return (
     <>
     
@@ -12,7 +17,7 @@ const Landing = () => {
               Employment Platform
             </Link>
             <div className="md:hidden">
-              <button id="menu-btn" className="text-gray-700 focus:outline-none">
+              <button id="menu-btn" className="text-gray-700 focus:outline-none" onClick={toggleMenu}>
                 <svg
                   className="w-6 h-6"
                   fill="none"
@@ -52,25 +57,25 @@ const Landing = () => {
               </li>
             </ul>
           </div>
-          <div id="mobile-menu" className="hidden md:hidden">
+          <div id="mobile-menu" className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden`}>
             <ul className="px-6 py-4 bg-gray-100">
               <li>
-                <Link to={"#features"} className="block py-2 text-gray-700 hover:text-blue-600">
+                <Link to={"#features"} className="block py-2 text-gray-700 hover:text-blue-600" onClick={toggleMenu}>
                   Features
                 </Link>
               </li>
               <li>
-                <Link to={"#demo"} className="block py-2 text-gray-700 hover:text-blue-600">
+                <Link to={"#demo"} className="block py-2 text-gray-700 hover:text-blue-600" onClick={toggleMenu}>
                   Demo
                 </Link>
               </li>
               <li>
-                <Link to={"#testimonials"} className="block py-2 text-gray-700 hover:text-blue-600">
+                <Link to={"#testimonials"} className="block py-2 text-gray-700 hover:text-blue-600" onClick={toggleMenu}>
                   Testimonials
                 </Link>
               </li>
               <li>
-                <Link to={"#contact"} className="block py-2 text-gray-700 hover:text-blue-600">
+                <Link to={"#contact"} className="block py-2 text-gray-700 hover:text-blue-600" onClick={toggleMenu}>
                   Contact
                 </Link>
               </li>
