@@ -69,8 +69,498 @@ const ProfileContent = ({ active }) => {
     "Security Analyst",
     "Database Administrator",
     "IT Support Specialist",
+    "Front-End Developer",
+    "Back-End Developer",
+    "Full-Stack Developer",
+    "Machine Learning Engineer",
+    "Artificial Intelligence Engineer",
+    "Cloud Engineer",
+    "Big Data Engineer",
+    "Business Intelligence Analyst",
+    "Data Analyst",
+    "Data Engineer",
+    "Site Reliability Engineer",
+    "Cybersecurity Specialist",
+    "Penetration Tester",
+    "Ethical Hacker",
+    "IT Project Manager",
+    "Systems Analyst",
+    "Quality Assurance Engineer",
+    "Software Tester",
+    "Embedded Systems Engineer",
+    "Game Developer",
+    "Mobile App Developer",
+    "Web Developer",
+    "UX/UI Designer",
+    "Technical Architect",
+    "Technical Writer",
+    "Hardware Engineer",
+    "Network Administrator",
+    "IT Consultant",
+    "Technology Evangelist",
+    "IT Manager",
+    "Virtualization Engineer",
+    "Blockchain Developer",
+    "Robotics Engineer",
+    "Systems Integrator",
+    "IT Director",
+    "Database Developer",
+    "Systems Engineer",
+    "IT Operations Manager",
+    "CRM Developer",
+    "ERP Consultant",
+    "Data Warehouse Architect",
+    "Digital Transformation Consultant",
+    "Voice User Interface Designer",
+    "Augmented Reality Developer",
+    "Virtual Reality Developer",
+    "AI Research Scientist",
+    "Bioinformatics Specialist",
+    "Information Systems Manager",
+    "E-commerce Specialist",
+    "SAP Consultant",
+    "IT Auditor",
+    "IT Risk Manager",
+    "Telecommunications Engineer",
+    "Technical Support Engineer",
+    "RPA Developer",
+    "Network Security Engineer",
+    "IoT Engineer",
+    "Enterprise Architect",
+    "Infrastructure Engineer",
+    "Application Support Analyst",
+    "Solutions Architect",
+    "IT Trainer",
+    "Cloud Solutions Architect",
+    "Systems Administrator",
+    "Data Privacy Officer",
+    "IT Governance Specialist",
+    "Penetration Testing Specialist",
+    "Technical Product Manager",
+    "Chief Information Officer (CIO)",
+    "Chief Technology Officer (CTO)",
+    "JavaScript",
+    "Python",
+    "Java",
+    "C#",
+    "C++",
+    "Ruby",
+    "PHP",
+    "Swift",
+    "Kotlin",
+    "Go",
+    "TypeScript",
+    "R",
+    "SQL",
+    "HTML",
+    "CSS",
+    "Objective-C",
+    "Dart",
+    "Scala",
+    "Perl",
+    "Haskell",
+    "Lua",
+    "Groovy",
+    "Rust",
+    "MATLAB",
+    "Shell",
+    "PowerShell",
+    "Erlang",
+    "Elixir",
+    "Clojure",
+    "F#",
+    "Visual Basic",
+    "ActionScript",
+    "NumPy",
+    "Pandas",
+    "Matplotlib",
+    "SciPy",
+    "TensorFlow",
+    "Keras",
+    "PyTorch",
+    "Scikit-learn",
+    "Django",
+    "Flask",
+    "FastAPI",
+    "BeautifulSoup",
+    "Scrapy",
+    "Requests",
+    "SQLAlchemy",
+    "Pillow",
+    "OpenCV",
+    "NLTK",
+    "SpaCy",
+    "Pytest",
+    "Jupyter",
+    "Pygame",
+    "SymPy",
+    "Bokeh",
+    "Plotly",
+    "Dash",
+    "Celery",
+    "Alembic",
+    "Gunicorn",
+    "Pydantic",
+    "Selenium",
+    "PyTorch Lightning",
+    "CuPy",
+    "h5py",
+    "Theano",
+    "PyArrow",
+    "Paramiko",
+    "pyodbc",
+    "asyncio",
+    "Loguru",
+    "Pandas-Profiling",
+    "React",
+    "Vue.js",
+    "Angular",
+    "jQuery",
+    "D3.js",
+    "Lodash",
+    "Moment.js",
+    "Axios",
+    "Express",
+    "Node.js",
+    "Three.js",
+    "Echarts",
+    "Chart.js",
+    "Redux",
+    "Next.js",
+    "Gatsby",
+    "Svelte",
+    "Electron",
+    "Bootstrap",
+    "Tailwind CSS",
+    "Socket.IO",
+    "TypeORM",
+    "Knex",
+    "Sequelize",
+    "Mongoose",
+    "NestJS",
+    "Apollo Client",
+    "GraphQL",
+    "Jest",
+    "Mocha",
+    "Chai",
+    "Sinon",
+    "Webpack",
+    "Parcel",
+    "Rollup",
+    "Spring Framework",
+    "Hibernate",
+    "Apache Commons",
+    "Guava",
+    "Log4j",
+    "JUnit",
+    "Mockito",
+    "Apache Kafka",
+    "Apache POI",
+    "Jackson",
+    "Gson",
+    "JavaFX",
+    "Jersey",
+    "SLF4J",
+    "Thymeleaf",
+    "Vaadin",
+    "JPA (Java Persistence API)",
+    "JBoss",
+    "Dropwizard",
+    "Quartz",
+    "Netty",
+    "Java Mail API",
+    "Java Servlet API",
+    "Jasypt",
+    "Apache Camel",
+    "Boost",
+    "Qt",
+    "Eigen",
+    "Poco",
+    "OpenCV",
+    "Boost.Asio",
+    "Caffe",
+    "TensorFlow",
+    "OpenGL",
+    "SFML",
+    "GTest",
+    "ACE (Adaptive Communicative Environment)",
+    "Blosc",
+    "libcurl",
+    "RapidJSON",
+    "Crypto++",
+    "TBB (Threading Building Blocks)",
+    "CGAL (Computational Geometry Algorithms Library)",
+    "Ogre3D",
+    "Rails (Ruby on Rails)",
+    "Sinatra",
+    "RSpec",
+    "Capybara",
+    "Puma",
+    "Sidekiq",
+    "Devise",
+    "ActiveRecord",
+    "Nokogiri",
+    "Faraday",
+    "CarrierWave",
+    "Paperclip",
+    "Hanami",
+    "OmniAuth",
+    "Prawn",
+    "ActiveAdmin",
+    "Rubocop",
+    "Sequel",
+    "Laravel",
+    "Symfony",
+    "CodeIgniter",
+    "Zend Framework",
+    "CakePHP",
+    "Slim",
+    "Phalcon",
+    "Guzzle",
+    "Monolog",
+    "Twig",
+    "Doctrine ORM",
+    "Pusher",
+    "Faker",
+    "PHPUnit",
+    "Mailgun",
+    "SwiftMailer",
+    "GuzzleHTTP",
+    "Socialite",
+    "ASP.NET Core",
+    "Entity Framework Core",
+    "NUnit",
+    "xUnit",
+    "Serilog",
+    "AutoMapper",
+    "Dapper",
+    "MediatR",
+    "SignalR",
+    "RestSharp",
+    "Hangfire",
+    "Quartz.NET",
+    "NLog",
+    "Castle Windsor",
+    "MassTransit",
+    "FluentValidation",
+    "Swagger",
+    "Accord.NET",
+    "ML.NET",
+    "SwiftUI",
+    "Alamofire",
+    "RxSwift",
+    "Combine",
+    "CoreData",
+    "Realm",
+    "SnapKit",
+    "PromiseKit",
+    "Kingfisher",
+    "SwiftyJSON",
+    "Moya",
+    "Charts",
+    "Firebase",
+    "CocoaPods",
+    "Swinject",
+    "Fabric",
+    "Quick",
+    "Nimble",
+    "Gin",
+    "Echo",
+    "Beego",
+    "Revel",
+    "Gorm",
+    "Mgo",
+    "Viper",
+    "Cobra",
+    "Go-kit",
+    "Go-Redis",
+    "Ginkgo",
+    "Gomega",
+    "Chi",
+    "Httprouter",
+    "Zap",
+    "Logrus",
+    "Go-metrics",
+    "Go-Sqlite3",
+    "Go-MySQL",
+    "Go-Postgres",
+    "Go-AWS-SDK",
+    "GraphQL-Go",
+    "Akka",
+    "Play Framework",
+    "Spark",
+    "Slick",
+    "Cats",
+    "Scalaz",
+    "Alpakka",
+    "Lagom",
+    "Apache Flink",
+    "Doobie",
+    "Http4s",
+    "Circe",
+    "Monix",
+    "Shapeless",
+    "SBT (Simple Build Tool)",
+    "ScalaTest",
+    "ScalaCheck",
+    "Breeze",
+    "Kamon",
+    "Actix",
+    "Rocket",
+    "Diesel",
+    "Serde",
+    "Tokio",
+    "Hyper",
+    "Reqwest",
+    "Clap",
+    "Tide",
+    "Rust-async",
+    "Warp",
+    "SeaORM",
+    "Slog",
+    "Rustfmt",
+    "MIO",
+    "Regex",
+    "Rust-Postgres",
+    "OpenSSL",
+    "ggplot2",
+    "dplyr",
+    "tidyr",
+    "shiny",
+    "lubridate",
+    "caret",
+    "plotly",
+    "data.table",
+    "readr",
+    "knitr",
+    "rmarkdown",
+    "httr",
+    "stringr",
+    "rJava",
+    "tensorflow",
+    "xgboost",
+    "randomForest",
+    "e1071",
+    "MASS",
+    "Matrix",
   ];
-  const NON_TECHNICAL_ROLES = ["abcdefghijklmnopqrstuvwxyz"];
+
+  const NON_TECHNICAL_ROLES = [
+    "Project Manager",
+    "Product Manager",
+    "Marketing Manager",
+    "Sales Manager",
+    "Human Resources Manager",
+    "Financial Analyst",
+    "Accountant",
+    "Customer Service Representative",
+    "Administrative Assistant",
+    "Executive Assistant",
+    "Operations Manager",
+    "Business Development Manager",
+    "Content Writer",
+    "Public Relations Specialist",
+    "Event Coordinator",
+    "Legal Advisor",
+    "Recruiter",
+    "Training Specialist",
+    "Office Manager",
+    "Logistics Coordinator",
+    "Supply Chain Manager",
+    "Compliance Officer",
+    "Data Entry Clerk",
+    "Real Estate Agent",
+    "Consultant",
+    "Brand Manager",
+    "Product Designer",
+    "Executive Director",
+    "Administrative Coordinator",
+    "Customer Success Manager",
+    "Financial Planner",
+    "Investment Banker",
+    "Human Resources Specialist",
+    "Retail Manager",
+    "Business Analyst",
+    "Market Research Analyst",
+    "Strategic Planner",
+    "Sales Representative",
+    "Talent Acquisition Specialist",
+    "Legal Assistant",
+    "Healthcare Administrator",
+    "Insurance Agent",
+    "Operations Analyst",
+    "Training Coordinator",
+    "Policy Advisor",
+    "Public Affairs Specialist",
+    "Editorial Assistant",
+    "Creative Director",
+    "Communications Manager",
+    "Development Officer",
+    "Grants Manager",
+    "Non-Profit Manager",
+    "Fundraiser",
+    "Corporate Trainer",
+    "Environmental Consultant",
+    "Procurement Specialist",
+    "Tax Advisor",
+    "Employment Specialist",
+    "Business Operations Manager",
+    "Customer Support Specialist",
+    "Administrative Officer",
+    "Strategic Partnerships Manager",
+    "Investor Relations Manager",
+    "Account Manager",
+    "Legal Consultant",
+    "Merchandising Manager",
+    "HR Director",
+    "Finance Director",
+    "Chief Financial Officer (CFO)",
+    "Chief Executive Officer (CEO)",
+    "Chief Operating Officer (COO)",
+    "Chief Marketing Officer (CMO)",
+    "Chief Human Resources Officer (CHRO)",
+    "Chief Administrative Officer (CAO)",
+    "Chief Revenue Officer (CRO)",
+    "Chief Strategy Officer (CSO)",
+    "Director of Operations",
+    "Director of Marketing",
+    "Director of Sales",
+    "Director of HR",
+    "Director of Finance",
+    "Director of Communications",
+    "Director of Customer Service",
+    "Director of Product Management",
+    "Director of Business Development",
+    "Director of Administration",
+    "Director of Training",
+    "Director of Strategy",
+    "Director of Legal Affairs",
+    "Director of Investor Relations",
+    "General Manager",
+    "Branch Manager",
+    "Regional Manager",
+    "Area Manager",
+    "Operations Director",
+    "Business Unit Manager",
+    "Corporate Development Manager",
+    "Training and Development Manager",
+    "Corporate Communications Manager",
+    "Public Relations Manager",
+    "Compliance Manager",
+    "Risk Manager",
+    "Contract Manager",
+    "Health and Safety Manager",
+    "Facility Manager",
+    "Property Manager",
+    "Insurance Underwriter",
+    "Product Marketing Manager",
+    "Event Manager",
+    "Sales Director",
+    "Financial Controller",
+    "Chief Data Officer (CDO)",
+    "Chief Technology Officer (CTO)",
+    "Chief Product Officer (CPO)",
+  ];
 
   const [inputValueTechnical, setInputValueTechnical] = useState("");
   const [inputValueNonTechnical, setInputValueNonTechnical] = useState("");
@@ -377,136 +867,6 @@ const ProfileContent = ({ active }) => {
             <br />
 
             {/* Skills */}
-            {/* <div className="w-full pr-8 bg-slate-300 mr-5 py-8 rounded-xl mx-8">
-              <h1 className="mb-4 text-center mx-auto ml-7 text-black font-bold text-[30px]">
-                Skills Details
-              </h1>
-
-              <form
-                onSubmit={handleSubmit}
-                className="800px:w-[1000px] mx-auto"
-              >
-                <div className="flex flex-wrap text-center ml-5 mb-2">
-                  <h2 className="w-full text-center font-bold">
-                    Primary Skills:
-                  </h2>
-                  {primarySkills.map((role) => (
-                    <span
-                      key={role}
-                      className="flex items-center bg-gray-200 rounded-md p-2 mr-2 mb-2"
-                    >
-                      {role}
-                      <button
-                        type="button"
-                        onClick={() => openDeleteModal(role, true)}
-                        className="ml-2 bg-transparent border-none cursor-pointer"
-                      >
-                        &times;
-                      </button>
-                    </span>
-                  ))}
-                </div>
-
-                <input
-                  type="text"
-                  value={inputValuePrimary}
-                  onChange={(e) => handleInputChange(e, "primary")}
-                  placeholder="Add primary skills..."
-                  className="border ml-5 rounded-md p-2 w-full mx-auto mt-4"
-                />
-
-                {filteredPrimaryRoles.length > 0 && (
-                  <ul className="list-none ml-3 p-0 mt-2 border mx-auto rounded-md max-h-36 overflow-y-auto absolute z-10 bg-white w-72 800px:w-[1000px]">
-                    {filteredPrimaryRoles.map((role) => (
-                      <li
-                        key={role}
-                        onClick={() => handleRoleSelect(role, "primary")}
-                        className="p-2 cursor-pointer hover:bg-gray-200"
-                      >
-                        {role}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                <div className="flex flex-wrap text-center ml-5 mb-2 mt-6">
-                  <h2 className="w-full text-center font-bold">
-                    Secondary Skills:
-                  </h2>
-                  {secondarySkills.map((role) => (
-                    <span
-                      key={role}
-                      className="flex items-center bg-gray-200 rounded-md p-2 mr-2 mb-2"
-                    >
-                      {role}
-                      <button
-                        type="button"
-                        onClick={() => openDeleteModal(role, false)}
-                        className="ml-2 bg-transparent border-none cursor-pointer"
-                      >
-                        &times;
-                      </button>
-                    </span>
-                  ))}
-                </div>
-
-                <input
-                  type="text"
-                  value={inputValueSecondary}
-                  onChange={(e) => handleInputChange(e, "secondary")}
-                  placeholder="Add secondary skills.."
-                  className="border ml-5 rounded-md p-2 w-full mx-auto mt-4"
-                />
-
-                {filteredSecondaryRoles.length > 0 && (
-                  <ul className="list-none ml-3 p-0 mt-2 border mx-auto rounded-md max-h-36 overflow-y-auto absolute z-10 bg-white w-72 800px:w-[1000px]">
-                    {filteredSecondaryRoles.map((role) => (
-                      <li
-                        key={role}
-                        onClick={() => handleRoleSelect(role, "secondary")}
-                        className="p-2 cursor-pointer hover:bg-gray-200"
-                      >
-                        {role}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                <div className="text-center mt-8">
-                  <input
-                    type="submit"
-                    className={`w-[200px] h-[40px] border border-[#3a24db] text-center text-[#3a24db] rounded-lg cursor-pointer`}
-                    value="Update Skills"
-                    required
-                  />
-                </div>
-              </form>
-
-              {isDeleteModalOpen && (
-                <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
-                  <div className="bg-white p-6 rounded-lg shadow-lg">
-                    <h2 className="text-lg font-semibold mb-4">
-                      Are you sure you want to delete this skill?
-                    </h2>
-                    <div className="flex justify-between">
-                      <button
-                        onClick={closeDeleteModal}
-                        className="bg-gray-300 px-4 py-2 rounded-md mr-2"
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        onClick={handleDeleteSkill}
-                        className="bg-red-500 text-white px-4 py-2 rounded-md"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div> */}
-
             <div className="w-full pr-8 bg-slate-300 mr-5 py-8 rounded-xl mx-8">
               <h1 className="mb-4 text-center mx-auto ml-7 text-black font-bold text-[30px]">
                 Skills Details
@@ -546,7 +906,7 @@ const ProfileContent = ({ active }) => {
                 />
 
                 {filteredTechnicalRoles.length > 0 && (
-                  <ul className="list-none ml-3 p-0 mt-2 border mx-auto rounded-md max-h-36 overflow-y-auto absolute z-10 bg-white w-72 800px:w-[1000px]">
+                  <ul className="list-none ml-5 p-0 mt-2 border mx-auto rounded-md max-h-36 overflow-y-auto absolute z-10 bg-white w-72 800px:w-[1000px]">
                     {filteredTechnicalRoles.map((role) => (
                       <li
                         key={role}
@@ -589,7 +949,7 @@ const ProfileContent = ({ active }) => {
                 />
 
                 {filteredNonTechnicalRoles.length > 0 && (
-                  <ul className="list-none ml-3 p-0 mt-2 border mx-auto rounded-md max-h-36 overflow-y-auto absolute z-10 bg-white w-72 800px:w-[1000px]">
+                  <ul className="list-none ml-5 p-0 mt-2 border mx-auto rounded-md max-h-36 overflow-y-auto absolute z-10 bg-white w-72 800px:w-[1000px]">
                     {filteredNonTechnicalRoles.map((role) => (
                       <li
                         key={role}
