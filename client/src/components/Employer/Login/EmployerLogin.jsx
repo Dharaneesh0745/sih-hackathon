@@ -6,34 +6,67 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { server } from "../../../server";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { loadEmployer } from "../../../redux/actions/user";
 
 const EmployerLogin = () => {
   const [employerEmail, setEmployerEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // const { employer } = useSelector((state) => state.employer);
+  const { isEmployer, employer } = useSelector((state) => state.user);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await axios
-      .post(
+    // await axios
+    //   .post(
+    //     `${server}/employer/login-employer`,
+    //     {
+    //       employerEmail,
+    //       password,
+    //     },
+    //     { withCredentials: true }
+    //   )
+    //   .then((res) => {
+    //     toast.success("Login Success!");
+    //     dispatch(loadEmployer());
+    //     console.log(res.data.employer._id);
+    //     // navigate(`/employer/${employer._id}`);
+    //     window.location.reload(true);
+    //   })
+    //   .catch((err) => {
+    //     toast.error(err.response.data.message);
+    //     // console.log(err.response.data.message);
+    //   });
+
+    try {
+      const res = await axios.post(
         `${server}/employer/login-employer`,
         {
           employerEmail,
           password,
         },
         { withCredentials: true }
-      )
-      .then((res) => {
+      );
+
+      if (res && res.data && res.data.user) {
+        const employerId = res.data.user._id; // Correctly access the employer ID
         toast.success("Login Success!");
-        navigate("/employer/home");
+        navigate(`/employer/${employerId}`);
         window.location.reload(true);
-      })
-      .catch((err) => {
-        toast.error(err.response.data.message);
-        // console.log(err.response.data.message);
-      });
+      } else {
+        toast.error("Unexpected response structure from server");
+        console.error("Unexpected response:", res);
+      }
+    } catch (err) {
+      toast.error(
+        err.response?.data?.message || "An error occurred during login"
+      );
+      console.error(err);
+    }
   };
 
   return (

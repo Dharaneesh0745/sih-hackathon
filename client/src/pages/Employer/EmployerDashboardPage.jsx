@@ -8,7 +8,7 @@ const EmployerDashboardPage = () => {
     <div>
       <DashboardHeader />
       <div className="flex items-center justify-between w-full">
-        <div className="w-[330px]">
+        <div className="800px:w-[250px] w-[60px]">
           <DashboardSidebar active={1} />
         </div>
       </div>

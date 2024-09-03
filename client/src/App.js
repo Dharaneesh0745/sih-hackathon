@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import {
   LandingPage,
@@ -31,15 +31,18 @@ import { loadEmployer, loadUser } from "./redux/actions/user.js";
 // import { useSelector } from "react-redux";
 import ProtectedRoute from "./routes/ProtectedRoutes.js";
 import EmployerProtectedRoute from "./routes/EmployerProtectedRoute.js";
+import { useSelector } from "react-redux";
 
 const App = () => {
+  const { isEmployer, employer } = useSelector((state) => state.user);
+
   useEffect(() => {
     Store.dispatch(loadUser());
     Store.dispatch(loadEmployer());
 
-    // if (isEmployer) {
-    //   return <Navigate to={"/dhoni"} replace />;
-    // }
+    if (isEmployer) {
+      return <Navigate to={`/employer/${employer._id}`} replace />;
+    }
   }, []);
 
   // console.log(isEmployer, employer);
@@ -110,7 +113,7 @@ const App = () => {
           <Route path="/employer/signup" element={<EmployerSignupPage />} />
           <Route path="/employer/login" element={<EmployerLoginPage />} />
           <Route
-            path="/employer/home"
+            path="/employer/:id"
             element={
               <EmployerProtectedRoute>
                 <EmployerHomePage />
