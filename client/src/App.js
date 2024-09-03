@@ -17,6 +17,7 @@ import {
   TestPage,
   CoursesPage,
   UserDetailsPage,
+  PreperationPage,
 } from "./routes/Routes.js";
 import {
   EmployerSignupPage,
@@ -117,6 +118,7 @@ const App = () => {
           />
           <Route path="/rank" element={<RankPage />} />
           <Route path="/courses" element={<CoursesPage />} />
+          <Route path="/preperation" element={<PreperationPage />} />
 
           {/* employer routes */}
           <Route path="/employer/signup" element={<EmployerSignupPage />} />

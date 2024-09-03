@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import { jobData } from "../../../data/";
 
 const CompanyProfileData = () => {
   const [active, setActive] = useState(1);
@@ -37,6 +38,11 @@ const CompanyProfileData = () => {
               Company Reviews
             </h5>
           </div>
+        </div>
+
+        <br />
+        <div className="grid grid-cols-1 gap-[20px] md:grid-cols-2 md:gap-[25px] lg:grid-cols-3 lg:gap-[25px] xl:grid-cols-4 xl:gap-[20px] mb-12 border-0">
+          {/* {jobData} */}
         </div>
       </div>
     </>

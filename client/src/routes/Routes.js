@@ -13,6 +13,7 @@ import RankPage from "../../src/pages/RankPage";
 import TestPage from "../../src/pages/TestPage";
 import CoursesPage from "../../src/pages/CoursesPage";
 import UserDetailsPage from "../../src/pages/UserDetailsPage";
+import PreperationPage from "../../src/pages/PreperationPage";
 
 export {
   LandingPage,
@@ -30,4 +31,5 @@ export {
   TestPage,
   CoursesPage,
   UserDetailsPage,
+  PreperationPage,
 };
