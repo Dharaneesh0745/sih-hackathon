@@ -69,10 +69,10 @@ const userSchema = new mongoose.Schema({
   portfolioUrl: {
     type: String,
   },
-  primarySkills: {
+  technicalSkills: {
     type: String,
   },
-  secondarySkills: {
+  nonTechnicalSkills: {
     type: String,
   },
   employmentStatus: {

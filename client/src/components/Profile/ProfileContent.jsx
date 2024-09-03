@@ -60,7 +60,7 @@ const ProfileContent = ({ active }) => {
       });
   };
 
-  const IT_ROLES = [
+  const TECHNICAL_ROLES = [
     "Software Developer",
     "System Administrator",
     "Network Engineer",
@@ -70,36 +70,39 @@ const ProfileContent = ({ active }) => {
     "Database Administrator",
     "IT Support Specialist",
   ];
+  const NON_TECHNICAL_ROLES = ["abcdefghijklmnopqrstuvwxyz"];
 
-  const [inputValuePrimary, setInputValuePrimary] = useState("");
-  const [inputValueSecondary, setInputValueSecondary] = useState("");
-  const [primarySkills, setPrimarySkills] = useState([]);
-  const [secondarySkills, setSecondarySkills] = useState([]);
-  const [filteredPrimaryRoles, setFilteredPrimaryRoles] = useState([]);
-  const [filteredSecondaryRoles, setFilteredSecondaryRoles] = useState([]);
+  const [inputValueTechnical, setInputValueTechnical] = useState("");
+  const [inputValueNonTechnical, setInputValueNonTechnical] = useState("");
+  const [technicalSkills, setTechnicalSkills] = useState([]);
+  const [nonTechnicalSkills, setNonTechnicalSkills] = useState([]);
+  const [filteredTechnicalRoles, setFilteredTechnicalRoles] = useState([]);
+  const [filteredNonTechnicalRoles, setFilteredNonTechnicalRoles] = useState(
+    []
+  );
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [skillToDelete, setSkillToDelete] = useState(null);
 
   useEffect(() => {
     if (user) {
-      setPrimarySkills(user.primarySkills.split(", "));
-      setSecondarySkills(user.secondarySkills.split(", "));
+      setTechnicalSkills(user.technicalSkills.split(", "));
+      setNonTechnicalSkills(user.nonTechnicalSkills.split(", "));
     }
   }, [user]);
 
   const handleInputChange = (e, type) => {
     const value = e.target.value;
-    if (type === "primary") {
-      setInputValuePrimary(value);
-      setFilteredPrimaryRoles(
-        IT_ROLES.filter((role) =>
+    if (type === "technical") {
+      setInputValueTechnical(value);
+      setFilteredTechnicalRoles(
+        TECHNICAL_ROLES.filter((role) =>
           role.toLowerCase().includes(value.toLowerCase())
         )
       );
     } else {
-      setInputValueSecondary(value);
-      setFilteredSecondaryRoles(
-        IT_ROLES.filter((role) =>
+      setInputValueNonTechnical(value);
+      setFilteredNonTechnicalRoles(
+        NON_TECHNICAL_ROLES.filter((role) =>
           role.toLowerCase().includes(value.toLowerCase())
         )
       );
@@ -107,22 +110,22 @@ const ProfileContent = ({ active }) => {
   };
 
   const handleRoleSelect = (role, type) => {
-    if (type === "primary" && !primarySkills.includes(role)) {
-      setPrimarySkills([...primarySkills, role]);
-    } else if (type === "secondary" && !secondarySkills.includes(role)) {
-      setSecondarySkills([...secondarySkills, role]);
+    if (type === "technical" && !technicalSkills.includes(role)) {
+      setTechnicalSkills([...technicalSkills, role]);
+    } else if (type === "nonTechnical" && !nonTechnicalSkills.includes(role)) {
+      setNonTechnicalSkills([...nonTechnicalSkills, role]);
     }
-    if (type === "primary") {
-      setInputValuePrimary("");
-      setFilteredPrimaryRoles([]);
+    if (type === "technical") {
+      setInputValueTechnical("");
+      setFilteredTechnicalRoles([]);
     } else {
-      setInputValueSecondary("");
-      setFilteredSecondaryRoles([]);
+      setInputValueNonTechnical("");
+      setFilteredNonTechnicalRoles([]);
     }
   };
 
-  const openDeleteModal = (role, primary) => {
-    setSkillToDelete({ role, primary });
+  const openDeleteModal = (role, technical) => {
+    setSkillToDelete({ role, technical });
     setIsDeleteModalOpen(true);
   };
 
@@ -132,34 +135,26 @@ const ProfileContent = ({ active }) => {
   };
 
   const handleDeleteSkill = async () => {
-    const { role, primary } = skillToDelete;
-    if (primary) {
-      const updatedSkills = primarySkills.filter((r) => r !== role);
-      setPrimarySkills(updatedSkills);
-      await axios.post("/api/skills/delete", {
-        role,
-        type: "primary",
-      });
+    const { role, technical } = skillToDelete;
+    if (technical) {
+      const updatedSkills = technicalSkills.filter((r) => r !== role);
+      setTechnicalSkills(updatedSkills);
     } else {
-      const updatedSkills = secondarySkills.filter((r) => r !== role);
-      setSecondarySkills(updatedSkills);
-      await axios.post("/api/skills/delete", {
-        role,
-        type: "secondary",
-      });
+      const updatedSkills = nonTechnicalSkills.filter((r) => r !== role);
+      setNonTechnicalSkills(updatedSkills);
     }
     closeDeleteModal();
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const updatedPrimarySkills = primarySkills.join(", ");
-    const updatedSecondarySkills = secondarySkills.join(", ");
+    const updatedTechnicalSkills = technicalSkills.join(", ");
+    const updatedNonTechnicalSkills = nonTechnicalSkills.join(", ");
 
     try {
       await axios.post(`${server}/user/update-skills/${id}`, {
-        primarySkills: updatedPrimarySkills,
-        secondarySkills: updatedSecondarySkills,
+        technicalSkills: updatedTechnicalSkills,
+        nonTechnicalSkills: updatedNonTechnicalSkills,
       });
       toast.success("Skills updated successfully!");
     } catch (error) {
@@ -382,7 +377,7 @@ const ProfileContent = ({ active }) => {
             <br />
 
             {/* Skills */}
-            <div className="w-full pr-8 bg-slate-300 mr-5 py-8 rounded-xl mx-8">
+            {/* <div className="w-full pr-8 bg-slate-300 mr-5 py-8 rounded-xl mx-8">
               <h1 className="mb-4 text-center mx-auto ml-7 text-black font-bold text-[30px]">
                 Skills Details
               </h1>
@@ -469,6 +464,136 @@ const ProfileContent = ({ active }) => {
                       <li
                         key={role}
                         onClick={() => handleRoleSelect(role, "secondary")}
+                        className="p-2 cursor-pointer hover:bg-gray-200"
+                      >
+                        {role}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                <div className="text-center mt-8">
+                  <input
+                    type="submit"
+                    className={`w-[200px] h-[40px] border border-[#3a24db] text-center text-[#3a24db] rounded-lg cursor-pointer`}
+                    value="Update Skills"
+                    required
+                  />
+                </div>
+              </form>
+
+              {isDeleteModalOpen && (
+                <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
+                  <div className="bg-white p-6 rounded-lg shadow-lg">
+                    <h2 className="text-lg font-semibold mb-4">
+                      Are you sure you want to delete this skill?
+                    </h2>
+                    <div className="flex justify-between">
+                      <button
+                        onClick={closeDeleteModal}
+                        className="bg-gray-300 px-4 py-2 rounded-md mr-2"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        onClick={handleDeleteSkill}
+                        className="bg-red-500 text-white px-4 py-2 rounded-md"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div> */}
+
+            <div className="w-full pr-8 bg-slate-300 mr-5 py-8 rounded-xl mx-8">
+              <h1 className="mb-4 text-center mx-auto ml-7 text-black font-bold text-[30px]">
+                Skills Details
+              </h1>
+
+              <form
+                onSubmit={handleSubmit}
+                className="800px:w-[1000px] mx-auto"
+              >
+                <div className="flex flex-wrap text-center ml-5 mb-2">
+                  <h2 className="w-full text-center font-bold">
+                    Technical Skills:
+                  </h2>
+                  {technicalSkills.map((role) => (
+                    <span
+                      key={role}
+                      className="flex items-center bg-gray-200 rounded-md p-2 mr-2 mb-2"
+                    >
+                      {role}
+                      <button
+                        type="button"
+                        onClick={() => openDeleteModal(role, true)}
+                        className="ml-2 bg-transparent border-none cursor-pointer"
+                      >
+                        &times;
+                      </button>
+                    </span>
+                  ))}
+                </div>
+
+                <input
+                  type="text"
+                  value={inputValueTechnical}
+                  onChange={(e) => handleInputChange(e, "technical")}
+                  placeholder="Add technical skills..."
+                  className="border ml-5 rounded-md p-2 w-full mx-auto mt-4"
+                />
+
+                {filteredTechnicalRoles.length > 0 && (
+                  <ul className="list-none ml-3 p-0 mt-2 border mx-auto rounded-md max-h-36 overflow-y-auto absolute z-10 bg-white w-72 800px:w-[1000px]">
+                    {filteredTechnicalRoles.map((role) => (
+                      <li
+                        key={role}
+                        onClick={() => handleRoleSelect(role, "technical")}
+                        className="p-2 cursor-pointer hover:bg-gray-200"
+                      >
+                        {role}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                <div className="flex flex-wrap text-center ml-5 mb-2 mt-6">
+                  <h2 className="w-full text-center font-bold">
+                    Non-Technical Skills:
+                  </h2>
+                  {nonTechnicalSkills.map((role) => (
+                    <span
+                      key={role}
+                      className="flex items-center bg-gray-200 rounded-md p-2 mr-2 mb-2"
+                    >
+                      {role}
+                      <button
+                        type="button"
+                        onClick={() => openDeleteModal(role, false)}
+                        className="ml-2 bg-transparent border-none cursor-pointer"
+                      >
+                        &times;
+                      </button>
+                    </span>
+                  ))}
+                </div>
+
+                <input
+                  type="text"
+                  value={inputValueNonTechnical}
+                  onChange={(e) => handleInputChange(e, "nonTechnical")}
+                  placeholder="Add non-technical skills..."
+                  className="border ml-5 rounded-md p-2 w-full mx-auto mt-4"
+                />
+
+                {filteredNonTechnicalRoles.length > 0 && (
+                  <ul className="list-none ml-3 p-0 mt-2 border mx-auto rounded-md max-h-36 overflow-y-auto absolute z-10 bg-white w-72 800px:w-[1000px]">
+                    {filteredNonTechnicalRoles.map((role) => (
+                      <li
+                        key={role}
+                        onClick={() => handleRoleSelect(role, "nonTechnical")}
                         className="p-2 cursor-pointer hover:bg-gray-200"
                       >
                         {role}

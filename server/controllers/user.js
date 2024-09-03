@@ -185,10 +185,10 @@ router.post(
         return next(new ErrorHandler("User doesn't exists", 400));
       }
 
-      const { primarySkills, secondarySkills } = req.body;
+      const { technicalSkills, nonTechnicalSkills } = req.body;
 
-      user.primarySkills = primarySkills || user.primarySkills;
-      user.secondarySkills = secondarySkills || user.secondarySkills;
+      user.technicalSkills = technicalSkills || user.technicalSkills;
+      user.nonTechnicalSkills = nonTechnicalSkills || user.nonTechnicalSkills;
 
       await user.save();
 
