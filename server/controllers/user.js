@@ -174,6 +174,27 @@ router.get(
   })
 );
 
+// get users dynamic
+router.get(
+  "/view-user/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const view_user = await User.findById(req.params.id);
+
+      if (!view_user) {
+        return next(new ErrorHandler("User doesn't exists", 400));
+      }
+
+      res.status(200).json({
+        success: true,
+        view_user,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
 // logout user
 router.get(
   "/logout",

@@ -54,7 +54,7 @@ const ProfileSidebar = ({ active, setActive }) => {
               active === 2 ? "text-pink-500" : ""
             } 800px:block hidden`}
           >
-            Experience
+            Edit Profile
           </span>
         </div>
         <div

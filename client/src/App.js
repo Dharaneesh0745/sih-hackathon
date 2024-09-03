@@ -16,6 +16,7 @@ import {
   RankPage,
   TestPage,
   CoursesPage,
+  UserDetailsPage,
 } from "./routes/Routes.js";
 import {
   EmployerSignupPage,
@@ -93,6 +94,14 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <TestPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/u/:id"
+            element={
+              <ProtectedRoute>
+                <UserDetailsPage />
               </ProtectedRoute>
             }
           />
