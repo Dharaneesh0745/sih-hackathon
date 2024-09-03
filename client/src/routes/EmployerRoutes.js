@@ -3,6 +3,7 @@ import EmployerActivationPage from "../../src/pages/Employer/EmployerActivationP
 import EmployerLoginPage from "../../src/pages/Employer/EmployerLoginPage";
 import EmployerHomePage from "../../src/pages/Employer/EmployerHomePage";
 import EmployerDashboardPage from "../../src/pages/Employer/EmployerDashboardPage";
+import EmployerCreateJobPage from "../../src/pages/Employer/EmployerCreateJobPage";
 
 export {
   EmployerSignupPage,
@@ -10,4 +11,5 @@ export {
   EmployerLoginPage,
   EmployerDashboardPage,
   EmployerHomePage,
+  EmployerCreateJobPage,
 };
