@@ -174,6 +174,89 @@ router.get(
   })
 );
 
+// update user skills
+router.post(
+  "/update-skills/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const user = await User.findById(req.params.id);
+
+      if (!user) {
+        return next(new ErrorHandler("User doesn't exists", 400));
+      }
+
+      const { primarySkills, secondarySkills } = req.body;
+
+      user.primarySkills = primarySkills || user.primarySkills;
+      user.secondarySkills = secondarySkills || user.secondarySkills;
+
+      await user.save();
+
+      res.status(200).json({
+        success: true,
+        message: "User Skills updated successfully",
+        user,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
+// update primary data
+router.post(
+  "/update-primary-details/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const user = await User.findById(req.params.id);
+
+      if (!user) {
+        return next(new ErrorHandler("User doesn't exist", 400));
+      }
+
+      const {
+        firstName,
+        lastName,
+        recoveryEmail,
+        phoneNumber,
+        dateOfBirth,
+        gender,
+        country,
+        state,
+        city,
+        address1,
+        address2,
+        zipCode,
+        addressType,
+      } = req.body;
+
+      user.firstName = firstName || user.firstName;
+      user.lastName = lastName || user.lastName;
+      user.recoveryEmail = recoveryEmail || user.recoveryEmail;
+      user.phoneNumber = phoneNumber || user.phoneNumber;
+      user.dateOfBirth = dateOfBirth || user.dateOfBirth;
+      user.gender = gender || user.gender;
+      user.country = country || user.country;
+      user.city = city || user.city;
+      user.state = state || user.state;
+      user.address1 = address1 || user.address1;
+      user.address2 = address2 || user.address2;
+      user.zipCode = zipCode || user.zipCode;
+      user.addressType = addressType || user.addressType;
+
+      await user.save();
+
+      res.status(200).json({
+        success: true,
+        message: "User primary details updated successfully",
+        user,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
 // get users dynamic
 router.get(
   "/view-user/:id",

@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { backend_API_endpoint, server } from "../../server";
 import styles from "../../styles/styles";
 import { FaCoins } from "react-icons/fa6";
+import { MdAdd } from "react-icons/md";
+import { BiMessageDetail } from "react-icons/bi";
 
 const UserDetail = () => {
   const { id } = useParams();
@@ -68,12 +70,16 @@ const UserDetail = () => {
                   <p className="text-sm">Coimbatore, India</p>
                   <div className="flex flex-row">
                     <button className={`${styles.button} text-white mx-auto`}>
-                      Follow
+                      Follow &nbsp; <MdAdd className="mt-0.5" />
                     </button>
-                    <button className={`${styles.buttonOutline} mx-auto`}>
-                      <FaCoins className="text-yellow-500" /> &nbsp; 1200 points
+                    <button className={`${styles.button} text-white mx-auto`}>
+                      Message &nbsp; <BiMessageDetail className="mt-1" />
                     </button>
                   </div>
+                  <button className={`${styles.buttonOutline} w-[80%] mx-auto`}>
+                    Total points earned: &nbsp;&nbsp;{" "}
+                    <FaCoins className="text-yellow-500" /> &nbsp; 1200 points
+                  </button>
                 </div>
                 <div className="text-center mt-7 items-center mx-auto">
                   <h1 className="text-2xl font-bold">Current Shield</h1>

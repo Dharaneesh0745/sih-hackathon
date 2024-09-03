@@ -27,30 +27,29 @@ const userSchema = new mongoose.Schema({
   phoneNumber: {
     type: Number,
   },
-  addresses: [
-    {
-      country: {
-        type: String,
-      },
-      city: {
-        type: String,
-      },
-      address1: {
-        type: String,
-      },
-      address2: {
-        type: String,
-      },
-      zipCode: {
-        type: Number,
-      },
-      addressType: {
-        type: String,
-      },
-    },
-  ],
+  country: {
+    type: String,
+  },
+  city: {
+    type: String,
+  },
+  state: {
+    type: String,
+  },
+  address1: {
+    type: String,
+  },
+  address2: {
+    type: String,
+  },
+  zipCode: {
+    type: Number,
+  },
+  addressType: {
+    type: String,
+  },
   dateOfBirth: {
-    type: Date,
+    type: String,
   },
   gender: {
     type: String,
@@ -107,6 +106,9 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   competencyScore: {
+    type: Number,
+  },
+  totalPoints: {
     type: Number,
   },
   skillGapAnalysis: {
