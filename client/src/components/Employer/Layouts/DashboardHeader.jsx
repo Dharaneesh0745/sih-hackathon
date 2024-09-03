@@ -3,6 +3,7 @@ import { FaFileAlt } from "react-icons/fa";
 import { MdMessage, MdWorkHistory } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { backend_API_endpoint } from "../../../server";
 
 const DashboardHeader = () => {
   const { employer } = useSelector((state) => state.employer);
@@ -34,7 +35,7 @@ const DashboardHeader = () => {
           </Link>
           <Link to={`/employer/${employer._id}`}>
             <img
-              src={`${employer.avatar?.url}`}
+              src={`${backend_API_endpoint}${employer?.avatar}`}
               alt=""
               className="w-[50px] h-[50px] mx-3 rounded-full object-cover"
             />
