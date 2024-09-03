@@ -575,8 +575,16 @@ const ProfileContent = ({ active }) => {
 
   useEffect(() => {
     if (user) {
-      setTechnicalSkills(user.technicalSkills.split(", "));
-      setNonTechnicalSkills(user.nonTechnicalSkills.split(", "));
+      try {
+        setTechnicalSkills(
+          user.technicalSkills ? user.technicalSkills.split(", ") : []
+        );
+        setNonTechnicalSkills(
+          user.nonTechnicalSkills ? user.nonTechnicalSkills.split(", ") : []
+        );
+      } catch (error) {
+        console.error("Error processing skills:", error);
+      }
     }
   }, [user]);
 
