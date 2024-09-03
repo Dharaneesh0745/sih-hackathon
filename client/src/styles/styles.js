@@ -10,6 +10,8 @@ const styles = {
   active_indicator: "absolute bottom-[-27%] left-0 h-[3px] w-full bg-[crimson]",
   button:
     "w-[150px] bg-black h-[40px] my-3 flex items-center justify-center rounded-xl cursor-pointer",
+  buttonOutline:
+    "w-[150px] border border-black border-2 h-[40px] my-3 flex items-center justify-center rounded-xl cursor-pointer",
   cart_button:
     "px-[20px] h-[38px] rounded-[20px] bg-[#f63b60] flex items-center justify-center cursor-pointer",
   cart_button_text: "text-[#fff] text-[16px] font-[600]",

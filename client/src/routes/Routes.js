@@ -12,6 +12,7 @@ import ProfilePage from "../../src/pages/ProfilePage";
 import RankPage from "../../src/pages/RankPage";
 import TestPage from "../../src/pages/TestPage";
 import CoursesPage from "../../src/pages/CoursesPage";
+import UserDetailsPage from "../../src/pages/UserDetailsPage";
 
 export {
   LandingPage,
@@ -28,4 +29,5 @@ export {
   RankPage,
   TestPage,
   CoursesPage,
+  UserDetailsPage,
 };
