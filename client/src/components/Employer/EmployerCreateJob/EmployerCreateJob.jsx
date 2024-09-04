@@ -14,17 +14,19 @@ const EmployerCreateJob = () => {
 
   const [images, setImages] = useState([]);
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState();
-  const [salary, setSalary] = useState();
-  const [location, setLocation] = useState();
-  const [category, setCategory] = useState();
-  const [experience, setExperience] = useState();
-  const [skills, setSkills] = useState();
-  const [jobType, setJobType] = useState();
-  const [education, setEducation] = useState();
-  const [deadline, setDeadline] = useState();
-  const [vacancy, setVacancy] = useState();
-  const [tags, setTags] = useState();
+  const [description, setDescription] = useState("");
+  const [salary, setSalary] = useState("");
+  const [location, setLocation] = useState("");
+  const [category, setCategory] = useState("");
+  const [experience, setExperience] = useState("");
+  const [skills, setSkills] = useState("");
+  const [jobType, setJobType] = useState("");
+  const [education, setEducation] = useState("");
+  const [deadline, setDeadline] = useState("");
+  const [vacancy, setVacancy] = useState("");
+  const [tags, setTags] = useState("");
+  const [locationType, setLocationType] = useState("");
+  const [errors, setErrors] = useState("");
 
   useEffect(() => {
     if (error) {
@@ -32,13 +34,25 @@ const EmployerCreateJob = () => {
     }
     if (success) {
       toast.success("Job Created Successfully");
-      navigate("/employer/dashboard");
+      navigate("/employer/allJobs");
       window.location.reload(true);
     }
   }, [dispatch, error, success]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (category === "") {
+      setErrors("Please select a location type.");
+    }
+    if (jobType === "") {
+      setErrors("Please select a location type.");
+    }
+    if (locationType === "") {
+      setErrors("Please select a location type.");
+    } else {
+      setErrors("");
+    }
 
     const newForm = new FormData();
 
@@ -54,6 +68,7 @@ const EmployerCreateJob = () => {
     newForm.append("experience", experience);
     newForm.append("skills", skills);
     newForm.append("jobType", jobType);
+    newForm.append("locationType", locationType);
     newForm.append("education", education);
     newForm.append("deadline", deadline);
     newForm.append("vacancy", vacancy);
@@ -90,6 +105,7 @@ const EmployerCreateJob = () => {
               onChange={(e) => setTitle(e.target.value)}
               className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
               placeholder="Enter Job Title..."
+              required
             />
           </div>
           <br />
@@ -118,8 +134,9 @@ const EmployerCreateJob = () => {
               className="w-full mt-2 border h-[35px] rounded-md"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
+              required
             >
-              <option disabled>-- Select Category --</option>
+              <option value="">-- Select Category --</option>
               {categoriesData &&
                 categoriesData.map((i) => (
                   <option key={i.title} value={i.title}>
@@ -127,6 +144,7 @@ const EmployerCreateJob = () => {
                   </option>
                 ))}
             </select>
+            {errors && <p className="text-red-500">{errors}</p>}
           </div>
           <br />
           <div>
@@ -207,12 +225,31 @@ const EmployerCreateJob = () => {
               className="w-full mt-2 border h-[35px] rounded-md"
               value={jobType}
               onChange={(e) => setJobType(e.target.value)}
+              required
             >
-              <option disabled>-- Select Category --</option>
+              <option value="">-- Select Category --</option>
               <option value="Full-Time">Full-Time</option>
               <option value="Part-Time">Part-Time</option>
               <option value="Internship">Internship</option>
             </select>
+            {errors && <p className="text-red-500">{errors}</p>}
+          </div>
+          <div>
+            <label className="pb-2">
+              Location Type <span className="text-red-500">*</span>
+            </label>
+            <select
+              className="w-full mt-2 border h-[35px] rounded-md"
+              value={locationType}
+              onChange={(e) => setLocationType(e.target.value)}
+              required
+            >
+              <option value="">-- Select Category --</option>
+              <option value="On-Site">On-Site</option>
+              <option value="Hybrid">Hybrid</option>
+              <option value="Remote">Remote</option>
+            </select>
+            {errors && <p className="text-red-500">{errors}</p>}
           </div>
           <br />
           <div>

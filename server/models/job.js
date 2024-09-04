@@ -50,6 +50,10 @@ const jobSchema = new mongoose.Schema({
     type: String,
     // required: true,
   },
+  locationType: {
+    type: String,
+    // required: true
+  },
   education: {
     type: String,
     // required: true,
