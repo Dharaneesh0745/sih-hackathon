@@ -177,7 +177,7 @@ router.get(
 // update user skills
 router.post(
   "/update-skills/:id",
-  isAuthenticated,
+  // isAuthenticated,
   catchAsyncErrors(async (req, res, next) => {
     try {
       const user = await User.findById(req.params.id);
@@ -187,6 +187,8 @@ router.post(
       }
 
       const { technicalSkills, nonTechnicalSkills } = req.body;
+
+      console.log(technicalSkills);
 
       user.technicalSkills = technicalSkills || user.technicalSkills;
       user.nonTechnicalSkills = nonTechnicalSkills || user.nonTechnicalSkills;
