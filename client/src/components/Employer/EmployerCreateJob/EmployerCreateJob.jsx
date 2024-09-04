@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { categoriesData } from "../../../data/data";
+import { createJob } from "../../../redux/actions/job";
+import { toast } from "react-toastify";
 
 const EmployerCreateJob = () => {
   const { employer } = useSelector((state) => state.employer);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { success, error } = useSelector((state) => state.job);
 
   const [images, setImages] = useState([]);
   const [title, setTitle] = useState("");
@@ -23,8 +26,42 @@ const EmployerCreateJob = () => {
   const [vacancy, setVacancy] = useState();
   const [tags, setTags] = useState();
 
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+    if (success) {
+      toast.success("Job Created Successfully");
+      navigate("/employer/dashboard");
+      window.location.reload(true);
+    }
+  }, [dispatch, error, success]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const newForm = new FormData();
+
+    images.forEach((image) => {
+      newForm.append("images", image);
+    });
+
+    newForm.append("title", title);
+    newForm.append("description", description);
+    newForm.append("salary", salary);
+    newForm.append("location", location);
+    newForm.append("category", category);
+    newForm.append("experience", experience);
+    newForm.append("skills", skills);
+    newForm.append("jobType", jobType);
+    newForm.append("education", education);
+    newForm.append("deadline", deadline);
+    newForm.append("vacancy", vacancy);
+    newForm.append("tags", tags);
+    newForm.append("companyId", employer._id);
+    newForm.append("companyName", employer.companyName);
+
+    dispatch(createJob(newForm));
   };
 
   const handleImageChange = (e) => {
@@ -60,14 +97,17 @@ const EmployerCreateJob = () => {
             <label className="pb-2">
               Description <span className="text-red-500">*</span>
             </label>
-            <input
+            <textarea
+              cols="30"
+              rows="8"
+              required
               type="text"
               name="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
               placeholder="Enter Job Description..."
-            />
+            ></textarea>
           </div>
           <br />
           <div>
@@ -208,7 +248,7 @@ const EmployerCreateJob = () => {
               Vacancy <span className="text-red-500">*</span>
             </label>
             <input
-              type="date"
+              type="number"
               name="vacancy"
               value={vacancy}
               onChange={(e) => setVacancy(e.target.value)}
@@ -252,7 +292,7 @@ const EmployerCreateJob = () => {
               <input
                 type="submit"
                 value="Create"
-                className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                className="mt-2 cursor-pointer appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
               />
             </div>
           </div>
