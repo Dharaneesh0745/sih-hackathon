@@ -5,6 +5,7 @@ const { upload } = require("../multer");
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 const ErrorHandler = require("../utils/errorHandler");
 const Employer = require("../models/employer");
+const { isEmployerAuthenticated } = require("../middlewares/auth");
 
 // create job
 router.post(
@@ -41,6 +42,45 @@ router.post(
       console.log("Response sent successfully");
     } catch (error) {
       console.error("Error in job creation:", error.message);
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
+// get all jobs of a shop
+router.get(
+  "/getAllJobs/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const jobs = await Job.find({ companyId: req.params.id });
+      res.status(200).json({
+        success: true,
+        jobs,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
+// delete job of a company
+router.delete(
+  "/deleteJob/:id",
+  isEmployerAuthenticated,
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const jobId = req.params.id;
+      const job = await Job.findByIdAndDelete(jobId);
+
+      if (!job) {
+        return next(new ErrorHandler("Job not found", 404));
+      }
+
+      res.status(200).json({
+        success: true,
+        message: "Job deleted successfully",
+      });
+    } catch (error) {
       return next(new ErrorHandler(error.message, 500));
     }
   })

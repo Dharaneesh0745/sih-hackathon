@@ -177,6 +177,7 @@ router.get(
 // update user skills
 router.post(
   "/update-skills/:id",
+  isAuthenticated,
   catchAsyncErrors(async (req, res, next) => {
     try {
       const user = await User.findById(req.params.id);

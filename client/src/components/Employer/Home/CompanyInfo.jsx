@@ -1,12 +1,19 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { backend_API_endpoint } from "../../../server";
+import { backend_API_endpoint, server } from "../../../server";
 import styles from "../../../styles/styles";
+import axios from "axios";
 
 const CompanyInfo = ({ isOwner }) => {
   const { employer } = useSelector((state) => state.employer);
 
-  const logoutHandler = () => {};
+  const logoutHandler = () => {
+    axios.get(`${server}/employer/logout`, {
+      withCredentials: true,
+    });
+    window.location.reload();
+    window.location.href = "/employer/login";
+  };
 
   return (
     <>

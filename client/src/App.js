@@ -26,6 +26,7 @@ import {
   EmployerHomePage,
   EmployerDashboardPage,
   EmployerCreateJobPage,
+  EmployerAllJobsPage,
 } from "./routes/EmployerRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -145,6 +146,14 @@ const App = () => {
             element={
               <EmployerProtectedRoute>
                 <EmployerCreateJobPage />
+              </EmployerProtectedRoute>
+            }
+          />
+          <Route
+            path="/employer/allJobs"
+            element={
+              <EmployerProtectedRoute>
+                <EmployerAllJobsPage />
               </EmployerProtectedRoute>
             }
           />
