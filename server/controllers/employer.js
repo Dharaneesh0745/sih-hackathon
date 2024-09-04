@@ -59,7 +59,7 @@ router.post(
 
       const activationToken = createActivationToken(employer);
 
-      const activationUrl = `http://localhost:3000/employer/activation/${activationToken}`;
+      const activationUrl = `https://sih-hackathon.vercel.app/employer/activation/${activationToken}`;
 
       try {
         await sendMail({
