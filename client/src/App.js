@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import {
@@ -39,6 +39,68 @@ import { useSelector } from "react-redux";
 
 import ChatBot from "react-simple-chatbot";
 import { ThemeProvider } from "styled-components";
+import axios from "axios";
+
+const FetchAPI = ({ steps }) => {
+  const [response, setResponse] = useState("Fetching response...");
+
+  const userQuery = steps["user-query"].value;
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:8000/api/v1/bot/generate", {
+        prompt: userQuery,
+      })
+      .then((res) => {
+        setResponse(res.data.text);
+      })
+      .catch((error) => {
+        setResponse("Sorry, something went wrong with the API.");
+      });
+  }, [userQuery]);
+
+  return <div>{response}</div>;
+};
+
+const steps = [
+  {
+    id: "1",
+    message: "What is your name?",
+    trigger: "2",
+  },
+  {
+    id: "2",
+    user: true,
+    trigger: "3",
+  },
+  {
+    id: "3",
+    message:
+      "Hi {previousValue}, nice to meet you! Would you like to ask me something?",
+    trigger: "4",
+  },
+  {
+    id: "4",
+    message: "Please enter your query.",
+    trigger: "user-query",
+  },
+  {
+    id: "user-query",
+    user: true,
+    trigger: "fetch-response",
+  },
+  {
+    id: "fetch-response",
+    component: <FetchAPI />,
+    asMessage: true,
+    trigger: "end",
+  },
+  {
+    id: "end",
+    message: "Hope I was able to help. Have a nice day!",
+    end: true,
+  },
+];
 
 const App = () => {
   const { isEmployer, employer } = useSelector((state) => state.user);
@@ -53,24 +115,6 @@ const App = () => {
   }, []);
 
   // console.log(isEmployer, employer);
-
-  const steps = [
-    {
-      id: "1",
-      message: "What is your name?",
-      trigger: "2",
-    },
-    {
-      id: "2",
-      user: true,
-      trigger: "3",
-    },
-    {
-      id: "3",
-      message: "Hi {previousValue}, nice to meet you!",
-      end: true,
-    },
-  ];
 
   const theme = {
     background: "#f5f8fb",

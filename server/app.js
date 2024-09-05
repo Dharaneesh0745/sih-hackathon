@@ -32,10 +32,13 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 const user = require("./controllers/user");
 const employer = require("./controllers/employer");
 const job = require("./controllers/job");
+const { OpenAI } = require("openai");
+const chatBot = require("./controllers/chatBot");
 
 app.use("/api/v1/user", user);
 app.use("/api/v1/employer", employer);
 app.use("/api/v1/job", job);
+app.use("/api/v1/bot", chatBot);
 
 // handling uncaught exception errors
 app.use(ErrorHandler);
