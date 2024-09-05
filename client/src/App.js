@@ -67,17 +67,16 @@ const formatResponse = (text) => {
 
 const FetchAPI = ({ steps }) => {
   const [response, setResponse] = useState("Fetching response...");
-  const userQuery = steps["user-query"].value; // Get the user's input
+  const userQuery = steps["user-query"].value;
 
   useEffect(() => {
-    // Fetch the response from the backend API
     axios
       .post(`${server}/bot/generate`, {
         prompt: userQuery,
       })
       .then((res) => {
         const formattedText = formatResponse(res.data.text);
-        setResponse(formattedText); // Set the formatted response
+        setResponse(formattedText);
       })
       .catch(() => {
         setResponse("Sorry, something went wrong.");
@@ -87,27 +86,11 @@ const FetchAPI = ({ steps }) => {
   return <div dangerouslySetInnerHTML={{ __html: response }} />;
 };
 
-// Chatbot steps definition
-const steps = [
+// Function to get chatbot steps
+const getSteps = (userName) => [
   {
     id: "1",
-    message: "What is your name?",
-    trigger: "2",
-  },
-  {
-    id: "2",
-    user: true,
-    trigger: "3",
-  },
-  {
-    id: "3",
-    message:
-      "Hi {previousValue}, nice to meet you! Would you like to ask me something?",
-    trigger: "4",
-  },
-  {
-    id: "4",
-    message: "Please enter your query.",
+    message: `Hi ${userName || "there"}, nice to meet you! How can i help you?`,
     trigger: "user-query",
   },
   {
@@ -117,9 +100,21 @@ const steps = [
   },
   {
     id: "fetch-response",
-    component: <FetchAPI />, // Custom component to handle API call and formatting
+    component: <FetchAPI />,
     asMessage: true,
-    trigger: "end",
+    trigger: "ask-more",
+  },
+  {
+    id: "ask-more",
+    message: "Do you have another query?",
+    trigger: "another-query",
+  },
+  {
+    id: "another-query",
+    options: [
+      { value: "yes", label: "Yes", trigger: "user-query" },
+      { value: "no", label: "No", trigger: "end" },
+    ],
   },
   {
     id: "end",
@@ -141,7 +136,9 @@ const theme = {
 };
 
 const App = () => {
-  const { isEmployer, employer } = useSelector((state) => state.user);
+  const { user, isEmployer, employer } = useSelector((state) => state.user);
+  const [isUserLoaded, setIsUserLoaded] = useState(false);
+  const [chatbotSteps, setChatbotSteps] = useState(getSteps());
 
   useEffect(() => {
     Store.dispatch(loadUser());
@@ -152,19 +149,12 @@ const App = () => {
     }
   }, []);
 
-  // console.log(isEmployer, employer);
-
-  // const theme = {
-  //   background: "#f5f8fb",
-  //   headerBgColor: "#EF6C00",
-  //   headerFontColor: "#fff",
-  //   headerFontSize: "15px",
-  //   botBubbleColor: "#EF6C00",
-  //   botFontColor: "#fff",
-  //   userBubbleColor: "#fff",
-  //   userFontColor: "#4a4a4a",
-  //   fontFamily: "Roboto, sans-serif",
-  // };
+  useEffect(() => {
+    if (user) {
+      setChatbotSteps(getSteps(user.firstName));
+      setIsUserLoaded(true); // Set the flag once user data is loaded
+    }
+  }, [user]);
 
   return (
     <>
@@ -287,16 +277,21 @@ const App = () => {
         />
       </BrowserRouter>
       {/* )} */}
-      <CustomChatBotWrapper>
-        <ThemeProvider theme={theme}>
-          <ChatBot
-            steps={steps}
-            floating={true}
-            botDelay={3000}
-            headerTitle={"LinkedIn"}
-          />
-        </ThemeProvider>
-      </CustomChatBotWrapper>
+
+      {isUserLoaded && (
+        <CustomChatBotWrapper>
+          {user && (
+            <ThemeProvider theme={theme}>
+              <ChatBot
+                steps={chatbotSteps}
+                floating={true}
+                botDelay={3000}
+                headerTitle={"LinkedIn"}
+              />
+            </ThemeProvider>
+          )}
+        </CustomChatBotWrapper>
+      )}
     </>
   );
 };
