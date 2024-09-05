@@ -48,7 +48,7 @@ const FetchAPI = ({ steps }) => {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8000/api/v1/bot/generate", {
+      .post("https://sih-hackathon.onrender.com/api/v1/bot/generate", {
         prompt: userQuery,
       })
       .then((res) => {
