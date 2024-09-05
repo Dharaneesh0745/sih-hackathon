@@ -37,6 +37,9 @@ import ProtectedRoute from "./routes/ProtectedRoutes.js";
 import EmployerProtectedRoute from "./routes/EmployerProtectedRoute.js";
 import { useSelector } from "react-redux";
 
+import ChatBot from "react-simple-chatbot";
+import { ThemeProvider } from "styled-components";
+
 const App = () => {
   const { isEmployer, employer } = useSelector((state) => state.user);
 
@@ -50,6 +53,36 @@ const App = () => {
   }, []);
 
   // console.log(isEmployer, employer);
+
+  const steps = [
+    {
+      id: "1",
+      message: "What is your name?",
+      trigger: "2",
+    },
+    {
+      id: "2",
+      user: true,
+      trigger: "3",
+    },
+    {
+      id: "3",
+      message: "Hi {previousValue}, nice to meet you!",
+      end: true,
+    },
+  ];
+
+  const theme = {
+    background: "#f5f8fb",
+    headerBgColor: "#EF6C00",
+    headerFontColor: "#fff",
+    headerFontSize: "15px",
+    botBubbleColor: "#EF6C00",
+    botFontColor: "#fff",
+    userBubbleColor: "#fff",
+    userFontColor: "#4a4a4a",
+    fontFamily: "Roboto, sans-serif",
+  };
 
   return (
     <>
@@ -172,6 +205,14 @@ const App = () => {
         />
       </BrowserRouter>
       {/* )} */}
+      <ThemeProvider theme={theme}>
+        <ChatBot
+          steps={steps}
+          floating={true}
+          botDelat={3000}
+          headerTitle={"LinkedIn"}
+        />
+      </ThemeProvider>
     </>
   );
 };

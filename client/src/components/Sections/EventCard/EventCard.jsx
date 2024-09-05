@@ -16,7 +16,7 @@ const EventCard = ({ active }) => {
         />
       </div>
       <div className="w-full lg:[w-50%] flex flex-col justify-center">
-        <h2 className={`${styles.productTitle}`}>Full Stack</h2>
+        <h2 className={`${styles.productTitle}`}>Cloud Computing Workshop</h2>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet labore
           nihil eos magnam! Ad laboriosam aliquid in, quis atque, doloribus
