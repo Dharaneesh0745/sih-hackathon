@@ -325,10 +325,7 @@ const Header = ({ activeHeading }) => {
 
                   <Navbar active={activeHeading} />
 
-                  <div
-                    onClick={test}
-                    className={`${styles.button} mx-auto rounded-lg`}
-                  >
+                  <div className={`${styles.button} mx-auto rounded-lg`}>
                     <Link to={"/create"} className="flex">
                       <h1 className="text-white mb-1 flex items-center">
                         Create Events
@@ -355,7 +352,7 @@ const Header = ({ activeHeading }) => {
                       </>
                     ) : (
                       <>
-                        <Link to={`/profile/${user}`}>
+                        <Link to={`/profile`}>
                           <img
                             src={`${backend_API_endpoint}${user.avatar}`}
                             className="w-[45px] h-[46px] rounded-full"

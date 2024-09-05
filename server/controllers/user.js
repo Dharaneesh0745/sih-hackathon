@@ -40,7 +40,7 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
 
     const activationToken = createActivationToken(user);
 
-    const activationUrl = `http://localhost:3000/activation/${activationToken}`;
+    const activationUrl = `https://sih-hackathon.vercel.app/activation/${activationToken}`;
 
     try {
       await sendMail({
@@ -177,6 +177,7 @@ router.get(
 // update user skills
 router.post(
   "/update-skills/:id",
+  // isAuthenticated,
   catchAsyncErrors(async (req, res, next) => {
     try {
       const user = await User.findById(req.params.id);
@@ -186,6 +187,8 @@ router.post(
       }
 
       const { technicalSkills, nonTechnicalSkills } = req.body;
+
+      console.log(technicalSkills);
 
       user.technicalSkills = technicalSkills || user.technicalSkills;
       user.nonTechnicalSkills = nonTechnicalSkills || user.nonTechnicalSkills;

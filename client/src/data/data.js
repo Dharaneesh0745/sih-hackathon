@@ -222,24 +222,115 @@ export const navItems = [
 export const categoriesData = [
   {
     id: 1,
-    title: "Computers and Laptops",
+    title: "Full Stack",
     subTitle: "",
     image_Url:
       "https://cdn.shopify.com/s/files/1/1706/9177/products/NEWAppleMacbookProwithM1ProChip14InchLaptop2021ModelMKGQ3LL_A_16GB_1TBSSD_custommacbd.jpg?v=1659592838",
   },
   {
     id: 2,
-    title: "Mobile and Tablets",
+    title: "Front-End",
     subTitle: "",
     image_Url:
       "https://indian-retailer.s3.ap-south-1.amazonaws.com/s3fs-public/2021-07/kosme1.png",
   },
   {
     id: 3,
+    title: "Back-End",
+    subTitle: "",
+    image_Url:
+      "https://indian-retailer.s3.ap-south-1.amazonaws.com/s3fs-public/2021-07/kosme1.png",
+  },
+  {
+    id: 4,
     title: "Data Scientist",
     subTitle: "",
     image_Url:
       "https://img.freepik.com/free-vector/ordering-goods-online-internet-store-online-shopping-niche-e-commerce-website-mother-buying-babies-clothes-footwear-toys-infant-accessories_335657-2345.jpg?w=2000",
+  },
+  {
+    id: 5,
+    title: "Cloud Computing",
+    subTitle: "",
+    image_Url:
+      "https://img.freepik.com/free-vector/ordering-goods-online-internet-store-online-shopping-niche-e-commerce-website-mother-buying-babies-clothes-footwear-toys-infant-accessories_335657-2345.jpg?w=2000",
+  },
+  {
+    id: 5,
+    title: "App Development",
+    subTitle: "",
+    image_Url:
+      "https://img.freepik.com/free-vector/ordering-goods-online-internet-store-online-shopping-niche-e-commerce-website-mother-buying-babies-clothes-footwear-toys-infant-accessories_335657-2345.jpg?w=2000",
+  },
+  {
+    id: 6,
+    title: "DevOps",
+    subTitle: "",
+    image_Url:
+      "https://img.freepik.com/free-vector/devops-concept-illustration_114360-1862.jpg?w=2000",
+  },
+  {
+    id: 7,
+    title: "Cybersecurity",
+    subTitle: "",
+    image_Url:
+      "https://img.freepik.com/free-vector/cyber-security-concept_23-2148535633.jpg?w=2000",
+  },
+  {
+    id: 8,
+    title: "AI/ML Engineer",
+    subTitle: "",
+    image_Url:
+      "https://img.freepik.com/free-vector/ai-ml-concept-illustration_114360-4845.jpg?w=2000",
+  },
+  {
+    id: 9,
+    title: "Database Administrator",
+    subTitle: "",
+    image_Url:
+      "https://img.freepik.com/free-vector/database-management-system-concept-illustration_114360-5789.jpg?w=2000",
+  },
+  {
+    id: 10,
+    title: "UI/UX Designer",
+    subTitle: "",
+    image_Url:
+      "https://img.freepik.com/free-vector/ux-design-concept-illustration_114360-2332.jpg?w=2000",
+  },
+  {
+    id: 11,
+    title: "Blockchain Developer",
+    subTitle: "",
+    image_Url:
+      "https://img.freepik.com/free-vector/blockchain-concept-illustration_114360-7705.jpg?w=2000",
+  },
+  {
+    id: 12,
+    title: "Network Engineer",
+    subTitle: "",
+    image_Url:
+      "https://img.freepik.com/free-vector/network-engineering-concept-illustration_114360-5864.jpg?w=2000",
+  },
+  {
+    id: 13,
+    title: "Project Manager",
+    subTitle: "",
+    image_Url:
+      "https://img.freepik.com/free-vector/project-management-concept-illustration_114360-4331.jpg?w=2000",
+  },
+  {
+    id: 14,
+    title: "QA Engineer",
+    subTitle: "",
+    image_Url:
+      "https://img.freepik.com/free-vector/quality-assurance-concept-illustration_114360-4864.jpg?w=2000",
+  },
+  {
+    id: 15,
+    title: "Technical Support",
+    subTitle: "",
+    image_Url:
+      "https://img.freepik.com/free-vector/technical-support-concept-illustration_114360-5374.jpg?w=2000",
   },
 ];
 

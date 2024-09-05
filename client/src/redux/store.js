@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { userReducer } from "./reducers/user";
 import { employerReducer } from "./reducers/employer";
+import { jobReducer } from "./reducers/job";
 // import { productReducer } from "./reducers/product";
 // import { eventReducer } from "./reducers/event";
 // import { cartReducer } from "./reducers/cart";
@@ -11,7 +12,7 @@ const Store = configureStore({
   reducer: {
     user: userReducer,
     employer: employerReducer,
-    // products: productReducer,
+    job: jobReducer,
     // events: eventReducer,
     // cart: cartReducer,
     // wishlist: wishlistReducer,

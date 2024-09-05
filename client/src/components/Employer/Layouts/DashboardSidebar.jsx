@@ -44,7 +44,7 @@ const DashboardSidebar = ({ active }) => {
         </div>
 
         <div className="w-full flex items-center p-4">
-          <Link to={"/employer/jobs"} className="w-full flex items-center">
+          <Link to={"/employer/allJobs"} className="w-full flex items-center">
             <ImFolderOpen size={30} color="#555" />
             <h5
               className={`800px:block hidden pl-2 text-[18px] font-[400] ${

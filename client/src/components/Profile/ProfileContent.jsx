@@ -649,6 +649,8 @@ const ProfileContent = ({ active }) => {
     const updatedTechnicalSkills = technicalSkills.join(", ");
     const updatedNonTechnicalSkills = nonTechnicalSkills.join(", ");
 
+    console.log(updatedTechnicalSkills);
+
     try {
       await axios.post(`${server}/user/update-skills/${id}`, {
         technicalSkills: updatedTechnicalSkills,

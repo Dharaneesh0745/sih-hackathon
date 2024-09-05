@@ -59,7 +59,7 @@ router.post(
 
       const activationToken = createActivationToken(employer);
 
-      const activationUrl = `http://localhost:3000/employer/activation/${activationToken}`;
+      const activationUrl = `https://sih-hackathon.vercel.app/employer/activation/${activationToken}`;
 
       try {
         await sendMail({
@@ -215,6 +215,27 @@ router.get(
       res.status(200).json({
         success: true,
         employer,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
+// logout user
+router.get(
+  "/logout",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      res.cookie("employer_token", null, {
+        expires: new Date(Date.now()),
+        httpOnly: true,
+        sameSite: "none",
+        secure: true,
+      });
+      res.status(201).json({
+        success: true,
+        message: "Log out successful!",
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
