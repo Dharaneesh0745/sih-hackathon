@@ -40,28 +40,54 @@ import { useSelector } from "react-redux";
 import ChatBot from "react-simple-chatbot";
 import { ThemeProvider } from "styled-components";
 import axios from "axios";
+import styled from "styled-components";
+import { server } from "./server.js";
+
+const CustomChatBotWrapper = styled.div`
+  .rsc-container {
+    max-width: 600px !important;
+  }
+  .rsc-ts-bubble,
+  .rsc-user-bubble {
+    max-width: 500px !important;
+    font-size: 16px !important;
+  }
+`;
+
+// Function to format the response text dynamically
+const formatResponse = (text) => {
+  // Replace '**' for bold and '*' for italics, and '\n' for line breaks
+  const formattedText = text
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") // Bold
+    .replace(/\*(.*?)\*/g, "<em>$1</em>") // Italics
+    .replace(/##(.*?)##/g, "<h3>$1</h3>") // Headings
+    .replace(/\n/g, "<br />"); // Line breaks
+  return formattedText;
+};
 
 const FetchAPI = ({ steps }) => {
   const [response, setResponse] = useState("Fetching response...");
-
-  const userQuery = steps["user-query"].value;
+  const userQuery = steps["user-query"].value; // Get the user's input
 
   useEffect(() => {
+    // Fetch the response from the backend API
     axios
-      .post("https://sih-hackathon.onrender.com/api/v1/bot/generate", {
+      .post(`${server}/bot/generate`, {
         prompt: userQuery,
       })
       .then((res) => {
-        setResponse(res.data.text);
+        const formattedText = formatResponse(res.data.text);
+        setResponse(formattedText); // Set the formatted response
       })
-      .catch((error) => {
-        setResponse("Sorry, something went wrong with the API.");
+      .catch(() => {
+        setResponse("Sorry, something went wrong.");
       });
   }, [userQuery]);
 
-  return <div>{response}</div>;
+  return <div dangerouslySetInnerHTML={{ __html: response }} />;
 };
 
+// Chatbot steps definition
 const steps = [
   {
     id: "1",
@@ -91,7 +117,7 @@ const steps = [
   },
   {
     id: "fetch-response",
-    component: <FetchAPI />,
+    component: <FetchAPI />, // Custom component to handle API call and formatting
     asMessage: true,
     trigger: "end",
   },
@@ -101,6 +127,18 @@ const steps = [
     end: true,
   },
 ];
+
+const theme = {
+  background: "#f5f8fb",
+  headerBgColor: "#EF6C00",
+  headerFontColor: "#fff",
+  headerFontSize: "15px",
+  botBubbleColor: "#EF6C00",
+  botFontColor: "#fff",
+  userBubbleColor: "#fff",
+  userFontColor: "#4a4a4a",
+  fontFamily: "Roboto, sans-serif",
+};
 
 const App = () => {
   const { isEmployer, employer } = useSelector((state) => state.user);
@@ -116,17 +154,17 @@ const App = () => {
 
   // console.log(isEmployer, employer);
 
-  const theme = {
-    background: "#f5f8fb",
-    headerBgColor: "#EF6C00",
-    headerFontColor: "#fff",
-    headerFontSize: "15px",
-    botBubbleColor: "#EF6C00",
-    botFontColor: "#fff",
-    userBubbleColor: "#fff",
-    userFontColor: "#4a4a4a",
-    fontFamily: "Roboto, sans-serif",
-  };
+  // const theme = {
+  //   background: "#f5f8fb",
+  //   headerBgColor: "#EF6C00",
+  //   headerFontColor: "#fff",
+  //   headerFontSize: "15px",
+  //   botBubbleColor: "#EF6C00",
+  //   botFontColor: "#fff",
+  //   userBubbleColor: "#fff",
+  //   userFontColor: "#4a4a4a",
+  //   fontFamily: "Roboto, sans-serif",
+  // };
 
   return (
     <>
@@ -249,14 +287,16 @@ const App = () => {
         />
       </BrowserRouter>
       {/* )} */}
-      <ThemeProvider theme={theme}>
-        <ChatBot
-          steps={steps}
-          floating={true}
-          botDelat={3000}
-          headerTitle={"LinkedIn"}
-        />
-      </ThemeProvider>
+      <CustomChatBotWrapper>
+        <ThemeProvider theme={theme}>
+          <ChatBot
+            steps={steps}
+            floating={true}
+            botDelay={3000}
+            headerTitle={"LinkedIn"}
+          />
+        </ThemeProvider>
+      </CustomChatBotWrapper>
     </>
   );
 };
