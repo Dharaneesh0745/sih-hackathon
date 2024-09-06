@@ -7,7 +7,7 @@ import styles from "../../styles/styles";
 import { backend_API_endpoint, bot_API_endpoint, server } from "../../server";
 import axios from "axios";
 import { toast } from "react-toastify";
-
+import { RiSparkling2Fill } from "react-icons/ri";
 import "../../styles/Roadmap.css";
 
 // // Function to format the response text dynamically
@@ -787,7 +787,7 @@ const ProfileContent = ({ active }) => {
       if (roadMapData && roadMapData !== "None") {
         const formattedData = formatResponse(roadMapData);
         setDataSteps(formattedData);
-        console.log(formattedData);
+        // console.log(formattedData);
       }
     }, [roadMapData]);
 
@@ -830,14 +830,14 @@ const ProfileContent = ({ active }) => {
 
   // Handle the scenario when user.roadMapData is "None"
   const renderRoadmapOrSkills = () => {
-    if (user.roadMapData === "None") {
+    if (user.roadMapData !== "None") {
       return (
         <>
           <button
-            className={`${styles.button} mx-auto px-40 text-white`}
+            className={`${styles.button} mx-auto w-auto px-3 text-white`}
             onClick={handleGenerateFunction}
           >
-            Generate Roadmap with AI
+            Generate Roadmap with AI &nbsp; <RiSparkling2Fill />
           </button>
           <FetchAPI userQuery={userQuery} userId={user._id} />
         </>
