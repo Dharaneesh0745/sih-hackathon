@@ -4,9 +4,96 @@ import { useSelector } from "react-redux";
 import { AiOutlineCamera } from "react-icons/ai";
 import styles from "../../styles/styles";
 // import { DataGrid } from "@material-ui/data-grid";
-import { backend_API_endpoint, server } from "../../server";
+import { backend_API_endpoint, bot_API_endpoint, server } from "../../server";
 import axios from "axios";
 import { toast } from "react-toastify";
+
+import "../../styles/Roadmap.css";
+
+// // Function to format the response text dynamically
+// const formatResponse = (text) => {
+//   // Replace '**' for bold, '*' for italics, and '##' for headings, and '\n' for line breaks
+//   const formattedText = text
+//     .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") // Bold
+//     .replace(/\*(.*?)\*/g, "<em>$1</em>") // Italics
+//     .replace(/##(.*?)##/g, "<h3>$1</h3>") // Headings
+//     .replace(/\n/g, "<br />"); // Line breaks
+//   return formattedText;
+// };
+
+// // FetchAPI component that fetches the roadmap
+// const FetchAPI = ({ userQuery }) => {
+//   const [response, setResponse] = useState("Fetching roadmap...");
+
+//   useEffect(() => {
+//     if (userQuery) {
+//       axios
+//         .post(`${bot_API_endpoint}/bot/chatBot`, { prompt: userQuery })
+//         .then((res) => {
+//           const formattedText = formatResponse(res.data.text);
+//           setResponse(formattedText);
+//         })
+//         .catch(() => {
+//           setResponse(
+//             "Sorry, something went wrong while fetching the roadmap."
+//           );
+//         });
+//     }
+//   }, [userQuery]);
+
+//   return <div dangerouslySetInnerHTML={{ __html: response }} />;
+// };
+
+// Function to format the response text dynamically
+const formatResponse = (text) => {
+  // Format based on your needs, assuming the API returns steps or stages
+  return text
+    .split("\n")
+    .map((line, index) => ({
+      id: index,
+      text: line.trim(),
+    }))
+    .filter((step) => step.text !== "");
+};
+
+// FetchAPI component that fetches the roadmap
+const FetchAPI = ({ userQuery }) => {
+  const [steps, setSteps] = useState([]);
+
+  useEffect(() => {
+    if (userQuery) {
+      axios
+        .post(`${bot_API_endpoint}/bot/chatBot`, { prompt: userQuery })
+        .then((res) => {
+          const formattedSteps = formatResponse(res.data.text);
+          setSteps(formattedSteps);
+        })
+        .catch(() => {
+          setSteps([
+            {
+              id: 0,
+              text: "Sorry, something went wrong while fetching the roadmap.",
+            },
+          ]);
+        });
+    }
+  }, [userQuery]);
+
+  return (
+    <div className="roadmap-container">
+      {steps.length > 0 &&
+        steps.map((step, index) => (
+          <div key={step.id} className="roadmap-step">
+            <div className="step-content">
+              <div className="step-number">{index + 1}</div>
+              <div className="step-text">{step.text}</div>
+            </div>
+            {index !== steps.length - 1 && <div className="connector"></div>}
+          </div>
+        ))}
+    </div>
+  );
+};
 
 const ProfileContent = ({ active }) => {
   const { user } = useSelector((state) => state.user);
@@ -29,6 +116,10 @@ const ProfileContent = ({ active }) => {
   );
   const [zipCode, setZipCode] = useState(user && user.zipCode);
   const [addressType, setAddressType] = useState(user && user.addressType);
+
+  const [userQuery, setUserQuery] = useState(
+    "Generate a roadmap for becoming a full-stack developer., just return the languages, libraries step by step nothing else."
+  );
 
   const primaryDetailsSubmit = async (e) => {
     e.preventDefault();
@@ -1019,6 +1110,18 @@ const ProfileContent = ({ active }) => {
             <br />
             <br />
           </>
+        )}
+
+        {/* roadmap page */}
+        {active === 2 && (
+          <div className="w-full pr-8 bg-slate-300 mr-5 py-8 rounded-xl mx-8">
+            <h1 className="mb-4 text-center mx-auto ml-7 text-black font-bold text-[30px]">
+              My Roadmap
+            </h1>
+            <div className="ml-7 text-black text-lg">
+              <FetchAPI userQuery={userQuery} />
+            </div>
+          </div>
         )}
 
         {/* applied jobs */}

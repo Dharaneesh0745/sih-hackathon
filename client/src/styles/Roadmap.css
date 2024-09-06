@@ -1,0 +1,65 @@
+.roadmap-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 15px;
+  border-radius: 20px;
+  background-color: #e9eff5; /* Light background to highlight steps */
+}
+
+.roadmap-step {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  position: relative;
+  width: auto; /* Set a relative width to keep it aligned */
+}
+
+.step-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 15px 20px;
+  border-radius: 50px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  width: 100%; /* Take full width to ensure text is well spaced */
+  text-align: left;
+}
+
+.step-number {
+  background-color: #4a90e2;
+  color: white;
+  font-weight: bold;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.step-text {
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+.connector {
+  width: 4px;
+  height: 60px;
+  background-color: #4a90e2;
+  position: absolute;
+  top: 60px;
+  left: calc(50% - 2px); /* Center the line */
+  z-index: 0;
+}
+
+.roadmap-step:last-child .connector {
+  display: none; /* Hide the connector after the last step */
+}

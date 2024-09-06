@@ -124,10 +124,10 @@ const getSteps = (userName) => [
 
 const theme = {
   background: "#f5f8fb",
-  headerBgColor: "#EF6C00",
+  headerBgColor: "#03a5fc",
   headerFontColor: "#fff",
   headerFontSize: "15px",
-  botBubbleColor: "#EF6C00",
+  botBubbleColor: "#03a5fc",
   botFontColor: "#fff",
   userBubbleColor: "#fff",
   userFontColor: "#4a4a4a",
