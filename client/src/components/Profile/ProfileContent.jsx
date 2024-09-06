@@ -57,14 +57,22 @@ const formatResponse = (text) => {
 };
 
 // FetchAPI component that fetches the roadmap
-const FetchAPI = ({ userQuery }) => {
+const FetchAPI = ({ userQuery, userId }) => {
   const [steps, setSteps] = useState([]);
-
+  // console.log(userQuery);
   useEffect(() => {
     if (userQuery) {
       axios
         .post(`${bot_API_endpoint}/bot/chatBot`, { prompt: userQuery })
         .then((res) => {
+          console.log(res.data.text);
+          axios
+            .post(`${server}/user/update-roadmap/${userId}`, {
+              roadMapData: res.data.text,
+            })
+            .then((res) => {
+              toast.success(res);
+            });
           const formattedSteps = formatResponse(res.data.text);
           setSteps(formattedSteps);
         })
@@ -117,9 +125,7 @@ const ProfileContent = ({ active }) => {
   const [zipCode, setZipCode] = useState(user && user.zipCode);
   const [addressType, setAddressType] = useState(user && user.addressType);
 
-  const [userQuery, setUserQuery] = useState(
-    "Generate a roadmap for becoming a full-stack developer., just return the languages, libraries step by step nothing else."
-  );
+  const [userQuery, setUserQuery] = useState("");
 
   const primaryDetailsSubmit = async (e) => {
     e.preventDefault();
@@ -755,6 +761,92 @@ const ProfileContent = ({ active }) => {
     }
   };
 
+  const fetchSkillsJobRole = () => {
+    // console.log(user);
+    // const [skillsRoadMap, setSkillsRoadMap] = useState("");
+
+    // useEffect(() => {
+    setUserQuery(
+      `Generate a roadmap for my preferred job and skills, just return the languages, libraries step by step nothing else. My Preferred Job Role : 
+        ${user.preferredJobRole}
+         and my skills are these : 
+        ${user.technicalSkills}`
+    );
+    // console.log(userQuery);
+
+    // console.log(user.preferredJobRole);
+    // }, []);
+  };
+
+  // Component to display the roadmap data
+  const RoadMapDataDisplay = ({ roadMapData }) => {
+    // console.log(roadMapData);
+    const [dataSteps, setDataSteps] = useState([]);
+
+    useEffect(() => {
+      if (roadMapData && roadMapData !== "None") {
+        const formattedData = formatResponse(roadMapData);
+        setDataSteps(formattedData);
+        console.log(formattedData);
+      }
+    }, [roadMapData]);
+
+    return (
+      <div className="roadmap-container">
+        {/* {dataSteps.length > 0 ? (
+          dataSteps.map((step, index) => (
+            <div key={index} className="roadmap-step">
+              <div className="step-content">
+                <div className="step-number">{index + 1}</div>
+                <div className="step-text">{step.text}</div>
+              </div>
+              {index !== dataSteps.length - 1 && (
+                <div className="connector"></div>
+              )}
+            </div>
+          ))
+        ) : (
+          <p>No roadmap data available.</p>
+        )} */}
+        {dataSteps.length > 0 &&
+          dataSteps.map((step, index) => (
+            <div key={step.id} className="roadmap-step">
+              <div className="step-content">
+                <div className="step-number">{index + 1}</div>
+                <div className="step-text">{step.text}</div>
+              </div>
+              {index !== dataSteps.length - 1 && (
+                <div className="connector"></div>
+              )}
+            </div>
+          ))}
+      </div>
+    );
+  };
+
+  const handleGenerateFunction = () => {
+    fetchSkillsJobRole();
+  };
+
+  // Handle the scenario when user.roadMapData is "None"
+  const renderRoadmapOrSkills = () => {
+    if (user.roadMapData === "None") {
+      return (
+        <>
+          <button
+            className={`${styles.button} mx-auto px-40 text-white`}
+            onClick={handleGenerateFunction}
+          >
+            Generate Roadmap with AI
+          </button>
+          <FetchAPI userQuery={userQuery} userId={user._id} />
+        </>
+      );
+    } else {
+      return <RoadMapDataDisplay roadMapData={user.roadMapData} />;
+    }
+  };
+
   return (
     <>
       <div className="w-full">
@@ -1112,14 +1204,14 @@ const ProfileContent = ({ active }) => {
           </>
         )}
 
-        {/* roadmap page */}
+        {/* Roadmap page */}
         {active === 2 && (
           <div className="w-full pr-8 bg-slate-300 mr-5 py-8 rounded-xl mx-8">
             <h1 className="mb-4 text-center mx-auto ml-7 text-black font-bold text-[30px]">
               My Roadmap
             </h1>
             <div className="ml-7 text-black text-lg">
-              <FetchAPI userQuery={userQuery} />
+              {renderRoadmapOrSkills()}
             </div>
           </div>
         )}

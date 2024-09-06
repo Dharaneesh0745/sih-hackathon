@@ -51,6 +51,10 @@ const userSchema = new mongoose.Schema({
   dateOfBirth: {
     type: String,
   },
+  roadMapData: {
+    type: String,
+    default: "None",
+  },
   gender: {
     type: String,
   },

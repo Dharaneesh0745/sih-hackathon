@@ -7,7 +7,7 @@ const genAI = new GoogleGenerativeAI("AIzaSyD0bCVx_E7GiSBf9rQApLsthwoBsVkaSkU");
 router.post("/chatBot", async (req, res) => {
   const prompt = req.body.prompt;
 
-  console.log(prompt);
+  // console.log(prompt);
 
   if (!prompt) {
     return res.status(400).json({ error: "Prompt is required" });

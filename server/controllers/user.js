@@ -281,6 +281,57 @@ router.get(
   })
 );
 
+router.post(
+  "/update-roadmap/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const user = await User.findById(req.params.id);
+      console.log(req.params.id);
+
+      if (!user) {
+        return next(new ErrorHandler("User doesn't exists", 400));
+      }
+
+      const { roadMapData } = req.body;
+      // console.log(roadMapData);
+      user.roadMapData = roadMapData || user.roadMapData;
+
+      await user.save();
+
+      res.status(200).json({
+        success: true,
+        message: "Roadmap updated successfully",
+        user,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
+// get users dynamic
+router.get(
+  "/my-roadmap/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const view_user = await User.findById(req.params.id);
+
+      const roadmapData = view_user.roadMapData;
+
+      if (!view_user) {
+        return next(new ErrorHandler("User doesn't exists", 400));
+      }
+
+      res.status(200).json({
+        success: true,
+        roadmapData,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
 // logout user
 router.get(
   "/logout",
