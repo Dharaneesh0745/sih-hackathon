@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import {
@@ -37,8 +37,107 @@ import ProtectedRoute from "./routes/ProtectedRoutes.js";
 import EmployerProtectedRoute from "./routes/EmployerProtectedRoute.js";
 import { useSelector } from "react-redux";
 
+import ChatBot from "react-simple-chatbot";
+import { ThemeProvider } from "styled-components";
+import axios from "axios";
+import styled from "styled-components";
+import { bot_API_endpoint, server } from "./server.js";
+
+const CustomChatBotWrapper = styled.div`
+  .rsc-container {
+    max-width: 600px !important;
+  }
+  .rsc-ts-bubble,
+  .rsc-user-bubble {
+    max-width: 500px !important;
+    font-size: 16px !important;
+  }
+`;
+
+// Function to format the response text dynamically
+const formatResponse = (text) => {
+  // Replace '**' for bold and '*' for italics, and '\n' for line breaks
+  const formattedText = text
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") // Bold
+    .replace(/\*(.*?)\*/g, "<em>$1</em>") // Italics
+    .replace(/##(.*?)##/g, "<h3>$1</h3>") // Headings
+    .replace(/\n/g, "<br />"); // Line breaks
+  return formattedText;
+};
+
+const FetchAPI = ({ steps }) => {
+  const [response, setResponse] = useState("Fetching response...");
+  const userQuery = steps["user-query"].value;
+
+  useEffect(() => {
+    axios
+      .post(`${bot_API_endpoint}/bot/chatBot`, {
+        prompt: userQuery,
+      })
+      .then((res) => {
+        const formattedText = formatResponse(res.data.text);
+        setResponse(formattedText);
+      })
+      .catch(() => {
+        setResponse("Sorry, something went wrong.");
+      });
+  }, [userQuery]);
+
+  return <div dangerouslySetInnerHTML={{ __html: response }} />;
+};
+
+const getSteps = (userName) => [
+  {
+    id: "1",
+    message: `Hi ${userName || "there"}, nice to meet you! How can i help you?`,
+    trigger: "user-query",
+  },
+  {
+    id: "user-query",
+    user: true,
+    trigger: "fetch-response",
+  },
+  {
+    id: "fetch-response",
+    component: <FetchAPI />,
+    asMessage: true,
+    trigger: "ask-more",
+  },
+  {
+    id: "ask-more",
+    message: "Do you have another query?",
+    trigger: "another-query",
+  },
+  {
+    id: "another-query",
+    options: [
+      { value: "yes", label: "Yes", trigger: "user-query" },
+      { value: "no", label: "No", trigger: "end" },
+    ],
+  },
+  {
+    id: "end",
+    message: "Hope I was able to help. Have a nice day!",
+    end: true,
+  },
+];
+
+const theme = {
+  background: "#f5f8fb",
+  headerBgColor: "#03a5fc",
+  headerFontColor: "#fff",
+  headerFontSize: "15px",
+  botBubbleColor: "#03a5fc",
+  botFontColor: "#fff",
+  userBubbleColor: "#fff",
+  userFontColor: "#4a4a4a",
+  fontFamily: "Roboto, sans-serif",
+};
+
 const App = () => {
-  const { isEmployer, employer } = useSelector((state) => state.user);
+  const { user, isEmployer, employer } = useSelector((state) => state.user);
+  const [isUserLoaded, setIsUserLoaded] = useState(false);
+  const [chatbotSteps, setChatbotSteps] = useState(getSteps());
 
   useEffect(() => {
     Store.dispatch(loadUser());
@@ -49,7 +148,12 @@ const App = () => {
     }
   }, []);
 
-  // console.log(isEmployer, employer);
+  useEffect(() => {
+    if (user) {
+      setChatbotSteps(getSteps(user.firstName));
+      setIsUserLoaded(true); // Set the flag once user data is loaded
+    }
+  }, [user]);
 
   return (
     <>
@@ -172,6 +276,21 @@ const App = () => {
         />
       </BrowserRouter>
       {/* )} */}
+
+      {isUserLoaded && (
+        <CustomChatBotWrapper>
+          {user && (
+            <ThemeProvider theme={theme}>
+              <ChatBot
+                steps={chatbotSteps}
+                floating={true}
+                botDelay={3000}
+                headerTitle={"LinkedIn"}
+              />
+            </ThemeProvider>
+          )}
+        </CustomChatBotWrapper>
+      )}
     </>
   );
 };

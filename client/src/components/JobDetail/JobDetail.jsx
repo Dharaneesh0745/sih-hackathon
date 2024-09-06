@@ -53,7 +53,7 @@ const JobDetail = ({ data }) => {
                   </div>
                 </div>
               </div>
-              <div className="w-full 800px:w-[50%] pt-5">
+              <div className="w-full ml-10 800px:w-[50%] pt-5">
                 <div className="flex items-center py-8">
                   <img
                     src={data.shop.shop_avatar.url}

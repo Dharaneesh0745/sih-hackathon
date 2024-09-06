@@ -144,10 +144,12 @@ const Header = ({ activeHeading }) => {
                     className="absolute right-2 top-5 cursor-pointer"
                   />
                   {dropDown ? (
-                    <DropDown
-                      categoriesData={categoriesData}
-                      setDropDown={setDropDown}
-                    />
+                    <div className="overflow-y-scroll">
+                      <DropDown
+                        categoriesData={categoriesData}
+                        setDropDown={setDropDown}
+                      />
+                    </div>
                   ) : null}
                 </div>
               </div>

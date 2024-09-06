@@ -228,7 +228,7 @@ router.post(
         state,
         city,
         address1,
-        address2,
+        preferredJobRole,
         zipCode,
         addressType,
       } = req.body;
@@ -243,7 +243,7 @@ router.post(
       user.city = city || user.city;
       user.state = state || user.state;
       user.address1 = address1 || user.address1;
-      user.address2 = address2 || user.address2;
+      user.preferredJobRole = preferredJobRole || user.preferredJobRole;
       user.zipCode = zipCode || user.zipCode;
       user.addressType = addressType || user.addressType;
 

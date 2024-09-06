@@ -229,14 +229,14 @@ export const categoriesData = [
   },
   {
     id: 2,
-    title: "Front-End",
+    title: "Front End",
     subTitle: "",
     image_Url:
       "https://indian-retailer.s3.ap-south-1.amazonaws.com/s3fs-public/2021-07/kosme1.png",
   },
   {
     id: 3,
-    title: "Back-End",
+    title: "Back End",
     subTitle: "",
     image_Url:
       "https://indian-retailer.s3.ap-south-1.amazonaws.com/s3fs-public/2021-07/kosme1.png",
@@ -256,77 +256,77 @@ export const categoriesData = [
       "https://img.freepik.com/free-vector/ordering-goods-online-internet-store-online-shopping-niche-e-commerce-website-mother-buying-babies-clothes-footwear-toys-infant-accessories_335657-2345.jpg?w=2000",
   },
   {
-    id: 5,
+    id: 6,
     title: "App Development",
     subTitle: "",
     image_Url:
       "https://img.freepik.com/free-vector/ordering-goods-online-internet-store-online-shopping-niche-e-commerce-website-mother-buying-babies-clothes-footwear-toys-infant-accessories_335657-2345.jpg?w=2000",
   },
   {
-    id: 6,
+    id: 7,
     title: "DevOps",
     subTitle: "",
     image_Url:
       "https://img.freepik.com/free-vector/devops-concept-illustration_114360-1862.jpg?w=2000",
   },
   {
-    id: 7,
+    id: 8,
     title: "Cybersecurity",
     subTitle: "",
     image_Url:
       "https://img.freepik.com/free-vector/cyber-security-concept_23-2148535633.jpg?w=2000",
   },
   {
-    id: 8,
-    title: "AI/ML Engineer",
+    id: 9,
+    title: "AIML Engineer",
     subTitle: "",
     image_Url:
       "https://img.freepik.com/free-vector/ai-ml-concept-illustration_114360-4845.jpg?w=2000",
   },
   {
-    id: 9,
+    id: 11,
     title: "Database Administrator",
     subTitle: "",
     image_Url:
       "https://img.freepik.com/free-vector/database-management-system-concept-illustration_114360-5789.jpg?w=2000",
   },
   {
-    id: 10,
-    title: "UI/UX Designer",
+    id: 12,
+    title: "UIUX Designer",
     subTitle: "",
     image_Url:
       "https://img.freepik.com/free-vector/ux-design-concept-illustration_114360-2332.jpg?w=2000",
   },
   {
-    id: 11,
+    id: 13,
     title: "Blockchain Developer",
     subTitle: "",
     image_Url:
       "https://img.freepik.com/free-vector/blockchain-concept-illustration_114360-7705.jpg?w=2000",
   },
   {
-    id: 12,
+    id: 14,
     title: "Network Engineer",
     subTitle: "",
     image_Url:
       "https://img.freepik.com/free-vector/network-engineering-concept-illustration_114360-5864.jpg?w=2000",
   },
   {
-    id: 13,
+    id: 15,
     title: "Project Manager",
     subTitle: "",
     image_Url:
       "https://img.freepik.com/free-vector/project-management-concept-illustration_114360-4331.jpg?w=2000",
   },
   {
-    id: 14,
+    id: 16,
     title: "QA Engineer",
     subTitle: "",
     image_Url:
       "https://img.freepik.com/free-vector/quality-assurance-concept-illustration_114360-4864.jpg?w=2000",
   },
   {
-    id: 15,
+    id: 17,
     title: "Technical Support",
     subTitle: "",
     image_Url:
@@ -338,18 +338,18 @@ export const categoriesData = [
 export const jobData = [
   {
     id: 1,
-    category: "Computers and Laptops",
-    name: "MacBook pro M2 chipset 256gb ssd 8gb ram space-gray color with apple 1 year warranty",
+    category: "Full Stack",
+    name: "Full Stack",
     description:
-      "Product details are a crucial part of any eCommerce website or online marketplace. These details help the potential customers to make an informed decision about the product they are interested in buying. A well-written product description can also be a powerful marketing tool that can help to increase sales.Product details typically include information about the product's features, specifications, dimensions, weight, materials, and other relevant information that can help customers to understand the product better. The product details section should also include high-quality images and videos of the product, as well as customer reviews and ratings.",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     image_Url: [
       {
         public_id: "test",
-        url: "https://www.istorebangladesh.com/images/thumbs/0000286_macbook-pro-m1_550.png",
+        url: "https://img.freepik.com/free-vector/web-development-isometric-concept-composition-illustration_1284-55922.jpg",
       },
       {
         public_id: "test",
-        url: "https://www.istorebangladesh.com/images/thumbs/0000286_macbook-pro-m1_550.png",
+        url: "https://img.freepik.com/free-vector/web-development-isometric-concept-composition-illustration_1284-55922.jpg",
       },
     ],
     shop: {
@@ -368,18 +368,49 @@ export const jobData = [
   },
   {
     id: 2,
-    category: "Mobile and Tablets",
-    name: "Iphone 14 pro max 256 gb ssd and 8 gb ram silver colour",
+    category: "Front End",
+    name: "Front End",
     description:
-      "Product details are a crucial part of any eCommerce website or online marketplace. These details help the potential customers to make an informed decision about the product they are interested in buying. A well-written product description can also be a powerful marketing tool that can help to increase sales.Product details typically include information about the product's features, specifications, dimensions, weight, materials, and other relevant information that can help customers to understand the product better. The product details section should also include high-quality images and videos of the product, as well as customer reviews and ratings.Product details are a crucial part of any eCommerce website or online marketplace. These details help the potential customers to make an informed decision about the product they are interested in buying. A well-written product description can also be a powerful marketing tool that can help to increase sales.Product details typically include information about the product's features, specifications, dimensions, weight, materials, and other relevant information that can help customers to understand the product better. The product details section should also include high-quality images and videos of the product, as well as customer reviews and ratings.Product details are a crucial part of any eCommerce website or online marketplace. These details help the potential customers to make an informed decision about the product they are interested in buying. A well-written product description can also be a powerful marketing tool that can help to increase sales.Product details typically include information about the product's features, specifications, dimensions, weight, materials, and other relevant information that can help customers to understand the product better. The product details section should also include high-quality images and videos of the product, as well as customer reviews and ratings.Product details are a crucial part of any eCommerce website or online marketplace. These details help the potential customers to make an informed decision about the product they are interested in buying. A well-written product description can also be a powerful marketing tool that can help to increase sales.Product details typically include information about the product's features, specifications, dimensions, weight, materials, and other relevant information that can help customers to understand the product better. The product details section should also include high-quality images and videos of the product, as well as customer reviews and ratings.",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     image_Url: [
       {
         public_id: "test",
-        url: "https://m.media-amazon.com/images/I/31Vle5fVdaL.jpg",
+        url: "https://www.aceinfoway.com/blog/wp-content/uploads/2020/07/front-end-developer.jpg",
       },
       {
         public_id: "test",
-        url: "https://m.media-amazon.com/images/I/31Vle5fVdaL.jpg",
+        url: "https://www.aceinfoway.com/blog/wp-content/uploads/2020/07/front-end-developer.jpg",
+      },
+    ],
+    shop: {
+      name: "Apple inc.",
+      shop_avatar: {
+        public_id: "test",
+        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
+      },
+      ratings: 4.2,
+    },
+    price: 1099,
+    discount_price: 1049,
+    rating: 4,
+    total_sell: 35,
+    stock: 10,
+  },
+  
+  {
+    id: 3,
+    category: "Back End",
+    name: "Back End",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    image_Url: [
+      {
+        public_id: "test",
+        url: "https://c8.alamy.com/comp/2DB193X/back-end-icon-simple-element-from-website-development-collection-filled-back-end-icon-for-templates-infographics-and-more-2DB193X.jpg",
+      },
+      {
+        public_id: "test",
+        url: "https://c8.alamy.com/comp/2DB193X/back-end-icon-simple-element-from-website-development-collection-filled-back-end-icon-for-templates-infographics-and-more-2DB193X.jpg",
       },
     ],
     shop: {
@@ -394,221 +425,21 @@ export const jobData = [
     rating: 5,
     total_sell: 80,
     stock: 10,
-    category: "Mobile & Tablets",
-  },
-  {
-    id: 1,
-    category: "Computers and Laptop",
-    name: "MacBook pro M2 chipset 256gb ssd 8gb ram space gray color with apple 1 year warranty",
-    description:
-      "Product details are a crucial part of any eCommerce website or online marketplace. These details help the potential customers to make an informed decision about the product they are interested in buying. A well-written product description can also be a powerful marketing tool that can help to increase sales.Product details typically include information about the product's features, specifications, dimensions, weight, materials, and other relevant information that can help customers to understand the product better. The product details section should also include high-quality images and videos of the product, as well as customer reviews and ratings.",
-    image_Url: [
-      {
-        public_id: "test",
-        url: "https://www.istorebangladesh.com/images/thumbs/0000286_macbook-pro-m1_550.png",
-      },
-      {
-        public_id: "test",
-        url: "https://www.istorebangladesh.com/images/thumbs/0000286_macbook-pro-m1_550.png",
-      },
-    ],
-    shop: {
-      name: "Apple inc.",
-      shop_avatar: {
-        public_id: "test",
-        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
-      },
-      ratings: 4.2,
-    },
-    price: 1099,
-    discount_price: 1049,
-    rating: 4,
-    total_sell: 75,
-    stock: 10,
-    category: "Computers & Laptop",
   },
   {
     id: 4,
-    category: "Others",
-    name: "New Fashionable Watch for men 2023 with multiple colors",
+    category: "Data Scientist",
+    name: "Data Scientist",
     description:
-      "Product details are a crucial part of any eCommerce website or online marketplace. These details help the potential customers to make an informed decision about the product they are interested in buying. A well-written product description can also be a powerful marketing tool that can help to increase sales.Product details typically include information about the product's features, specifications, dimensions, weight, materials, and other relevant information that can help customers to understand the product better. The product details section should also include high-quality images and videos of the product, as well as customer reviews and ratings.",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     image_Url: [
       {
         public_id: "test",
-        url: "https://i0.wp.com/eccocibd.com/wp-content/uploads/2022/01/1802NL02_1.png?fit=550%2C550&ssl=1",
+        url: "https://www.simplilearn.com/ice9/free_resources_article_thumb/how_to_become_a_data_scientist.jpg",
       },
       {
         public_id: "test",
-        url: "https://i0.wp.com/eccocibd.com/wp-content/uploads/2022/01/1802NL02_1.png?fit=550%2C550&ssl=1",
-      },
-    ],
-    shop: {
-      name: "Shahriar Watch House",
-      shop_avatar: {
-        public_id: "test",
-        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
-      },
-      ratings: 4.2,
-      category: "Others",
-    },
-    price: 100,
-    discount_price: 79,
-    rating: 4,
-    total_sell: 12,
-    stock: 10,
-  },
-  {
-    id: 5,
-    category: "Shoes",
-    name: "New Trend shoes for gents with all sizes",
-    description:
-      "Product details are a crucial part of any eCommerce website or online marketplace. These details help the potential customers to make an informed decision about the product they are interested in buying. A well-written product description can also be a powerful marketing tool that can help to increase sales.Product details typically include information about the product's features, specifications, dimensions, weight, materials, and other relevant information that can help customers to understand the product better. The product details section should also include high-quality images and videos of the product, as well as customer reviews and ratings.",
-    image_Url: [
-      {
-        public_id: "test",
-        url: "https://mirzacdns3.s3.ap-south-1.amazonaws.com/cache/catalog/RLV0015/2-800x800.jpg",
-      },
-      {
-        public_id: "test",
-        url: "https://mirzacdns3.s3.ap-south-1.amazonaws.com/cache/catalog/RLV0015/2-800x800.jpg",
-      },
-    ],
-    shop: {
-      name: "Alisha Shoes Mart",
-      shop_avatar: {
-        public_id: "test",
-        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
-      },
-      ratings: 4.2,
-    },
-    price: 120,
-    discount_price: 89,
-    rating: 5,
-    total_sell: 49,
-    stock: 10,
-    category: "Shoes",
-  },
-  {
-    id: 1,
-    name: "Gaming Headphone Asus with mutiple color and free delivery",
-    description:
-      "Product details are a crucial part of any eCommerce website or online marketplace. These details help the potential customers to make an informed decision about the product they are interested in buying. A well-written product description can also be a powerful marketing tool that can help to increase sales.Product details typically include information about the product's features, specifications, dimensions, weight, materials, and other relevant information that can help customers to understand the product better. The product details section should also include high-quality images and videos of the product, as well as customer reviews and ratings.",
-    image_Url: [
-      {
-        public_id: "test",
-        url: "https://www.startech.com.bd/image/cache/catalog/headphone/havit/h763d/h763d-02-500x500.jpg",
-      },
-      {
-        public_id: "test",
-        url: "https://eratablet.com/wp-content/uploads/2022/08/H51ba6537405f4948972e293927673546u.jpg",
-      },
-    ],
-    shop: {
-      name: "Asus Ltd",
-      shop_avatar: {
-        public_id: "test",
-        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
-      },
-      ratings: 4.2,
-    },
-    price: 300,
-    discount_price: 239,
-    rating: 4.5,
-    reviews: [
-      {
-        user: {
-          // user object will be here
-        },
-        comment: "IT's so cool!",
-        rating: 5,
-      },
-    ],
-    total_sell: 20,
-    stock: 10,
-    category: "Music and Gaming",
-  },
-  {
-    id: 4,
-    name: "New Fashionable Watch for men 2023 with multiple colors",
-    description:
-      "Product details are a crucial part of any eCommerce website or online marketplace. These details help the potential customers to make an informed decision about the product they are interested in buying. A well-written product description can also be a powerful marketing tool that can help to increase sales.Product details typically include information about the product's features, specifications, dimensions, weight, materials, and other relevant information that can help customers to understand the product better. The product details section should also include high-quality images and videos of the product, as well as customer reviews and ratings.",
-    image_Url: [
-      {
-        public_id: "test",
-        url: "https://i0.wp.com/eccocibd.com/wp-content/uploads/2022/01/1802NL02_1.png?fit=550%2C550&ssl=1",
-      },
-      {
-        public_id: "test",
-        url: "https://i0.wp.com/eccocibd.com/wp-content/uploads/2022/01/1802NL02_1.png?fit=550%2C550&ssl=1",
-      },
-    ],
-    shop: {
-      name: "Shahriar Watch House",
-      shop_avatar: {
-        public_id: "test",
-        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
-      },
-      ratings: 4.2,
-    },
-    price: 100,
-    discount_price: 79,
-    rating: 4,
-    total_sell: 62,
-    stock: 10,
-  },
-  {
-    id: 1,
-    name: "Gaming Headphone Asus with mutiple color and free delivery",
-    description:
-      "Product details are a crucial part of any eCommerce website or online marketplace. These details help the potential customers to make an informed decision about the product they are interested in buying. A well-written product description can also be a powerful marketing tool that can help to increase sales.Product details typically include information about the product's features, specifications, dimensions, weight, materials, and other relevant information that can help customers to understand the product better. The product details section should also include high-quality images and videos of the product, as well as customer reviews and ratings.",
-    image_Url: [
-      {
-        public_id: "test",
-        url: "https://www.startech.com.bd/image/cache/catalog/headphone/havit/h763d/h763d-02-500x500.jpg",
-      },
-      {
-        public_id: "test",
-        url: "https://eratablet.com/wp-content/uploads/2022/08/H51ba6537405f4948972e293927673546u.jpg",
-      },
-    ],
-    shop: {
-      name: "Asus Ltd",
-      shop_avatar: {
-        public_id: "test",
-        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
-      },
-      ratings: 4.2,
-    },
-    price: 300,
-    discount_price: 239,
-    rating: 4.5,
-    reviews: [
-      {
-        user: {
-          // user object will be here
-        },
-        comment: "IT's so cool!",
-        rating: 5,
-      },
-    ],
-    total_sell: 20,
-    stock: 10,
-  },
-  {
-    id: 2,
-    category: "Mobile and Tablets",
-    name: "Iphone 14 pro max 256 gb ssd and 8 gb ram silver colour",
-    description:
-      "Product details are a crucial part of any eCommerce website or online marketplace. These details help the potential customers to make an informed decision about the product they are interested in buying. A well-written product description can also be a powerful marketing tool that can help to increase sales.Product details typically include information about the product's features, specifications, dimensions, weight, materials, and other relevant information that can help customers to understand the product better. The product details section should also include high-quality images and videos of the product, as well as customer reviews and ratings.",
-    image_Url: [
-      {
-        public_id: "test",
-        url: "https://m.media-amazon.com/images/I/31Vle5fVdaL.jpg",
-      },
-      {
-        public_id: "test",
-        url: "https://m.media-amazon.com/images/I/31Vle5fVdaL.jpg",
+        url: "https://www.simplilearn.com/ice9/free_resources_article_thumb/how_to_become_a_data_scientist.jpg",
       },
     ],
     shop: {
@@ -621,46 +452,210 @@ export const jobData = [
     },
     discount_price: 1099,
     rating: 5,
-    total_sell: 20,
+    total_sell: 80,
     stock: 10,
   },
   {
-    id: 1,
-    category: "Music and Gaming",
-    name: "Gaming Headphone Asus with mutiple color and free delivery",
+    id: 5,
+    category: "Cloud Computing",
+    name: "Cloud Computing",
     description:
-      "Product details are a crucial part of any eCommerce website or online marketplace. These details help the potential customers to make an informed decision about the product they are interested in buying. A well-written product description can also be a powerful marketing tool that can help to increase sales.Product details typically include information about the product's features, specifications, dimensions, weight, materials, and other relevant information that can help customers to understand the product better. The product details section should also include high-quality images and videos of the product, as well as customer reviews and ratings.",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     image_Url: [
       {
         public_id: "test",
-        url: "https://www.startech.com.bd/image/cache/catalog/headphone/havit/h763d/h763d-02-500x500.jpg",
+        url: "https://media.licdn.com/dms/image/D5612AQGdJwTfkaVA9A/article-cover_image-shrink_720_1280/0/1695748849925?e=2147483647&v=beta&t=lLpyk_jq2xK54oG6T_W3rZkz-qwtNdVQsyVY8W7X1WE",
       },
       {
         public_id: "test",
-        url: "https://eratablet.com/wp-content/uploads/2022/08/H51ba6537405f4948972e293927673546u.jpg",
+        url: "https://media.licdn.com/dms/image/D5612AQGdJwTfkaVA9A/article-cover_image-shrink_720_1280/0/1695748849925?e=2147483647&v=beta&t=lLpyk_jq2xK54oG6T_W3rZkz-qwtNdVQsyVY8W7X1WE",
       },
     ],
     shop: {
-      name: "Asus Ltd",
+      name: "Amazon Ltd",
       shop_avatar: {
         public_id: "test",
         url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
       },
       ratings: 4.2,
     },
-    price: 300,
-    discount_price: 239,
-    rating: 4.5,
-    reviews: [
+    discount_price: 1099,
+    rating: 5,
+    total_sell: 80,
+    stock: 10,
+  },
+  {
+    id: 6,
+    category: "App Development",
+    name: "App Development",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    image_Url: [
       {
-        user: {
-          // user object will be here
-        },
-        comment: "IT's so cool!",
-        rating: 5,
+        public_id: "test",
+        url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqEmOgMdUINgrvzYqCHNyVftxgPvbiSYabWw&s",
+      },
+      {
+        public_id: "test",
+        url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqEmOgMdUINgrvzYqCHNyVftxgPvbiSYabWw&s",
       },
     ],
-    total_sell: 20,
+    shop: {
+      name: "Amazon Ltd",
+      shop_avatar: {
+        public_id: "test",
+        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
+      },
+      ratings: 4.2,
+    },
+    discount_price: 1099,
+    rating: 5,
+    total_sell: 80,
+    stock: 10,
+  },
+  {
+    id: 7,
+    category: "DevOps",
+    name: "DevOps",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    image_Url: [
+      {
+        public_id: "test",
+        url: "https://iabac.org/blog/uploads/images/202309/image_870x_650ece21df858.jpg",
+      },
+      {
+        public_id: "test",
+        url: "https://iabac.org/blog/uploads/images/202309/image_870x_650ece21df858.jpg",
+      },
+    ],
+    shop: {
+      name: "Amazon Ltd",
+      shop_avatar: {
+        public_id: "test",
+        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
+      },
+      ratings: 4.2,
+    },
+    discount_price: 1099,
+    rating: 5,
+    total_sell: 80,
+    stock: 10,
+  },
+  {
+    id: 8,
+    category: "Cybersecurity",
+    name: "Cybersecurity",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    image_Url: [
+      {
+        public_id: "test",
+        url: "https://www.theforage.com/blog/wp-content/uploads/2022/12/what-is-cybersecurity.jpg",
+      },
+      {
+        public_id: "test",
+        url: "https://www.theforage.com/blog/wp-content/uploads/2022/12/what-is-cybersecurity.jpg",
+      },
+    ],
+    shop: {
+      name: "Amazon Ltd",
+      shop_avatar: {
+        public_id: "test",
+        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
+      },
+      ratings: 4.2,
+    },
+    discount_price: 1099,
+    rating: 5,
+    total_sell: 80,
+    stock: 10,
+  },
+  {
+    id: 9,
+    category: "AIML Engineer",
+    name: "AIML Engineer",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    image_Url: [
+      {
+        public_id: "test",
+        url: "https://media.licdn.com/dms/image/D5612AQHjDGhc8cNfJA/article-cover_image-shrink_720_1280/0/1704439037481?e=2147483647&v=beta&t=wSs9ZAGGWfx_9TAfotJLRY87JtMQPhKo7wNAh1-inU0",
+      },
+      {
+        public_id: "test",
+        url: "https://media.licdn.com/dms/image/D5612AQHjDGhc8cNfJA/article-cover_image-shrink_720_1280/0/1704439037481?e=2147483647&v=beta&t=wSs9ZAGGWfx_9TAfotJLRY87JtMQPhKo7wNAh1-inU0",
+      },
+    ],
+    shop: {
+      name: "Amazon Ltd",
+      shop_avatar: {
+        public_id: "test",
+        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
+      },
+      ratings: 4.2,
+    },
+    discount_price: 1099,
+    rating: 5,
+    total_sell: 80,
+    stock: 10,
+  },
+  {
+    id: 10,
+    category: "Database Administrator",
+    name: "Database Administrator",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    image_Url: [
+      {
+        public_id: "test",
+        url: "https://www.interviewbit.com/blog/wp-content/uploads/2021/08/cover.jpg",
+      },
+      {
+        public_id: "test",
+        url: "https://www.interviewbit.com/blog/wp-content/uploads/2021/08/cover.jpg",
+      },
+    ],
+    shop: {
+      name: "Amazon Ltd",
+      shop_avatar: {
+        public_id: "test",
+        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
+      },
+      ratings: 4.2,
+    },
+    discount_price: 1099,
+    rating: 5,
+    total_sell: 80,
+    stock: 10,
+  },
+  {
+    id: 11,
+    category: "UIUX Designer",
+    name: "UIUX Designer",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    image_Url: [
+      {
+        public_id: "test",
+        url: "https://img.freepik.com/free-vector/flat-design-ui-ux-background_23-2149093995.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1720569600&semt=ais_hybridjpgeve",
+      },
+      {
+        public_id: "test",
+        url: "https://img.freepik.com/free-vector/flat-design-ui-ux-background_23-2149093995.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1720569600&semt=ais_hybridjpgeve",
+      },
+    ],
+    shop: {
+      name: "Amazon Ltd",
+      shop_avatar: {
+        public_id: "test",
+        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
+      },
+      ratings: 4.2,
+    },
+    discount_price: 1099,
+    rating: 5,
+    total_sell: 80,
     stock: 10,
   },
 ];

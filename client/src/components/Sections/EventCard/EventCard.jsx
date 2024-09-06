@@ -10,10 +10,13 @@ const EventCard = ({ active }) => {
       } w-full block bg-white rounded-xl lg:flex p-2 mb-12`}
     >
       <div className="w-full lg:-w[50%] m-auto">
-        <img src="https://m.media-amazon.com/images/I/31Vle5fVdaL.jpg" alt="" />
+        <img
+          src="https://img.freepik.com/free-vector/web-development-isometric-concept-composition-illustration_1284-55922.jpg"
+          alt=""
+        />
       </div>
       <div className="w-full lg:[w-50%] flex flex-col justify-center">
-        <h2 className={`${styles.productTitle}`}>Iphone 14pro max 8/256GB</h2>
+        <h2 className={`${styles.productTitle}`}>Cloud Computing Workshop</h2>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet labore
           nihil eos magnam! Ad laboriosam aliquid in, quis atque, doloribus

@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
   address1: {
     type: String,
   },
-  address2: {
+  preferredJobRole: {
     type: String,
   },
   zipCode: {
