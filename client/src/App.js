@@ -41,7 +41,7 @@ import ChatBot from "react-simple-chatbot";
 import { ThemeProvider } from "styled-components";
 import axios from "axios";
 import styled from "styled-components";
-import { server } from "./server.js";
+import { bot_API_endpoint, server } from "./server.js";
 
 const CustomChatBotWrapper = styled.div`
   .rsc-container {
@@ -71,7 +71,7 @@ const FetchAPI = ({ steps }) => {
 
   useEffect(() => {
     axios
-      .post(`${server}/bot/generate`, {
+      .post(`${bot_API_endpoint}/bot/chatBot`, {
         prompt: userQuery,
       })
       .then((res) => {
@@ -86,7 +86,6 @@ const FetchAPI = ({ steps }) => {
   return <div dangerouslySetInnerHTML={{ __html: response }} />;
 };
 
-// Function to get chatbot steps
 const getSteps = (userName) => [
   {
     id: "1",

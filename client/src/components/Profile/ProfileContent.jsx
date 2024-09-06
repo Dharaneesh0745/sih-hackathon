@@ -24,7 +24,9 @@ const ProfileContent = ({ active }) => {
   const [city, setCity] = useState(user && user.city);
   const [state, setState] = useState(user && user.state);
   const [address1, setAddress1] = useState(user && user.address1);
-  const [address2, setAddress2] = useState(user && user.address2);
+  const [preferredJobRole, setPreferredJobRole] = useState(
+    user && user.preferredJobRole
+  );
   const [zipCode, setZipCode] = useState(user && user.zipCode);
   const [addressType, setAddressType] = useState(user && user.addressType);
 
@@ -46,7 +48,7 @@ const ProfileContent = ({ active }) => {
           city,
           state,
           address1,
-          address2,
+          preferredJobRole,
           zipCode,
           addressType,
         },
@@ -822,13 +824,13 @@ const ProfileContent = ({ active }) => {
                     />
                   </div>
                   <div className=" w-[100%] 800px:w-[50%]">
-                    <label className="block pb-2">Address-2</label>
+                    <label className="block pb-2">Preferred Job Role</label>
                     <input
                       type="text"
                       className={`${styles.input}!w-[95%] rounded-lg`}
                       required
-                      value={address2}
-                      onChange={(e) => setAddress2(e.target.value)}
+                      value={preferredJobRole}
+                      onChange={(e) => setPreferredJobRole(e.target.value)}
                     />
                   </div>
                 </div>

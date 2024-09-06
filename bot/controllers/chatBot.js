@@ -4,10 +4,10 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const genAI = new GoogleGenerativeAI("AIzaSyD0bCVx_E7GiSBf9rQApLsthwoBsVkaSkU");
 
-router.post("/generate", async (req, res) => {
+router.post("/chatBot", async (req, res) => {
   const prompt = req.body.prompt;
 
-  //   console.log(prompt);
+  console.log(prompt);
 
   if (!prompt) {
     return res.status(400).json({ error: "Prompt is required" });
@@ -21,7 +21,6 @@ router.post("/generate", async (req, res) => {
     const generatedText = result.response.text().trim();
 
     return res.status(200).json({ text: generatedText });
-    // console.log(generatedText);
   } catch (error) {
     console.error("Error generating text:", error);
     return res
