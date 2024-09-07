@@ -830,7 +830,7 @@ const ProfileContent = ({ active }) => {
 
   // Handle the scenario when user.roadMapData is "None"
   const renderRoadmapOrSkills = () => {
-    if (user.roadMapData !== "None") {
+    if (user.roadMapData === "None") {
       return (
         <>
           <button
