@@ -73,7 +73,7 @@ const DashboardSidebar = ({ active }) => {
         </div>
 
         <div className="w-full flex items-center p-4">
-          <Link to={"/employer/events"} className="w-full flex items-center">
+          <Link to={"/employer/allEvents"} className="w-full flex items-center">
             <MdEventNote size={30} color="#555" />
             <h5
               className={`800px:block hidden pl-2 text-[18px] font-[400] ${
@@ -86,7 +86,10 @@ const DashboardSidebar = ({ active }) => {
         </div>
 
         <div className="w-full flex items-center p-4">
-          <Link to={"/employer/events"} className="w-full flex items-center">
+          <Link
+            to={"/employer/create-event"}
+            className="w-full flex items-center"
+          >
             <MdAddchart size={30} color="#555" />
             <h5
               className={`800px:block hidden pl-2 text-[18px] font-[400] ${

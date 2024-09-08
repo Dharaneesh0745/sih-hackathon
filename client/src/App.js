@@ -27,6 +27,8 @@ import {
   EmployerDashboardPage,
   EmployerCreateJobPage,
   EmployerAllJobsPage,
+  EmployerCreateEventPage,
+  EmployerAllEventsPage,
 } from "./routes/EmployerRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -258,6 +260,22 @@ const App = () => {
             element={
               <EmployerProtectedRoute>
                 <EmployerAllJobsPage />
+              </EmployerProtectedRoute>
+            }
+          />
+          <Route
+            path="/employer/create-event"
+            element={
+              <EmployerProtectedRoute>
+                <EmployerCreateEventPage />
+              </EmployerProtectedRoute>
+            }
+          />
+          <Route
+            path="/employer/allEvents"
+            element={
+              <EmployerProtectedRoute>
+                <EmployerAllEventsPage />
               </EmployerProtectedRoute>
             }
           />

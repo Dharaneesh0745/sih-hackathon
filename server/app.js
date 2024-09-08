@@ -32,10 +32,12 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 const user = require("./controllers/user");
 const employer = require("./controllers/employer");
 const job = require("./controllers/job");
+const event = require("./controllers/event");
 
 app.use("/api/v1/user", user);
 app.use("/api/v1/employer", employer);
 app.use("/api/v1/job", job);
+app.use("/api/v1/event", event);
 
 // handling uncaught exception errors
 app.use(ErrorHandler);
