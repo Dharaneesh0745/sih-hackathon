@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import JobCard from "../Sections/JobCard/JobCard";
 import { server } from "../../server"; // Adjust the path if needed
+import Loader from "../Layouts/Loader";
 
 const Jobs = () => {
   const [searchParams] = useSearchParams();
@@ -44,7 +45,9 @@ const Jobs = () => {
   return (
     <div className={`${styles.section}`}>
       {isLoading ? (
-        <p className="text-center">Loading...</p>
+        <p className="text-center">
+          <Loader />
+        </p>
       ) : error ? (
         <p className="text-center text-red-500">{error}</p>
       ) : (

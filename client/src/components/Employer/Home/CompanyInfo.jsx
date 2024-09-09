@@ -4,6 +4,7 @@ import { backend_API_endpoint, server } from "../../../server";
 import styles from "../../../styles/styles";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Loader from "../../Layouts/Loader";
 
 const CompanyInfo = ({ isOwner }) => {
   const { employer } = useSelector((state) => state.employer);
@@ -32,7 +33,12 @@ const CompanyInfo = ({ isOwner }) => {
     getAnEmployer();
   }, [id]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   if (error) return <div>Error: {error}</div>;
 
   // console.log(indEmployer);

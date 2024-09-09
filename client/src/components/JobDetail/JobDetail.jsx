@@ -66,6 +66,10 @@ const JobDetail = ({ data }) => {
 
               <h1 className={`${styles.productTitle}`}>{data.title}</h1>
               <p>{data.description}</p>
+              <div className="font-bold mt-5 text-[20px]">
+                Required Skills :{" "}
+                <span className="font-normal text-lg">{data.skills}</span>
+              </div>
               <div className="flex flex-row gap-5">
                 <div
                   className={`${styles.button} mt-6 rounded h-11 flex items-center`}

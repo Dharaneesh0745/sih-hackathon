@@ -5,6 +5,7 @@ import styles from "../../styles/styles";
 import { FaCoins } from "react-icons/fa6";
 import { MdAdd } from "react-icons/md";
 import { BiMessageDetail } from "react-icons/bi";
+import Loader from "../Layouts/Loader";
 
 const UserDetail = () => {
   const { id } = useParams();
@@ -38,7 +39,11 @@ const UserDetail = () => {
   console.log(user);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
 
   if (error) {

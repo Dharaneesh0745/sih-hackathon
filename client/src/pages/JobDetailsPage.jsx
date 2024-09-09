@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import SuggestedJobs from "../components/SuggestedJobs/SuggestedJobs";
 import axios from "axios";
 import { server } from "../server"; // Adjust the path if needed
+import Loader from "../components/Layouts/Loader";
 
 const JobDetailsPage = () => {
   const { id } = useParams(); // Ensure you are retrieving the ID from the URL params
@@ -40,7 +41,9 @@ const JobDetailsPage = () => {
     <div>
       <Header />
       {isLoading ? (
-        <p className="text-center">Loading...</p>
+        <p className="text-center">
+          <Loader />
+        </p>
       ) : error ? (
         <p className="text-center text-red-500">{error}</p>
       ) : (

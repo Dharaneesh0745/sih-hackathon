@@ -3,6 +3,8 @@ import axios from "axios";
 import styles from "../../../styles/styles";
 import JobCard from "../JobCard/JobCard";
 import { useSelector } from "react-redux";
+import Loader from "../../Layouts/Loader";
+import SmallLoader from "../../Layouts/SmallLoader";
 
 const RecommendedJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -72,10 +74,21 @@ const RecommendedJobs = () => {
         <div className={`${styles.heading}`}>
           <h1>Recommended Jobs</h1>
         </div>
+        {isLoading ? (
+          <div className="flex justify-between mx-auto text-center">
+            <SmallLoader />
+          </div>
+        ) : error ? (
+          <p className="text-center text-red-500">{error}</p>
+        ) : (
+          ""
+        )}
         <div className="grid grid-cols-1 gap-[20px] md:grid-cols-2 md:gap-[25px] lg:grid-cols-4 lg:gap-[25px] xl:grid-cols-5 xl:gap-[30px] mb-12 border-0">
-          {isLoading ? (
-            <p>Loading...</p>
-          ) : error ? (
+          {/* {isLoading ? (
+            <div className="flex justify-between mx-auto text-center">
+              <Loader />
+            </div> */}
+          {error ? (
             <p className="text-center text-red-500">{error}</p>
           ) : jobs.length > 0 ? (
             jobs.map((job) => (

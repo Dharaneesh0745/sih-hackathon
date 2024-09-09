@@ -24,17 +24,19 @@ const JobCard = ({ data }) => {
         />
       </Link>
       <Link to={`/company/${employer._id}`}>
-        <h5 className={`${styles.shop_name}`}>{companyName}</h5>
+        <h5 className={`${styles.shop_name} text-center`}>{companyName}</h5>
       </Link>
       <Link to={`/job/${data._id}`}>
         <h4 className="pb-3 font-[500] text-center">
           {title.length > 40 ? title.slice(0, 40) + "..." : title}
         </h4>
-        <div></div>
-        <div className="py-2 flex items-center justify-between">
-          <div className="flex">
-            <span className="font-[400] text-[17px] text-green-500">
-              {/* {data.total_sell} applied */}
+        <div className="py-2 flex items-center justify-center">
+          <div className="flex gap-3">
+            <span className="font-[400] text-[17px] text-red-500">
+              Openings : <span className="text-green-600">{data.vacancy}</span>
+            </span>
+            <span className="font-[400] text-[17px] text-red-500">
+              Applied : <span className="text-green-600">{data.vacancy}</span>
             </span>
           </div>
         </div>

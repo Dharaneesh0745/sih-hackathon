@@ -18,6 +18,7 @@ import Wishlist from "../Wishlist/Wishlist";
 import { RxCross1 } from "react-icons/rx";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import Loader from "./Loader";
 
 const Header = ({ activeHeading }) => {
   const [allJobs, setAllJobs] = useState([]);
@@ -69,7 +70,9 @@ const Header = ({ activeHeading }) => {
 
   return (
     <>
-      {isLoading ? null : (
+      {isLoading ? (
+        <Loader />
+      ) : (
         <>
           <div className={`${styles.section}`}>
             <div className="hidden 800px:h-[50px] 800px:my-[20px] 800px:flex items-center justify-between">
