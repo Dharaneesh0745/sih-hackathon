@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
 import { categoriesData, jobData } from "../../data/data";
@@ -12,37 +12,51 @@ import { BiMenuAltLeft, BiSolidMessageDetail } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import DropDown from "./DropDown";
 import Navbar from "./Navbar";
-import { useSelector } from "react-redux";
-import { backend_API_endpoint } from "../../server";
+import { backend_API_endpoint, server } from "../../server";
 import Notification from "../Notification/Notification";
 import Wishlist from "../Wishlist/Wishlist";
 import { RxCross1 } from "react-icons/rx";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 const Header = ({ activeHeading }) => {
-  const { isAuthenticated, user, isLoading } = useSelector(
-    (state) => state.user
-  );
-
+  const [allJobs, setAllJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [dropDown, setDropDown] = useState(false);
   const [active, setActive] = useState(false);
-
+  const { isAuthenticated, user, isLoading } = useSelector(
+    (state) => state.user
+  );
   const [openNotification, setOpenNotification] = useState(false);
   const [openWishlist, setOpenWishlist] = useState(false);
-
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    // Fetch jobs from the API when the component mounts
+    const fetchJobs = async () => {
+      try {
+        const response = await axios.get(`${server}/job/get-all-jobs`);
+        console.log(response);
+        setAllJobs(response.data.jobs); // Assuming the response contains a jobs array
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+      }
+    };
+
+    fetchJobs();
+  }, []);
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
 
-    const filterJobs =
-      jobData &&
-      jobData.filter((job) =>
-        job.name.toLowerCase().includes(term.toLowerCase())
+    const filteredJobs =
+      allJobs &&
+      allJobs.filter((job) =>
+        job.title.toLowerCase().includes(term.toLowerCase())
       );
-    setSearchData(filterJobs);
+    setSearchData(filteredJobs);
   };
 
   window.addEventListener("scroll", () => {
@@ -82,27 +96,27 @@ const Header = ({ activeHeading }) => {
                   className="absolute right-3 top-2 cursor-pointer"
                 />
                 {searchData && searchData.length !== 0 ? (
-                  <div className="absolute min-h-[30vh] bg-slate-50 shadow-sm-2 z-[9] p-4">
-                    {searchData.map((i, index) => {
-                      const d = i.name;
-                      const jobs_name = d.replace(/\s+/g, "-");
-                      return (
-                        <Link
-                          to={`/jobs/${jobs_name}`}
-                          key={index} // Adding a unique key prop
-                          className="block my-2"
-                        >
-                          <div className="w-full flex items-start py-3">
-                            <img
-                              src={i.image_Url[0].url}
-                              alt=""
-                              className="w-[40px] h-[40px] mr-[10px]"
-                            />
-                            <h1>{i.name}</h1>
-                          </div>
-                        </Link>
-                      );
-                    })}
+                  <div className="flex justify-center">
+                    <div className="absolute h-[70vh] w-full overflow-y-scroll bg-slate-50 shadow-lg-2 z-[9] p-4">
+                      {searchData.map((i, index) => {
+                        return (
+                          <Link
+                            to={`/job/${i._id}`}
+                            key={index} // Adding a unique key prop
+                            className="block my-2"
+                          >
+                            <div className="w-full flex items-start py-3">
+                              <img
+                                src={`${backend_API_endpoint}/${i.images[0]}`}
+                                alt=""
+                                className="w-[40px] h-[40px] mr-[10px]"
+                              />
+                              <h1>{i.title}</h1>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
                   </div>
                 ) : null}
               </div>
@@ -208,7 +222,7 @@ const Header = ({ activeHeading }) => {
                     {isAuthenticated ? (
                       <Link to={`/profile`}>
                         <img
-                          src={`${backend_API_endpoint}${user.avatar}`}
+                          src={`${user.avatar}`}
                           className="w-[45px] h-[46px] rounded-full"
                           alt=""
                         />

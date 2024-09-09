@@ -3,6 +3,7 @@ import { createReducer } from "@reduxjs/toolkit";
 const initialState = {
   isLoading: true,
   jobs: [],
+  alljobs: [], // This will store all jobs from the getAllJobs action
   job: null,
   error: null,
   success: false,
@@ -20,7 +21,6 @@ export const jobReducer = createReducer(initialState, (builder) => {
       state.isLoading = false;
       state.job = action.payload;
       state.success = true;
-      // Optionally, add the newly created job to the jobs array
       state.jobs = [...state.jobs, action.payload];
     })
     .addCase("jobCreateFail", (state, action) => {
@@ -49,7 +49,6 @@ export const jobReducer = createReducer(initialState, (builder) => {
     .addCase("deleteJobSuccess", (state, action) => {
       state.isLoading = false;
       state.message = action.payload.message;
-      // Optionally, remove the deleted job from the jobs array
       state.jobs = state.jobs.filter((job) => job._id !== action.payload.jobId);
     })
     .addCase("deleteJobFailed", (state, action) => {
@@ -57,13 +56,13 @@ export const jobReducer = createReducer(initialState, (builder) => {
       state.error = action.payload;
     })
 
-    // Get all jobs (generic, if needed)
+    // Get all jobs (generic, for RecommendedJobs)
     .addCase("getAllJobsRequest", (state) => {
       state.isLoading = true;
     })
     .addCase("getAllJobsSuccess", (state, action) => {
       state.isLoading = false;
-      state.alljobs = action.payload;
+      state.alljobs = action.payload; // Store all jobs fetched
     })
     .addCase("getAllJobsFailed", (state, action) => {
       state.isLoading = false;
@@ -75,7 +74,7 @@ export const jobReducer = createReducer(initialState, (builder) => {
       state.error = null;
     })
 
-    // Reset job state (optional)
+    // Reset job state
     .addCase("resetJobState", (state) => {
       state.job = null;
       state.success = false;

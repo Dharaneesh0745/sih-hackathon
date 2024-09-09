@@ -2,7 +2,8 @@ import React from "react";
 import styles from "../../../styles/styles";
 import CountDown from "../../Layouts/CountDown.jsx";
 
-const EventCard = ({ active }) => {
+const EventCard = ({ data, active }) => {
+  console.log(data);
   return (
     <div
       className={`${
@@ -11,28 +12,25 @@ const EventCard = ({ active }) => {
     >
       <div className="w-full lg:-w[50%] m-auto">
         <img
-          src="https://img.freepik.com/free-vector/web-development-isometric-concept-composition-illustration_1284-55922.jpg"
-          alt=""
+          src={
+            data.images[0] ||
+            "https://img.freepik.com/free-vector/web-development-isometric-concept-composition-illustration_1284-55922.jpg"
+          }
+          alt={data.name || "Event Image"}
         />
       </div>
       <div className="w-full lg:[w-50%] flex flex-col justify-center">
-        <h2 className={`${styles.productTitle}`}>Cloud Computing Workshop</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet labore
-          nihil eos magnam! Ad laboriosam aliquid in, quis atque, doloribus
-          veniam deserunt exercitationem ducimus, voluptatem incidunt excepturi
-          delectus sunt eos. Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Amet labore nihil eos magnam! Ad laboriosam aliquid in, quis
-          atque, doloribus veniam deserunt exercitationem ducimus, voluptatem
-          incidunt excepturi delectus sunt eos.
-        </p>
+        <h2 className={`${styles.productTitle}`}>
+          {data.name || "Default Event Title"}
+        </h2>
+        <p>{data.description || "Default event description."}</p>
         <div className="flex py-2 justify-between">
           <div className="pr-3 font-[400] text-[17px] text-[#44a55e]">
-            120 Registered
+            {data.registered || "0"} Registered
           </div>
         </div>
         <div className="w-full">
-          <CountDown />
+          <CountDown data={data} />
         </div>
       </div>
     </div>

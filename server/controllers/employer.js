@@ -17,68 +17,54 @@ const {
 const Employer = require("../models/employer");
 const sendEmployerToken = require("../utils/employerToken");
 
-router.post(
-  "/create-employer",
-  upload.single("file"),
-  async (req, res, next) => {
-    try {
-      const {
-        companyName,
-        employerName,
-        employerEmail,
-        employerPhone,
-        password,
-      } = req.body;
-      const email = await Employer.findOne({ employerEmail });
+router.post("/create-employer", async (req, res, next) => {
+  try {
+    const {
+      companyName,
+      employerName,
+      employerEmail,
+      employerPhone,
+      password,
+      avatar,
+    } = req.body;
 
-      if (email) {
-        return next(
-          new ErrorHandler("Email already exists, please login!", 400)
-        );
-      }
-
-      //   if (!req.file) {
-      //     if (!user) {
-      //       return next(new ErrorHandler("Please upload a file!", 400));
-      //     } else {
-      //       console.log("New Error Occurred: ", req.errored);
-      //     }
-      //     return next(new ErrorHandler("File not uploaded!", 400));
-      //   }
-
-      const filename = req.file.filename;
-      const fileUrl = path.join(filename);
-      const employer = {
-        companyName: companyName,
-        employerName: employerName,
-        employerEmail: employerEmail,
-        employerPhone: employerPhone,
-        password: password,
-        avatar: fileUrl,
-      };
-
-      const activationToken = createActivationToken(employer);
-
-      const activationUrl = `https://sih-hackathon.vercel.app/employer/activation/${activationToken}`;
-
-      try {
-        await sendMail({
-          email: employer.employerEmail,
-          subject: "Activate your account",
-          message: `Hello ${employer.employerName}, please click on the link to activate your account: ${activationUrl}`,
-        });
-        res.status(201).json({
-          success: true,
-          message: `Please check your email:- ${employer.employerEmail} to activate your employer account!`,
-        });
-      } catch (error) {
-        return next(new ErrorHandler(error.message, 500));
-      }
-    } catch (error) {
-      return next(new ErrorHandler(error.message, 400));
+    // Check if employer email already exists
+    const existingEmail = await Employer.findOne({ employerEmail });
+    if (existingEmail) {
+      return next(new ErrorHandler("Email already exists, please login!", 400));
     }
+
+    const employer = {
+      companyName: companyName,
+      employerName: employerName,
+      employerEmail: employerEmail,
+      employerPhone: employerPhone,
+      password: password,
+      avatar: avatar, // Cloudinary URL
+    };
+
+    // Create activation token and URL
+    const activationToken = createActivationToken(employer);
+    const activationUrl = `https://sih-hackathon.vercel.app/employer/activation/${activationToken}`;
+
+    // Send activation email
+    try {
+      await sendMail({
+        email: employer.employerEmail,
+        subject: "Activate your account",
+        message: `Hello ${employer.employerName}, please click on the link to activate your account: ${activationUrl}`,
+      });
+      res.status(201).json({
+        success: true,
+        message: `Please check your email:- ${employer.employerEmail} to activate your employer account!`,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 400));
   }
-);
+});
 
 // Activation Route
 router.post(
@@ -199,6 +185,34 @@ router.post(
   })
 );
 
+// Route to get an employer by ID
+router.get(
+  "/getIndEmployer/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      // Extract the employer ID from the request parameters
+      const { id } = req.params;
+
+      // Find the employer by ID
+      const employer = await Employer.findById(id);
+
+      // If no employer is found, return an error
+      if (!employer) {
+        return next(new ErrorHandler("Employer doesn't exist", 404));
+      }
+      console.log(employer);
+      // Return the employer details
+      res.status(200).json({
+        success: true,
+        employer,
+      });
+    } catch (error) {
+      // Handle any unexpected errors
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
 // load employer
 router.get(
   "/getemployer",
@@ -211,6 +225,8 @@ router.get(
       if (!employer) {
         return next(new ErrorHandler("Employer doesn't exists", 400));
       }
+
+      // console.log(employer);
 
       res.status(200).json({
         success: true,

@@ -7,6 +7,7 @@ import EmployerCreateJobPage from "../../src/pages/Employer/EmployerCreateJobPag
 import EmployerAllJobsPage from "../../src/pages/Employer/EmployerAllJobsPage";
 import EmployerCreateEventPage from "../../src/pages/Employer/EmployerCreateEventPage";
 import EmployerAllEventsPage from "../../src/pages/Employer/EmployerAllEventsPage";
+import EmployerAllCoupounsPage from "../../src/pages/Employer/EmployerAllCoupounsPage";
 
 export {
   EmployerSignupPage,
@@ -18,4 +19,5 @@ export {
   EmployerAllJobsPage,
   EmployerCreateEventPage,
   EmployerAllEventsPage,
+  EmployerAllCoupounsPage,
 };

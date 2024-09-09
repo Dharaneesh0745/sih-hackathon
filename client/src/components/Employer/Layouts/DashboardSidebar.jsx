@@ -8,6 +8,7 @@ import { MdEventNote } from "react-icons/md";
 import { MdAddchart } from "react-icons/md";
 import { TbMessageFilled } from "react-icons/tb";
 import { IoMdSettings } from "react-icons/io";
+import { RiDiscountPercentFill } from "react-icons/ri";
 
 const DashboardSidebar = ({ active }) => {
   return (
@@ -102,11 +103,27 @@ const DashboardSidebar = ({ active }) => {
         </div>
 
         <div className="w-full flex items-center p-4">
+          <Link
+            to={"/employer/allCoupouns"}
+            className="w-full flex items-center"
+          >
+            <RiDiscountPercentFill size={30} color="#555" />
+            <h5
+              className={`800px:block hidden pl-2 text-[18px] font-[400] ${
+                active === 7 ? "text-[crimson]" : "text-[#555]"
+              }`}
+            >
+              All Coupouns
+            </h5>
+          </Link>
+        </div>
+
+        <div className="w-full flex items-center p-4">
           <Link to={"/employer/inbox"} className="w-full flex items-center">
             <TbMessageFilled size={30} color="#555" />
             <h5
               className={`800px:block hidden pl-2 text-[18px] font-[400] ${
-                active === 7 ? "text-[crimson]" : "text-[#555]"
+                active === 8 ? "text-[crimson]" : "text-[#555]"
               }`}
             >
               Inbox
@@ -119,7 +136,7 @@ const DashboardSidebar = ({ active }) => {
             <IoMdSettings size={30} color="#555" />
             <h5
               className={`800px:block hidden pl-2 text-[18px] font-[400] ${
-                active === 8 ? "text-[crimson]" : "text-[#555]"
+                active === 9 ? "text-[crimson]" : "text-[#555]"
               }`}
             >
               Settings

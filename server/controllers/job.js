@@ -47,6 +47,47 @@ router.post(
   })
 );
 
+// get all jobs
+router.get(
+  "/get-all-jobs",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const jobs = await Job.find().sort({ createdAt: -1 });
+
+      res.status(201).json({
+        success: true,
+        jobs,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error, 400));
+    }
+  })
+);
+
+// Get a job by ID
+router.get(
+  "/get-job/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const { id } = req.params;
+
+      // Find job by ID
+      const job = await Job.findById(id).populate("employer"); // Populates the employer field with the employer's details
+
+      if (!job) {
+        return next(new ErrorHandler("Job not found", 404));
+      }
+
+      res.status(200).json({
+        success: true,
+        job,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 400));
+    }
+  })
+);
+
 // get all jobs of a shop
 router.get(
   "/getAllJobs/:id",

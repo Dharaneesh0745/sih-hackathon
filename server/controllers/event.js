@@ -3,7 +3,7 @@ const router = express.Router();
 const Event = require("../models/event");
 const { upload } = require("../multer");
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
-const ErrorHandler = require("../utils/errorHandler");
+const ErrorHandler = require("../utils/ErrorHandler");
 const Employer = require("../models/employer");
 const { isEmployerAuthenticated } = require("../middlewares/auth");
 
@@ -32,12 +32,12 @@ router.post(
 
       console.log("Creating event with data:", eventData);
 
-      const event = await Event.create(eventData);
-      console.log("event created successfully:", event);
+      const events = await Event.create(eventData);
+      console.log("Event created successfully:", events);
 
       res.status(201).json({
         success: true,
-        event,
+        events,
       });
       console.log("Response sent successfully");
     } catch (error) {
@@ -56,6 +56,23 @@ router.get(
       res.status(200).json({
         success: true,
         events,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
+// Get all events
+router.get(
+  "/getAllEvents",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const events = await Event.find();
+      console.log(events);
+      res.status(200).json({
+        success: true,
+        events: events,
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));

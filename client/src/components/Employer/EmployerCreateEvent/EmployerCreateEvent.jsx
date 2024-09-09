@@ -27,6 +27,8 @@ const EmployerCreateEvent = () => {
   const [totalSlots, setTotalSLots] = useState("");
   const [errors, setErrors] = useState("");
 
+  const [succ, setSucc] = useState(false);
+
   const handleStartDateChange = (e) => {
     const startDate = new Date(e.target.value);
     const minEndDate = new Date(startDate.getTime() + 3 * 24 * 60 * 60 * 1000);
@@ -51,15 +53,16 @@ const EmployerCreateEvent = () => {
     : today;
 
   useEffect(() => {
-    if (error) {
-      toast.error(error);
-    }
-    if (success) {
+    // if (error) {
+    //   toast.error(error);
+    // }
+    if (succ === true) {
       toast.success("Job Created Successfully");
       navigate("/employer/allEvents");
       window.location.reload(true);
+      setSucc(false);
     }
-    console.log(success);
+    // console.log(success);
   }, [dispatch, error, success]);
 
   const handleSubmit = (e) => {
@@ -85,8 +88,11 @@ const EmployerCreateEvent = () => {
     newForm.append("totalSlots", totalSlots);
     newForm.append("companyId", employer._id);
     newForm.append("companyName", employer.companyName);
-
+    setSucc(true);
     dispatch(createevent(newForm));
+    toast.success("Job Created Successfully");
+    navigate("/employer/allEvents");
+    window.location.reload(true);
   };
 
   const handleImageChange = (e) => {

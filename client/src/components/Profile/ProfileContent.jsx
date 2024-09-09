@@ -856,7 +856,7 @@ const ProfileContent = ({ active }) => {
             <div className="flex justify-center w-full">
               <div className="relative">
                 <img
-                  src={`${backend_API_endpoint}${user.avatar}`}
+                  src={`${user.avatar}`}
                   className="w-[150px] h-[150px] 800px:-mb-0 -mb-7 ml-14 rounded-full object-cover border-[3px] border-[#3ad132]"
                   alt=""
                 />

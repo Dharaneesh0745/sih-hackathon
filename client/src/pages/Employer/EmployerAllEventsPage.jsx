@@ -9,7 +9,7 @@ const EmployerAllEventsPage = () => {
       <DashboardHeader />
       <div className="flex justify-between w-full">
         <div className="800px:w-[250px] w-[60px]">
-          <DashboardSidebar active={3} />
+          <DashboardSidebar active={5} />
         </div>
         <div className="w-full justify-center flex">
           <EmployerAllEvents />
