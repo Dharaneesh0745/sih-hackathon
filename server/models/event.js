@@ -1,9 +1,19 @@
 const mongoose = require("mongoose");
 
-const jobSchema = new mongoose.Schema({
-  title: {
+const eventSchema = new mongoose.Schema({
+  name: {
     type: String,
     // required: [true, "Please enter the job tite"],
+  },
+  eventStartDate: {
+    type: Date,
+  },
+  eventEndDate: {
+    type: Date,
+  },
+  status: {
+    type: String,
+    default: "Not Started Yet",
   },
   description: {
     type: String,
@@ -13,11 +23,19 @@ const jobSchema = new mongoose.Schema({
     type: String,
     // required: [true, "Please enter the job category"],
   },
+  theme: {
+    type: String,
+    // required: [true, "Please enter the job category"],
+  },
   tags: {
     type: String,
     // required: [true, "Please enter the job tags"],
   },
-  salary: {
+  originalPrice: {
+    type: String,
+    // required: [true, "Please enter the job salary"],
+  },
+  discountPrice: {
     type: String,
     // required: [true, "Please enter the job salary"],
   },
@@ -30,38 +48,26 @@ const jobSchema = new mongoose.Schema({
     // required: true,
   },
   image: {
-    type: String,
+    type: String, // Correcting the typo from 'typr' to 'type'
   },
 
+  locationType: {
+    type: String,
+    // required: true,
+  },
+  eventType: {
+    type: String,
+    // required: true,
+  },
   location: {
     type: String,
     // required: true,
   },
-  experience: {
+  totalSlots: {
     type: String,
     // required: true,
   },
-  skills: {
-    type: String,
-    // required: true,
-  },
-  jobType: {
-    type: String,
-    // required: true,
-  },
-  locationType: {
-    type: String,
-    // required: true
-  },
-  education: {
-    type: String,
-    // required: true,
-  },
-  deadline: {
-    type: String,
-    // required: true,
-  },
-  vacancy: {
+  totalApplied: {
     type: String,
     // required: true,
   },
@@ -75,4 +81,4 @@ const jobSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Job", jobSchema);
+module.exports = mongoose.model("Event", eventSchema);

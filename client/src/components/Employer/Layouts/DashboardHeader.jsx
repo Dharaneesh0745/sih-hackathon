@@ -35,7 +35,7 @@ const DashboardHeader = () => {
           </Link>
           <Link to={`/employer/${employer._id}`}>
             <img
-              src={`${backend_API_endpoint}${employer?.avatar}`}
+              src={`${employer.avatar}`}
               alt=""
               className="w-[50px] h-[50px] mx-3 rounded-full object-cover"
             />

@@ -3,40 +3,78 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { categoriesData } from "../../../data/data";
-import { createJob } from "../../../redux/actions/job";
 import { toast } from "react-toastify";
+import { createevent } from "../../../redux/actions/event";
 import { RxAvatar } from "react-icons/rx";
 import axios from "axios";
 import { server } from "../../../server";
 
-const EmployerCreateJob = () => {
+const EmployerCreateEvent = () => {
   const { employer } = useSelector((state) => state.employer);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { success, error } = useSelector((state) => state.job);
+  const { success, error } = useSelector((state) => state.events);
 
-  const [imageUrl, setImageUrl] = useState(null);
-  const [title, setTitle] = useState("");
+  const [image, setImage] = useState(null);
+  const [name, setName] = useState("");
+  const [eventStartDate, setEventStartDate] = useState("");
+  const [eventEndDate, setEventEndDate] = useState("");
   const [description, setDescription] = useState("");
-  const [salary, setSalary] = useState("");
-  const [location, setLocation] = useState("");
   const [category, setCategory] = useState("");
-  const [experience, setExperience] = useState("");
-  const [skills, setSkills] = useState("");
-  const [jobType, setJobType] = useState("");
-  const [education, setEducation] = useState("");
-  const [deadline, setDeadline] = useState("");
-  const [vacancy, setVacancy] = useState("");
+  const [theme, setTheme] = useState("");
   const [tags, setTags] = useState("");
+  const [originalPrice, setOriginalPrice] = useState("");
+  const [discountPrice, setDiscountPrice] = useState("");
+  const [location, setLocation] = useState("");
   const [locationType, setLocationType] = useState("");
+  const [totalSlots, setTotalSLots] = useState("");
   const [errors, setErrors] = useState("");
+  const [eventType, setEventType] = useState("");
+
+  const [succ, setSucc] = useState(false);
+
+  const handleStartDateChange = (e) => {
+    const startDate = new Date(e.target.value);
+    const minEndDate = new Date(startDate.getTime() + 3 * 24 * 60 * 60 * 1000);
+    setEventStartDate(startDate);
+    setEventEndDate(null);
+    document.getElementById("end-date").min = minEndDate
+      .toISOString()
+      .slice(0, 10);
+  };
+
+  const handleEndDateChange = (e) => {
+    const endDate = new Date(e.target.value);
+    setEventEndDate(endDate);
+  };
+
+  const today = new Date().toISOString().slice(0, 10);
+
+  const minEndDate = eventStartDate
+    ? new Date(eventStartDate.getTime() + 2 * 24 * 60 * 60 * 1000)
+        .toISOString()
+        .slice(0, 10)
+    : today;
+
+  // useEffect(() => {
+  //   // if (error) {
+  //   //   toast.error(error);
+  //   // }
+  //   if (succ === true) {
+  //     toast.success("Job Created Successfully");
+  //     navigate("/employer/allEvents");
+  //     window.location.reload(true);
+  //     setSucc(false);
+  //   }
+  //   // console.log(success);
+  // }, [dispatch, error, success]);
 
   const handleFileUpload = () => {
     window.cloudinary.openUploadWidget(
       { cloudName: "dzutfi16w", uploadPreset: "bjydfkpb" },
       (error, result) => {
         if (result && result.event === "success") {
-          setImageUrl(result.info.secure_url);
+          setImage(result.info.secure_url);
         }
       }
     );
@@ -45,132 +83,77 @@ const EmployerCreateJob = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!imageUrl) {
+    if (!image) {
       alert("Please upload an image!");
       return;
     }
 
     try {
-      const res = await axios.post(`${server}/job/create-job`, {
-        title,
+      const res = await axios.post(`${server}/event/create-event`, {
+        name,
+        eventStartDate: eventStartDate.toISOString(),
+        eventEndDate: eventEndDate.toISOString(),
         description,
-        salary,
-        location,
         category,
-        experience,
-        skills,
-        jobType,
-        locationType,
-        education,
-        deadline,
-        vacancy,
+        theme,
         tags,
+        originalPrice,
+        discountPrice,
+        locationType,
+        location,
+        totalSlots,
         companyId: employer._id,
-        imageUrl,
+        image,
+        eventType,
       });
       toast.success(res.data.message);
-      setImageUrl("");
-      setTitle("");
+      setImage(null);
+      setName("");
+      setEventStartDate("");
+      setEventEndDate("");
       setDescription("");
-      setSalary("");
-      setLocation("");
       setCategory("");
-      setExperience("");
-      setSkills("");
-      setJobType("");
-      setEducation("");
-      setDeadline("");
-      setVacancy("");
+      setTheme("");
       setTags("");
+      setOriginalPrice("");
+      setDiscountPrice("");
+      setLocation("");
       setLocationType("");
+      setTotalSLots("");
       setErrors("");
 
-      navigate("/employer/allJobs");
+      setSucc(true);
+      toast.success("Job Created Successfully");
+      navigate("/employer/allEvents");
+      window.location.reload(true);
     } catch (err) {
       toast.error(err.response.data.message);
     }
   };
 
-  // useEffect(() => {
-  //   if (error) {
-  //     toast.error(error);
-  //   }
-  //   if (success) {
-  //     toast.success("Job Created Successfully");
-  //     navigate("/employer/allJobs");
-  //     window.location.reload(true);
-  //   }
-  // }, [dispatch, error, success]);
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   if (category === "") {
-  //     setErrors("Please select a location type.");
-  //   }
-  //   if (jobType === "") {
-  //     setErrors("Please select a location type.");
-  //   }
-  //   if (locationType === "") {
-  //     setErrors("Please select a location type.");
-  //   } else {
-  //     setErrors("");
-  //   }
-
-  //   const newForm = new FormData();
-
-  //   images.forEach((image) => {
-  //     newForm.append("images", image);
-  //   });
-
-  //   newForm.append("title", title);
-  //   newForm.append("description", description);
-  //   newForm.append("salary", salary);
-  //   newForm.append("location", location);
-  //   newForm.append("category", category);
-  //   newForm.append("experience", experience);
-  //   newForm.append("skills", skills);
-  //   newForm.append("jobType", jobType);
-  //   newForm.append("locationType", locationType);
-  //   newForm.append("education", education);
-  //   newForm.append("deadline", deadline);
-  //   newForm.append("vacancy", vacancy);
-  //   newForm.append("tags", tags);
-  //   newForm.append("companyId", employer._id);
-  //   newForm.append("companyName", employer.companyName);
-
-  //   dispatch(createJob(newForm));
-  // };
-
-  // const handleImageChange = (e) => {
-  //   e.preventDefault();
-
-  //   let files = Array.from(e.target.files);
-  //   setImages((prevImages) => [...prevImages, ...files]);
-  // };
-
   return (
     <>
       <div className="800px:w-[50%] w-[90%] bg-white shadow h-[80vh] rounded-md p-3 overflow-y-scroll">
-        <h5 className="text-[30px] font-bold text-center">Create Job</h5>
+        <h5 className="text-[30px] font-bold text-center">Create Event</h5>
 
-        {/* create job */}
+        {/* create event */}
         <form onSubmit={handleSubmit}>
           <br />
           <div>
             <label className="pb-2">
-              Job Title <span className="text-red-500">*</span>
+              Event Name <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
               name="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
-              placeholder="Enter Job Title..."
+              placeholder="Enter Event Name..."
               required
             />
           </div>
+
           <br />
           <div>
             <label className="pb-2">
@@ -185,9 +168,10 @@ const EmployerCreateJob = () => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
-              placeholder="Enter Job Description..."
+              placeholder="Enter Event Description..."
             ></textarea>
           </div>
+
           <br />
           <div>
             <label className="pb-2">
@@ -209,10 +193,11 @@ const EmployerCreateJob = () => {
             </select>
             {errors && <p className="text-red-500">{errors}</p>}
           </div>
+
           <br />
           <div>
             <label className="pb-2">
-              Job Tags <span className="text-red-500">*</span>
+              Event Tags <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -220,27 +205,95 @@ const EmployerCreateJob = () => {
               value={tags}
               onChange={(e) => setTags(e.target.value)}
               className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
-              placeholder="Enter Job Tags..."
+              placeholder="Enter Event Tags..."
             />
           </div>
+
           <br />
           <div>
             <label className="pb-2">
-              Salary Range <span className="text-red-500">*</span>
+              Event Theme <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              name="tags"
+              value={theme}
+              onChange={(e) => setTheme(e.target.value)}
+              className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
+              placeholder="Enter Event Theme..."
+            />
+          </div>
+
+          <br />
+          <div>
+            <label className="pb-2">
+              Event Start Date <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="date"
+              name="tags"
+              id="start-date"
+              value={
+                eventStartDate ? eventStartDate.toISOString().slice(0, 10) : ""
+              }
+              onChange={handleStartDateChange}
+              min={today}
+              className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+          </div>
+
+          <br />
+          <div>
+            <label className="pb-2">
+              Event End Date <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="date"
+              name="tags"
+              id="end-date"
+              value={
+                eventEndDate ? eventEndDate.toISOString().slice(0, 10) : ""
+              }
+              min={minEndDate}
+              onChange={handleEndDateChange}
+              className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+          </div>
+
+          <br />
+          <div>
+            <label className="pb-2">
+              Original Price <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
               name="salary"
-              value={salary}
-              onChange={(e) => setSalary(e.target.value)}
+              value={originalPrice}
+              onChange={(e) => setOriginalPrice(e.target.value)}
               className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
-              placeholder="Enter Salary Range..."
+              placeholder="Enter Original Price..."
             />
           </div>
+
           <br />
           <div>
             <label className="pb-2">
-              Job Location <span className="text-red-500">*</span>
+              Discount Price <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              name="salary"
+              value={discountPrice}
+              onChange={(e) => setDiscountPrice(e.target.value)}
+              className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
+              placeholder="Enter Discount Price..."
+            />
+          </div>
+
+          <br />
+          <div>
+            <label className="pb-2">
+              Event Location <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -248,55 +301,11 @@ const EmployerCreateJob = () => {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
-              placeholder="Enter Job Location..."
+              placeholder="Enter Event Location..."
             />
           </div>
+
           <br />
-          <div>
-            <label className="pb-2">
-              Required Experience <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              name="experience"
-              value={experience}
-              onChange={(e) => setExperience(e.target.value)}
-              className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
-              placeholder="Enter Required Experience..."
-            />
-          </div>
-          <br />
-          <div>
-            <label className="pb-2">
-              Required Skills <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              name="skills"
-              value={skills}
-              onChange={(e) => setSkills(e.target.value)}
-              className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
-              placeholder="Enter Required Skills..."
-            />
-          </div>
-          <br />
-          <div>
-            <label className="pb-2">
-              Job Type <span className="text-red-500">*</span>
-            </label>
-            <select
-              className="w-full mt-2 border h-[35px] rounded-md"
-              value={jobType}
-              onChange={(e) => setJobType(e.target.value)}
-              required
-            >
-              <option value="">-- Select Category --</option>
-              <option value="Full-Time">Full-Time</option>
-              <option value="Part-Time">Part-Time</option>
-              <option value="Internship">Internship</option>
-            </select>
-            {errors && <p className="text-red-500">{errors}</p>}
-          </div>
           <div>
             <label className="pb-2">
               Location Type <span className="text-red-500">*</span>
@@ -307,68 +316,60 @@ const EmployerCreateJob = () => {
               onChange={(e) => setLocationType(e.target.value)}
               required
             >
-              <option value="">-- Select Category --</option>
-              <option value="On-Site">On-Site</option>
-              <option value="Hybrid">Hybrid</option>
-              <option value="Remote">Remote</option>
+              <option value="">-- Select Location Type --</option>
+              <option value="Online">Online</option>
+              <option value="Offline">Offline</option>
             </select>
             {errors && <p className="text-red-500">{errors}</p>}
           </div>
+
           <br />
           <div>
             <label className="pb-2">
-              Required Educational Level <span className="text-red-500">*</span>
+              Event Type <span className="text-red-500">*</span>
+            </label>
+            <select
+              className="w-full mt-2 border h-[35px] rounded-md"
+              value={eventType}
+              onChange={(e) => setEventType(e.target.value)}
+              required
+            >
+              <option value="">-- Select Event Type --</option>
+              <option value="Webinars">Webinars</option>
+              <option value="Training Program">Training Program</option>
+              <option value="Workshop">Workshop</option>
+            </select>
+            {errors && <p className="text-red-500">{errors}</p>}
+          </div>
+
+          <br />
+          <div>
+            <label className="pb-2">
+              Total Slots <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
               name="education"
-              value={education}
-              onChange={(e) => setEducation(e.target.value)}
+              value={totalSlots}
+              onChange={(e) => setTotalSLots(e.target.value)}
               className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
-              placeholder="Enter Required Educational Level..."
+              placeholder="Enter Total Slots..."
             />
           </div>
-          <br />
-          <div>
-            <label className="pb-2">
-              Deadline <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="date"
-              name="date"
-              value={deadline}
-              onChange={(e) => setDeadline(e.target.value)}
-              className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
-              placeholder="Enter Deadline..."
-            />
-          </div>
-          <br />
-          <div>
-            <label className="pb-2">
-              Vacancy <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="number"
-              name="vacancy"
-              value={vacancy}
-              onChange={(e) => setVacancy(e.target.value)}
-              className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
-              placeholder="Enter Vacancy..."
-            />
-          </div>
+
           <br />
           <div>
             <label
               htmlFor="avatar"
               className="block text-sm font-medium text-gray-700"
             >
-              Avatar
+              Event Image
             </label>
             <div className="mt-2 flex items-center">
               <span className="inline-block cursor-pointer h-8 w-8 rounded-full overflow-hidden">
-                {imageUrl ? (
+                {image ? (
                   <img
-                    src={imageUrl}
+                    src={image}
                     alt="avatar"
                     className="h-full w-full object-cover rounded-full"
                   />
@@ -380,7 +381,7 @@ const EmployerCreateJob = () => {
                 htmlFor="file-input"
                 className="ml-5 flex items-center cursor-pointer justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
               >
-                <span>Upload company logo</span>
+                <span>Upload event image</span>
                 <button
                   type="button"
                   onClick={handleFileUpload}
@@ -394,7 +395,7 @@ const EmployerCreateJob = () => {
           <div>
             <button
               type="submit"
-              className="group mt-5a relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+              className="group relative w-full mt-5 h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
             >
               Submit
             </button>
@@ -405,4 +406,4 @@ const EmployerCreateJob = () => {
   );
 };
 
-export default EmployerCreateJob;
+export default EmployerCreateEvent;

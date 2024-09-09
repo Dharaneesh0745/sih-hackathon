@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 import styles from "../../../styles/styles";
 import { AiOutlineMessage } from "react-icons/ai";
+import { backend_API_endpoint } from "../../../server";
+import { Link } from "react-router-dom";
 
 const JobDetailsCard = ({ setOpen, data }) => {
   const [count, setCount] = useState(1);
@@ -23,20 +25,24 @@ const JobDetailsCard = ({ setOpen, data }) => {
 
             <div className="block w-full 800px:flex">
               <div className="w-full 800px:w-[50%]">
-                <img src={data.image_Url[0].url} alt="" />
-                <div className="flex">
-                  <img
-                    src={data.shop.shop_avatar.url}
-                    alt=""
-                    className="w-[50px] h-[50px] rounded-full mr-2"
-                  />
-                  <div>
-                    <h3 className={`${styles.shop_name}`}>{data.shop.name}</h3>
-                    <h5 className="pb-3 text-[15px]">
-                      ({data.shop.ratings}) Ratings
-                    </h5>
+                {/* <img src={`${backend_API_endpoint}/${data.images[0]}`} alt="" /> */}
+                <Link to={`/company/${data.employer._id}`}>
+                  <div className="flex">
+                    <img
+                      src={`${data.employer.avatar}`}
+                      alt=""
+                      className="w-[50px] h-[50px] rounded-full mr-2"
+                    />
+                    <div>
+                      <h3 className={`${styles.shop_name}`}>
+                        {data.employer.companyName}
+                      </h3>
+                      <h5 className="pb-3 text-[15px]">
+                        {/* ({data.shop.ratings}) Ratings */}
+                      </h5>
+                    </div>
                   </div>
-                </div>
+                </Link>
                 <div
                   className={`${styles.button} bg-[#000] mt-4 rounded h-11`}
                   onClick={handleMessageSubmit}
@@ -45,14 +51,20 @@ const JobDetailsCard = ({ setOpen, data }) => {
                     Send Message <AiOutlineMessage className="ml-1" />
                   </span>
                 </div>
-                <h5 className="text-[16px] text-[red] mt-5">
-                  ({data.total_sell}) Applied
-                </h5>
+                <h5 className="text-[16px] text-[red] mt-5">10 Applied</h5>
+                <br />
+                <hr />
+                <br />
+                <h5 className="text-[16px]">Job Type: {data.jobType}</h5>
+                <h5 className="text-[16px]">Experience: {data.experience}</h5>
+                <h5 className="text-[16px]">Salary: {data.salary}</h5>
+                <h5 className="text-[16px]">Location: {data.location}</h5>
+                <h5 className="text-[16px]">Deadline: {data.deadline}</h5>
               </div>
 
               <div className="w-full 800px:w-[50%] pt-5 pl-[5px] pr-[5px]">
                 <h1 className={`${styles.productTitle} text-[20px]`}>
-                  {data.name}
+                  {data.title}
                 </h1>
                 <p>{data.description}</p>
               </div>

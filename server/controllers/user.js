@@ -10,47 +10,40 @@ const sendMail = require("../utils/sendMail");
 const sendToken = require("../utils/jwtToken");
 const { isAuthenticated } = require("../middlewares/auth");
 
-router.post("/create-user", upload.single("file"), async (req, res, next) => {
+router.post("/create-user", async (req, res, next) => {
   try {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password, avatar } = req.body;
     const userEmail = await User.findOne({ email });
 
     if (userEmail) {
       return next(new ErrorHandler("Email already exists, please login!", 400));
     }
 
-    if (!req.file) {
-      if (!user) {
-        return next(new ErrorHandler("Please upload a file!", 400));
-      } else {
-        console.log("New Error Occurred: ", req.errored);
-      }
-      return next(new ErrorHandler("File not uploaded!", 400));
+    if (!avatar) {
+      return next(new ErrorHandler("Please upload a file!", 400));
     }
 
-    const filename = req.file.filename;
-    const fileUrl = path.join(filename);
     const user = {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password,
-      avatar: fileUrl,
+      firstName,
+      lastName,
+      email,
+      password,
+      avatar, // URL from Cloudinary
     };
 
     const activationToken = createActivationToken(user);
-
     const activationUrl = `https://sih-hackathon.vercel.app/activation/${activationToken}`;
 
     try {
       await sendMail({
         email: user.email,
         subject: "Activate your account",
-        message: `Hello ${user.name}, please click on the link to activate your account: ${activationUrl}`,
+        message: `Hello ${user.firstName}, please click on the link to activate your account: ${activationUrl}`,
       });
+
       res.status(201).json({
         success: true,
-        message: `Please check your email:- ${user.email} to activate your account!`,
+        message: `Please check your email at ${user.email} to activate your account!`,
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));

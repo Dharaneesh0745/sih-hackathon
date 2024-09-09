@@ -2,7 +2,7 @@ import React from "react";
 import Lottie from "react-lottie";
 import animationData from "../../assets/Animations/Animation - 1725870134956.json";
 
-const Loader = () => {
+const SmallLoader = () => {
   const defaultOptions = {
     loop: false,
     autoplay: true,
@@ -15,10 +15,10 @@ const Loader = () => {
   return (
     <>
       <div className="w-full h-screen flex items-center justify-center">
-        <Lottie options={defaultOptions} height={500} width={500} />
+        <Lottie options={defaultOptions} height={300} width={300} />
       </div>
     </>
   );
 };
 
-export default Loader;
+export default SmallLoader;

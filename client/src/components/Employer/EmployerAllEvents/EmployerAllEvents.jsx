@@ -9,7 +9,7 @@ import axios from "axios";
 import { server } from "../../../server";
 import { toast } from "react-toastify";
 
-const EmployerAllJobs = () => {
+const EmployerAllEvents = () => {
   const { employer } = useSelector((state) => state.employer);
   const [isLoading, setIsLoading] = useState(true);
   const [jobs, setJobs] = useState([]);
@@ -17,13 +17,13 @@ const EmployerAllJobs = () => {
   const deleteJob = async (id) => {
     // console.log(id);
     try {
-      const res = await axios.delete(`${server}/job/deleteJob/${id}`, {
+      const res = await axios.delete(`${server}/event/deleteEvent/${id}`, {
         withCredentials: true,
       });
 
       if (res.data.success) {
         setJobs(jobs.filter((job) => job._id !== id));
-        toast.success("Job Deleted Successfully!");
+        toast.success("Event Deleted Successfully!");
         window.location.reload(true);
       }
     } catch (error) {
@@ -35,10 +35,11 @@ const EmployerAllJobs = () => {
     const fetchJobs = async () => {
       try {
         const response = await axios.get(
-          `${server}/job/getAllJobs/${employer._id}`
+          `${server}/event/getAllEvents/${employer._id}`
         );
+        console.log(response);
         if (response.data.success) {
-          setJobs(response.data.jobs);
+          setJobs(response.data.events);
         } else {
           setJobs([]);
         }
@@ -52,12 +53,13 @@ const EmployerAllJobs = () => {
     fetchJobs();
   }, []);
 
+  // console.log(jobs);
+
   const columns = [
-    { field: "id", headerName: "Job Id", minWidth: 150, flex: 0.7 },
-    { field: "title", headerName: "Title", minWidth: 150, flex: 1 },
+    { field: "id", headerName: "Event Id", minWidth: 150, flex: 0.7 },
+    { field: "name", headerName: "Name", minWidth: 150, flex: 1 },
     { field: "location", headerName: "Location", minWidth: 150, flex: 1 },
     { field: "createdAt", headerName: "Posted On", minWidth: 150, flex: 1 },
-    { field: "deadline", headerName: "Deadline", minWidth: 150 },
     {
       field: "Preview",
       flex: 0.8,
@@ -65,8 +67,9 @@ const EmployerAllJobs = () => {
       headerName: "Preview",
       sortable: false,
       renderCell: (params) => {
+        // console.log("params: ", params.id);
         return (
-          <Link to={`/job/${params.id}`}>
+          <Link to={`/event/${params.id}`}>
             <Button>
               <AiOutlineEye size={20} />
             </Button>
@@ -94,10 +97,10 @@ const EmployerAllJobs = () => {
   const rows = Array.isArray(jobs)
     ? jobs.map((item) => ({
         id: item._id,
-        title: item.title,
+        name: item.name,
         location: item.location,
         createdAt: item.createdAt,
-        deadline: item.deadline,
+        // deadline: item.deadline,
       }))
     : [];
 
@@ -120,4 +123,4 @@ const EmployerAllJobs = () => {
   );
 };
 
-export default EmployerAllJobs;
+export default EmployerAllEvents;

@@ -27,6 +27,9 @@ import {
   EmployerDashboardPage,
   EmployerCreateJobPage,
   EmployerAllJobsPage,
+  EmployerCreateEventPage,
+  EmployerAllEventsPage,
+  EmployerAllCoupounsPage,
 } from "./routes/EmployerRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -212,6 +215,8 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+          <Route path="/job/:id" element={<JobDetailsPage />} />
+
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/job/:name" element={<JobDetailsPage />} />
           <Route
@@ -238,6 +243,16 @@ const App = () => {
             }
           />
           <Route
+            path="/company/:id"
+            element={
+              // <EmployerProtectedRoute>
+              <ProtectedRoute>
+                <EmployerHomePage />
+              </ProtectedRoute>
+              // </EmployerProtectedRoute>
+            }
+          />
+          <Route
             path="/employer/dashboard"
             element={
               <EmployerProtectedRoute>
@@ -261,6 +276,30 @@ const App = () => {
               </EmployerProtectedRoute>
             }
           />
+          <Route
+            path="/employer/create-event"
+            element={
+              <EmployerProtectedRoute>
+                <EmployerCreateEventPage />
+              </EmployerProtectedRoute>
+            }
+          />
+          <Route
+            path="/employer/allEvents"
+            element={
+              <EmployerProtectedRoute>
+                <EmployerAllEventsPage />
+              </EmployerProtectedRoute>
+            }
+          />
+          <Route
+            path="/employer/allCoupouns"
+            element={
+              <EmployerProtectedRoute>
+                <EmployerAllCoupounsPage />
+              </EmployerProtectedRoute>
+            }
+          />
         </Routes>
         <ToastContainer
           position="top-center"
@@ -275,7 +314,7 @@ const App = () => {
           theme="dark"
         />
       </BrowserRouter>
-      {/* )} */}
+      {/* )}.. */}
 
       {isUserLoaded && (
         <CustomChatBotWrapper>

@@ -1,11 +1,32 @@
-import React, { useState } from "react";
-import { jobData } from "../../../data/data";
+import React, { useEffect, useState } from "react";
+// import { jobData } from "../../../data/data";
 import JobCard from "../../Sections/JobCard/JobCard";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styles from "../../../styles/styles";
+import axios from "axios";
+import { server } from "../../../server";
+import { useSelector } from "react-redux";
 
 const CompanyProfileData = ({ isOwner }) => {
   const [active, setActive] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const { employer } = useSelector((state) => state.employer);
+  const { id } = useParams();
+  const [jobData, setJobData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${server}/job/getAllJobs/${id}`)
+      .then((response) => {
+        console.log(response.data.jobs); // Log the data here
+        setJobData(response.data.jobs);
+        setLoading(false);
+      })
+      .catch((error) => {
+        // setError(error);
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <>
@@ -44,7 +65,7 @@ const CompanyProfileData = ({ isOwner }) => {
             </div>
           </div>
           <div>
-            {isOwner && (
+            {employer && (
               <div>
                 <Link to={"/employer/dashboard"}>
                   <div className={`${styles.button} rounded-md h-[42px]`}>

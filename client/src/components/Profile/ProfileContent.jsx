@@ -9,6 +9,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { RiSparkling2Fill } from "react-icons/ri";
 import "../../styles/Roadmap.css";
+import { categoriesData } from "../../data/data";
 
 // // Function to format the response text dynamically
 // const formatResponse = (text) => {
@@ -830,7 +831,7 @@ const ProfileContent = ({ active }) => {
 
   // Handle the scenario when user.roadMapData is "None"
   const renderRoadmapOrSkills = () => {
-    if (user.roadMapData !== "None") {
+    if (user.roadMapData === "None") {
       return (
         <>
           <button
@@ -856,7 +857,7 @@ const ProfileContent = ({ active }) => {
             <div className="flex justify-center w-full">
               <div className="relative">
                 <img
-                  src={`${backend_API_endpoint}${user.avatar}`}
+                  src={`${user.avatar}`}
                   className="w-[150px] h-[150px] 800px:-mb-0 -mb-7 ml-14 rounded-full object-cover border-[3px] border-[#3ad132]"
                   alt=""
                 />
@@ -1008,13 +1009,19 @@ const ProfileContent = ({ active }) => {
                   </div>
                   <div className=" w-[100%] 800px:w-[50%]">
                     <label className="block pb-2">Preferred Job Role</label>
-                    <input
-                      type="text"
-                      className={`${styles.input}!w-[95%] rounded-lg`}
+                    <select
+                      className={`${styles.input} !w-[95%] rounded-lg`}
                       required
                       value={preferredJobRole}
                       onChange={(e) => setPreferredJobRole(e.target.value)}
-                    />
+                    >
+                      <option value="">-- Select a job role --</option>
+                      {categoriesData.map((category) => (
+                        <option key={category.id} value={category.title}>
+                          {category.title}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </div>
                 <div className="w-full 800px:flex pl-9 block pb-3">
