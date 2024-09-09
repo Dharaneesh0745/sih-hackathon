@@ -5,6 +5,9 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import { categoriesData } from "../../../data/data";
 import { toast } from "react-toastify";
 import { createevent } from "../../../redux/actions/event";
+import { RxAvatar } from "react-icons/rx";
+import axios from "axios";
+import { server } from "../../../server";
 
 const EmployerCreateEvent = () => {
   const { employer } = useSelector((state) => state.employer);
@@ -12,7 +15,7 @@ const EmployerCreateEvent = () => {
   const dispatch = useDispatch();
   const { success, error } = useSelector((state) => state.events);
 
-  const [images, setImages] = useState([]);
+  const [image, setImage] = useState(null);
   const [name, setName] = useState("");
   const [eventStartDate, setEventStartDate] = useState("");
   const [eventEndDate, setEventEndDate] = useState("");
@@ -26,6 +29,9 @@ const EmployerCreateEvent = () => {
   const [locationType, setLocationType] = useState("");
   const [totalSlots, setTotalSLots] = useState("");
   const [errors, setErrors] = useState("");
+  const [eventType, setEventType] = useState("");
+
+  const [succ, setSucc] = useState(false);
 
   const handleStartDateChange = (e) => {
     const startDate = new Date(e.target.value);
@@ -50,50 +56,79 @@ const EmployerCreateEvent = () => {
         .slice(0, 10)
     : today;
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
+  // useEffect(() => {
+  //   // if (error) {
+  //   //   toast.error(error);
+  //   // }
+  //   if (succ === true) {
+  //     toast.success("Job Created Successfully");
+  //     navigate("/employer/allEvents");
+  //     window.location.reload(true);
+  //     setSucc(false);
+  //   }
+  //   // console.log(success);
+  // }, [dispatch, error, success]);
+
+  const handleFileUpload = () => {
+    window.cloudinary.openUploadWidget(
+      { cloudName: "dzutfi16w", uploadPreset: "bjydfkpb" },
+      (error, result) => {
+        if (result && result.event === "success") {
+          setImage(result.info.secure_url);
+        }
+      }
+    );
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!image) {
+      alert("Please upload an image!");
+      return;
     }
-    if (success) {
+
+    try {
+      const res = await axios.post(`${server}/event/create-event`, {
+        name,
+        eventStartDate: eventStartDate.toISOString(),
+        eventEndDate: eventEndDate.toISOString(),
+        description,
+        category,
+        theme,
+        tags,
+        originalPrice,
+        discountPrice,
+        locationType,
+        location,
+        totalSlots,
+        companyId: employer._id,
+        image,
+        eventType,
+      });
+      toast.success(res.data.message);
+      setImage(null);
+      setName("");
+      setEventStartDate("");
+      setEventEndDate("");
+      setDescription("");
+      setCategory("");
+      setTheme("");
+      setTags("");
+      setOriginalPrice("");
+      setDiscountPrice("");
+      setLocation("");
+      setLocationType("");
+      setTotalSLots("");
+      setErrors("");
+
+      setSucc(true);
       toast.success("Job Created Successfully");
       navigate("/employer/allEvents");
       window.location.reload(true);
+    } catch (err) {
+      toast.error(err.response.data.message);
     }
-    console.log(success);
-  }, [dispatch, error, success]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const newForm = new FormData();
-
-    images.forEach((image) => {
-      newForm.append("images", image);
-    });
-
-    newForm.append("name", name);
-    newForm.append("eventStartDate", eventStartDate.toISOString());
-    newForm.append("eventEndDate", eventEndDate.toISOString());
-    newForm.append("description", description);
-    newForm.append("category", category);
-    newForm.append("theme", theme);
-    newForm.append("tags", tags);
-    newForm.append("originalPrice", originalPrice);
-    newForm.append("discountPrice", discountPrice);
-    newForm.append("locationType", locationType);
-    newForm.append("location", location);
-    newForm.append("totalSlots", totalSlots);
-    newForm.append("companyId", employer._id);
-    newForm.append("companyName", employer.companyName);
-
-    dispatch(createevent(newForm));
-  };
-
-  const handleImageChange = (e) => {
-    e.preventDefault();
-
-    let files = Array.from(e.target.files);
-    setImages((prevImages) => [...prevImages, ...files]);
   };
 
   return (
@@ -292,6 +327,24 @@ const EmployerCreateEvent = () => {
           <br />
           <div>
             <label className="pb-2">
+              Event Type <span className="text-red-500">*</span>
+            </label>
+            <select
+              className="w-full mt-2 border h-[35px] rounded-md"
+              value={eventType}
+              onChange={(e) => setEventType(e.target.value)}
+              required
+            >
+              <option value="">-- Select Event Type --</option>
+              <option value="Online">Online</option>
+              <option value="Offline">Offline</option>
+            </select>
+            {errors && <p className="text-red-500">{errors}</p>}
+          </div>
+
+          <br />
+          <div>
+            <label className="pb-2">
               Total Slots <span className="text-red-500">*</span>
             </label>
             <input
@@ -306,43 +359,46 @@ const EmployerCreateEvent = () => {
 
           <br />
           <div>
-            <label className="pb-2">
-              Upload Images <span className="text-red-500">*</span>
+            <label
+              htmlFor="avatar"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Event Image
             </label>
-            <input
-              type="file"
-              name=""
-              id="upload"
-              className="hidden"
-              multiple
-              onChange={handleImageChange}
-            />
-            <div className="w-full flex items-center flex-wrap">
-              <label htmlFor="upload">
-                <AiOutlinePlusCircle
-                  size={30}
-                  className="mt-3 cursor-pointer"
-                  color="#555"
-                />
-              </label>
-              {images &&
-                images.map((i) => (
+            <div className="mt-2 flex items-center">
+              <span className="inline-block cursor-pointer h-8 w-8 rounded-full overflow-hidden">
+                {image ? (
                   <img
-                    src={URL.createObjectURL(i)}
-                    alt=""
-                    key={i}
-                    className="w-[100px] mr-2 h-[100px] object-cover"
+                    src={image}
+                    alt="avatar"
+                    className="h-full w-full object-cover rounded-full"
                   />
-                ))}
+                ) : (
+                  <RxAvatar className="h-8 w-8" />
+                )}
+              </span>
+              <label
+                htmlFor="file-input"
+                className="ml-5 flex items-center cursor-pointer justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+              >
+                <span>Upload event image</span>
+                <button
+                  type="button"
+                  onClick={handleFileUpload}
+                  className="ml-3 bg-blue-600 text-white px-4 py-2 rounded-md"
+                >
+                  Upload
+                </button>
+              </label>
             </div>
-            <br />
-            <div>
-              <input
-                type="submit"
-                value="Create"
-                className="mt-2 cursor-pointer appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
-              />
-            </div>
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="group relative w-full mt-5 h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+            >
+              Submit
+            </button>
           </div>
         </form>
       </div>

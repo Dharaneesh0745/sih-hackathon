@@ -14,112 +14,103 @@ const JobDetail = ({ data }) => {
     navigate("/inbox?conversation=kngwkenrgmnd387yjaer");
   };
 
+  if (!data) return null; // Add early return if data is not available
+
   return (
     <div className="bg-white">
-      {data ? (
-        <div className={`${styles.section} w-[90%] 800pc:w-[80%]`}>
-          <div className="w-full py-5">
-            <div className="block w-full 800px:flex">
-              <div className="w-full 800px:w-[50%]">
-                <img
-                  src={data.image_Url[select].url}
-                  className="w-[100%]"
-                  alt=""
-                />
-                <div className="w-full flex">
-                  <div
-                    className={`${
-                      select === 0 ? "border" : null
-                    } cursor-pointer`}
-                  >
-                    <img
-                      src={data?.image_Url[0].url}
-                      alt=""
-                      className="h-[200px]"
-                      onClick={() => setSelect(0)}
-                    />
-                  </div>
-                  <div
-                    className={`${
-                      select === 1 ? "border" : null
-                    } cursor-pointer`}
-                  >
-                    <img
-                      src={data?.image_Url[1].url}
-                      alt=""
-                      className="h-[200px]"
-                      onClick={() => setSelect(1)}
-                    />
-                  </div>
+      <div className={`${styles.section} w-[90%] 800pc:w-[80%]`}>
+        <div className="w-full py-5">
+          <div className="block w-full 800px:flex">
+            <div className="w-full 800px:w-[50%]">
+              <div className="w-full flex">
+                <div
+                  className={`${select === 0 ? "border" : null} cursor-pointer`}
+                >
+                  <img
+                    src={data.image_Url ? data.image_Url[0].url : ""}
+                    alt=""
+                    className="h-[200px]"
+                    onClick={() => setSelect(0)}
+                  />
+                </div>
+                <div
+                  className={`${select === 1 ? "border" : null} cursor-pointer`}
+                >
+                  <img
+                    src={data.image_Url ? data.image_Url[1].url : ""}
+                    alt=""
+                    className="h-[200px]"
+                    onClick={() => setSelect(1)}
+                  />
                 </div>
               </div>
-              <div className="w-full ml-10 800px:w-[50%] pt-5">
-                <div className="flex items-center py-8">
-                  <img
-                    src={data.shop.shop_avatar.url}
-                    alt=""
-                    className="w-[50px] h-[50px] rounded-full mr-2"
-                  />
-                  <div>
-                    <h3 className={`${styles.shop_name} py-1`}>
-                      {data.shop.name}
-                    </h3>
-                    <h5 className="pb-3 text-[15px]">
-                      ({data.shop.ratings}) Ratings
-                    </h5>
-                  </div>
+            </div>
+            <div className="w-full ml-10 800px:w-[50%] pt-5">
+              <div className="flex items-center py-8">
+                <img
+                  src={data.employer ? data.employer.logoUrl : ""}
+                  alt=""
+                  className="w-[50px] h-[50px] rounded-full mr-2"
+                />
+                <div>
+                  <h3 className={`${styles.shop_name} py-1`}>
+                    {data.employer ? data.employer.companyName : "Company Name"}
+                  </h3>
+                  <h5 className="pb-3 text-[15px]">
+                    {/* ({data.shop.ratings}) Ratings */}
+                  </h5>
                 </div>
+              </div>
 
-                <h1 className={`${styles.productTitle}`}>{data.name}</h1>
-                <p>{data.description}</p>
-                <div className="flex flex-row gap-5">
-                  <div
-                    className={`${styles.button} mt-6 rounded h-11 flex items-center`}
+              <h1 className={`${styles.productTitle}`}>{data.title}</h1>
+              <p>{data.description}</p>
+              <div className="flex flex-row gap-5">
+                <div
+                  className={`${styles.button} mt-6 rounded h-11 flex items-center`}
+                >
+                  <span className="text-[#fff] flex flex-row gap-3">
+                    Apply
+                    <IoExit size={25} />
+                  </span>{" "}
+                </div>
+                <div
+                  className={`${styles.button} mt-6 rounded h-11 flex items-center`}
+                >
+                  <span
+                    onClick={handleMessageSubmit}
+                    className="text-[#fff] flex flex-row gap-3"
                   >
-                    <span className="text-[#fff] flex flex-row gap-3">
-                      Apply
-                      <IoExit size={25} />
-                    </span>{" "}
-                  </div>
-                  <div
-                    className={`${styles.button} mt-6 rounded h-11 flex items-center`}
-                  >
-                    <span
-                      onClick={handleMessageSubmit}
-                      className="text-[#fff] flex flex-row gap-3"
-                    >
-                      Message
-                      <BiSolidMessageDetail size={24} />
-                    </span>{" "}
-                  </div>
-                  <div className="mt-7">
-                    {click ? (
-                      <AiFillHeart
-                        size={30}
-                        className="cursor-pointer"
-                        onClick={() => setClick(!click)}
-                        color={click ? "red" : "#333"}
-                        title="Remove from wishlist"
-                      />
-                    ) : (
-                      <AiOutlineHeart
-                        size={30}
-                        className="cursor-pointer"
-                        onClick={() => setClick(!click)}
-                        color={click ? "red" : "#333"}
-                        title="Add to wishlist"
-                      />
-                    )}
-                  </div>
+                    Message
+                    <BiSolidMessageDetail size={24} />
+                  </span>{" "}
+                </div>
+                <div className="mt-7">
+                  {click ? (
+                    <AiFillHeart
+                      size={30}
+                      className="cursor-pointer"
+                      onClick={() => setClick(!click)}
+                      color={click ? "red" : "#333"}
+                      title="Remove from wishlist"
+                    />
+                  ) : (
+                    <AiOutlineHeart
+                      size={30}
+                      className="cursor-pointer"
+                      onClick={() => setClick(!click)}
+                      color={click ? "red" : "#333"}
+                      title="Add to wishlist"
+                    />
+                  )}
                 </div>
               </div>
             </div>
           </div>
-          <JobDetailsInfo data={data} />
-          <br />
-          <br />
         </div>
-      ) : null}
+        <JobDetailsInfo data={data} />
+        <br />
+        <br />
+      </div>
     </div>
   );
 };
@@ -168,16 +159,7 @@ const JobDetailsInfo = ({ data }) => {
         {active === 1 ? (
           <>
             <p className="py-2 text-[18px] leading-8 pb-10 whitespace-pre-line">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
-              accusantium temporibus sunt quis ut ipsum dicta tempore libero.
-              Ducimus blanditiis placeat eaque veniam quas saepe impedit
-              necessitatibus incidunt alias nesciunt.
-            </p>
-            <p className="py-2 text-[18px] leading-8 pb-10 whitespace-pre-line">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
-              accusantium temporibus sunt quis ut ipsum dicta tempore libero.
-              Ducimus blanditiis placeat eaque veniam quas saepe impedit
-              necessitatibus incidunt alias nesciunt.
+              {data.details ? data.details : "No details available."}
             </p>
           </>
         ) : null}
@@ -192,33 +174,47 @@ const JobDetailsInfo = ({ data }) => {
               <div className="w-full 800px:w-[50%]">
                 <div className="flex items-center">
                   <img
-                    src={data.shop.shop_avatar.url}
+                    src={data.employer ? data.employer.logoUrl : ""}
                     alt=""
                     className="w-[50px] h-[50px] rounded-full"
                   />
                   <div className="pl-3">
-                    <h4 className={`${styles.shop_name}`}>{data.shop.name}</h4>
+                    <h4 className={`${styles.shop_name}`}>
+                      {data.employer
+                        ? data.employer.companyName
+                        : "Company Name"}
+                    </h4>
                     <h5 className="pb-2 text-[15px]">
-                      ({data.shop.ratings}) Ratings
+                      {/* ({data.shop.ratings}) Ratings */}
                     </h5>
                   </div>
                 </div>
                 <p className="pt-2">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptatem sed ipsam repudiandae quae, autem beatae qui!
-                  Adipisci, esse consectetur, quos provident vitae soluta
-                  tempora quia corrupti voluptas enim laboriosam atque?
+                  {data.employer
+                    ? data.employer.description
+                    : "No description available."}
                 </p>
               </div>
               <div className="w-full 800px:w-[50%] mt-5 800px:mt-0 800px:flex flex-col items-end">
                 <h5 className="font-[600]">
-                  Joined on: <span className="font-[500]">7 April, 2005</span>
+                  Joined on:{" "}
+                  <span className="font-[500]">
+                    {data.employer
+                      ? data.employer.joinDate
+                      : "Date not available"}
+                  </span>
                 </h5>
                 <h5 className="font-[600]">
-                  Total Jobs posted: <span className="font-[500]">1,000</span>
+                  Total Jobs posted:{" "}
+                  <span className="font-[500]">
+                    {data.employer ? data.employer.totalJobs : "N/A"}
+                  </span>
                 </h5>
                 <h5 className="font-[600]">
-                  Total Reviews: <span className="font-[500]">500</span>
+                  Total Reviews:{" "}
+                  <span className="font-[500]">
+                    {data.employer ? data.employer.totalReviews : "N/A"}
+                  </span>
                 </h5>
                 <Link to="/home">
                   <div

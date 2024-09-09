@@ -339,24 +339,27 @@ export const jobData = [
   {
     id: 1,
     category: "Full Stack",
-    name: "Full Stack",
+    title: "Full Stack",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    image_Url: [
+    images: [
       {
         public_id: "test",
-        url: "https://img.freepik.com/free-vector/web-development-isometric-concept-composition-illustration_1284-55922.jpg",
+        url:
+          "https://img.freepik.com/free-vector/web-development-isometric-concept-composition-illustration_1284-55922.jpg",
       },
       {
         public_id: "test",
-        url: "https://img.freepik.com/free-vector/web-development-isometric-concept-composition-illustration_1284-55922.jpg",
+        url:
+          "https://img.freepik.com/free-vector/web-development-isometric-concept-composition-illustration_1284-55922.jpg",
       },
     ],
-    shop: {
-      name: "Apple inc.",
-      shop_avatar: {
+    employer: {
+      companyName: "Apple inc.",
+      avatar: {
         public_id: "test",
-        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
+        url:
+          "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
       },
       ratings: 4.2,
     },
@@ -364,298 +367,6 @@ export const jobData = [
     discount_price: 1049,
     rating: 4,
     total_sell: 35,
-    stock: 10,
-  },
-  {
-    id: 2,
-    category: "Front End",
-    name: "Front End",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    image_Url: [
-      {
-        public_id: "test",
-        url: "https://www.aceinfoway.com/blog/wp-content/uploads/2020/07/front-end-developer.jpg",
-      },
-      {
-        public_id: "test",
-        url: "https://www.aceinfoway.com/blog/wp-content/uploads/2020/07/front-end-developer.jpg",
-      },
-    ],
-    shop: {
-      name: "Apple inc.",
-      shop_avatar: {
-        public_id: "test",
-        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
-      },
-      ratings: 4.2,
-    },
-    price: 1099,
-    discount_price: 1049,
-    rating: 4,
-    total_sell: 35,
-    stock: 10,
-  },
-  
-  {
-    id: 3,
-    category: "Back End",
-    name: "Back End",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    image_Url: [
-      {
-        public_id: "test",
-        url: "https://c8.alamy.com/comp/2DB193X/back-end-icon-simple-element-from-website-development-collection-filled-back-end-icon-for-templates-infographics-and-more-2DB193X.jpg",
-      },
-      {
-        public_id: "test",
-        url: "https://c8.alamy.com/comp/2DB193X/back-end-icon-simple-element-from-website-development-collection-filled-back-end-icon-for-templates-infographics-and-more-2DB193X.jpg",
-      },
-    ],
-    shop: {
-      name: "Amazon Ltd",
-      shop_avatar: {
-        public_id: "test",
-        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
-      },
-      ratings: 4.2,
-    },
-    discount_price: 1099,
-    rating: 5,
-    total_sell: 80,
-    stock: 10,
-  },
-  {
-    id: 4,
-    category: "Data Scientist",
-    name: "Data Scientist",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    image_Url: [
-      {
-        public_id: "test",
-        url: "https://www.simplilearn.com/ice9/free_resources_article_thumb/how_to_become_a_data_scientist.jpg",
-      },
-      {
-        public_id: "test",
-        url: "https://www.simplilearn.com/ice9/free_resources_article_thumb/how_to_become_a_data_scientist.jpg",
-      },
-    ],
-    shop: {
-      name: "Amazon Ltd",
-      shop_avatar: {
-        public_id: "test",
-        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
-      },
-      ratings: 4.2,
-    },
-    discount_price: 1099,
-    rating: 5,
-    total_sell: 80,
-    stock: 10,
-  },
-  {
-    id: 5,
-    category: "Cloud Computing",
-    name: "Cloud Computing",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    image_Url: [
-      {
-        public_id: "test",
-        url: "https://media.licdn.com/dms/image/D5612AQGdJwTfkaVA9A/article-cover_image-shrink_720_1280/0/1695748849925?e=2147483647&v=beta&t=lLpyk_jq2xK54oG6T_W3rZkz-qwtNdVQsyVY8W7X1WE",
-      },
-      {
-        public_id: "test",
-        url: "https://media.licdn.com/dms/image/D5612AQGdJwTfkaVA9A/article-cover_image-shrink_720_1280/0/1695748849925?e=2147483647&v=beta&t=lLpyk_jq2xK54oG6T_W3rZkz-qwtNdVQsyVY8W7X1WE",
-      },
-    ],
-    shop: {
-      name: "Amazon Ltd",
-      shop_avatar: {
-        public_id: "test",
-        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
-      },
-      ratings: 4.2,
-    },
-    discount_price: 1099,
-    rating: 5,
-    total_sell: 80,
-    stock: 10,
-  },
-  {
-    id: 6,
-    category: "App Development",
-    name: "App Development",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    image_Url: [
-      {
-        public_id: "test",
-        url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqEmOgMdUINgrvzYqCHNyVftxgPvbiSYabWw&s",
-      },
-      {
-        public_id: "test",
-        url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqEmOgMdUINgrvzYqCHNyVftxgPvbiSYabWw&s",
-      },
-    ],
-    shop: {
-      name: "Amazon Ltd",
-      shop_avatar: {
-        public_id: "test",
-        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
-      },
-      ratings: 4.2,
-    },
-    discount_price: 1099,
-    rating: 5,
-    total_sell: 80,
-    stock: 10,
-  },
-  {
-    id: 7,
-    category: "DevOps",
-    name: "DevOps",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    image_Url: [
-      {
-        public_id: "test",
-        url: "https://iabac.org/blog/uploads/images/202309/image_870x_650ece21df858.jpg",
-      },
-      {
-        public_id: "test",
-        url: "https://iabac.org/blog/uploads/images/202309/image_870x_650ece21df858.jpg",
-      },
-    ],
-    shop: {
-      name: "Amazon Ltd",
-      shop_avatar: {
-        public_id: "test",
-        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
-      },
-      ratings: 4.2,
-    },
-    discount_price: 1099,
-    rating: 5,
-    total_sell: 80,
-    stock: 10,
-  },
-  {
-    id: 8,
-    category: "Cybersecurity",
-    name: "Cybersecurity",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    image_Url: [
-      {
-        public_id: "test",
-        url: "https://www.theforage.com/blog/wp-content/uploads/2022/12/what-is-cybersecurity.jpg",
-      },
-      {
-        public_id: "test",
-        url: "https://www.theforage.com/blog/wp-content/uploads/2022/12/what-is-cybersecurity.jpg",
-      },
-    ],
-    shop: {
-      name: "Amazon Ltd",
-      shop_avatar: {
-        public_id: "test",
-        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
-      },
-      ratings: 4.2,
-    },
-    discount_price: 1099,
-    rating: 5,
-    total_sell: 80,
-    stock: 10,
-  },
-  {
-    id: 9,
-    category: "AIML Engineer",
-    name: "AIML Engineer",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    image_Url: [
-      {
-        public_id: "test",
-        url: "https://media.licdn.com/dms/image/D5612AQHjDGhc8cNfJA/article-cover_image-shrink_720_1280/0/1704439037481?e=2147483647&v=beta&t=wSs9ZAGGWfx_9TAfotJLRY87JtMQPhKo7wNAh1-inU0",
-      },
-      {
-        public_id: "test",
-        url: "https://media.licdn.com/dms/image/D5612AQHjDGhc8cNfJA/article-cover_image-shrink_720_1280/0/1704439037481?e=2147483647&v=beta&t=wSs9ZAGGWfx_9TAfotJLRY87JtMQPhKo7wNAh1-inU0",
-      },
-    ],
-    shop: {
-      name: "Amazon Ltd",
-      shop_avatar: {
-        public_id: "test",
-        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
-      },
-      ratings: 4.2,
-    },
-    discount_price: 1099,
-    rating: 5,
-    total_sell: 80,
-    stock: 10,
-  },
-  {
-    id: 10,
-    category: "Database Administrator",
-    name: "Database Administrator",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    image_Url: [
-      {
-        public_id: "test",
-        url: "https://www.interviewbit.com/blog/wp-content/uploads/2021/08/cover.jpg",
-      },
-      {
-        public_id: "test",
-        url: "https://www.interviewbit.com/blog/wp-content/uploads/2021/08/cover.jpg",
-      },
-    ],
-    shop: {
-      name: "Amazon Ltd",
-      shop_avatar: {
-        public_id: "test",
-        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
-      },
-      ratings: 4.2,
-    },
-    discount_price: 1099,
-    rating: 5,
-    total_sell: 80,
-    stock: 10,
-  },
-  {
-    id: 11,
-    category: "UIUX Designer",
-    name: "UIUX Designer",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    image_Url: [
-      {
-        public_id: "test",
-        url: "https://img.freepik.com/free-vector/flat-design-ui-ux-background_23-2149093995.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1720569600&semt=ais_hybridjpgeve",
-      },
-      {
-        public_id: "test",
-        url: "https://img.freepik.com/free-vector/flat-design-ui-ux-background_23-2149093995.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1720569600&semt=ais_hybridjpgeve",
-      },
-    ],
-    shop: {
-      name: "Amazon Ltd",
-      shop_avatar: {
-        public_id: "test",
-        url: "https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png",
-      },
-      ratings: 4.2,
-    },
-    discount_price: 1099,
-    rating: 5,
-    total_sell: 80,
     stock: 10,
   },
 ];

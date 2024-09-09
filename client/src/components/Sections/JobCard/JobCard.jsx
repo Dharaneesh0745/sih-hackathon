@@ -3,35 +3,37 @@ import { Link } from "react-router-dom";
 import styles from "../../../styles/styles";
 import { AiFillHeart, AiOutlineEye, AiOutlineHeart } from "react-icons/ai";
 import JobDetailsCard from "../JobDetailsCard/JobDetailsCard";
+import { backend_API_endpoint } from "../../../server";
 
 const JobCard = ({ data }) => {
   const [click, setClick] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const d = data.name;
-  const job_name = d.replace(/\s+/g, "-");
+  const { _id, employer = {}, title = "No title" } = data;
+  // console.log(data._id);
+  const { companyName = "No company name" } = employer;
 
   return (
     <div className="w-full h-[370px] bg-[#fff] rounded-lg shadow-sm p-3 relative cursor-pointer">
       <div className="flex justify-end"></div>
-      <Link to={`/job/${job_name}`}>
+      <Link to={`/job/${data._id}`}>
         <img
-          src={data.image_Url[0].url}
-          alt=""
+          src={`${data.image}`}
+          alt={title}
           className="w-full h-[170px] object-contain"
         />
       </Link>
-      <Link to={"/home"}>
-        <h5 className={`${styles.shop_name}`}>{data.shop.name}</h5>
+      <Link to={`/company/${employer._id}`}>
+        <h5 className={`${styles.shop_name}`}>{companyName}</h5>
       </Link>
-      <Link to={`/job/${job_name}`}>
+      <Link to={`/job/${data._id}`}>
         <h4 className="pb-3 font-[500]">
-          {data.name.length > 40 ? data.name.slice(0, 40) + "..." : data.name}
+          {title.length > 40 ? title.slice(0, 40) + "..." : title}
         </h4>
         <div className="py-2 flex items-center justify-between">
           <div className="flex">
             <span className="font-[400] text-[17px] text-green-500">
-              {data.total_sell} applied
+              {/* {data.total_sell} applied */}
             </span>
           </div>
         </div>

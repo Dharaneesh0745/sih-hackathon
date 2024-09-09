@@ -7,42 +7,105 @@ const ErrorHandler = require("../utils/errorHandler");
 const Employer = require("../models/employer");
 const { isEmployerAuthenticated } = require("../middlewares/auth");
 
-// create job
 router.post(
   "/create-job",
-  upload.array("images"),
   catchAsyncErrors(async (req, res, next) => {
     try {
-      const companyId = req.body.companyId;
-      console.log("Received companyId:", companyId);
+      const {
+        title,
+        description,
+        salary,
+        location,
+        category,
+        experience,
+        skills,
+        jobType,
+        locationType,
+        education,
+        deadline,
+        vacancy,
+        tags,
+        companyId,
+        imageUrl,
+      } = req.body;
 
-      const company = await Employer.findById(companyId);
-      console.log("Company found:", company);
+      console.log("Received companyId:", companyId, imageUrl);
 
-      if (!company) {
-        console.log("Company not found");
-        return next(new ErrorHandler("Company not found", 404));
+      // Assuming you have an employer object to associate with the job
+      const employer = await Employer.findById(companyId); // Fetch the employer using the companyId
+
+      if (!employer) {
+        return res.status(404).json({ message: "Employer not found" });
       }
 
-      const files = req.files;
-      const imageUrls = files.map((file) => file.filename); // Correct key used here
-      const jobData = req.body;
-      jobData.images = imageUrls.length > 0 ? imageUrls : [];
-      jobData.employer = company;
+      // Create a new job
+      const newJob = new Job({
+        title,
+        description,
+        salary,
+        location,
+        category,
+        experience,
+        skills,
+        jobType,
+        locationType,
+        education,
+        deadline,
+        vacancy,
+        tags,
+        companyId,
+        employer: employer, // Embedding the employer object
+        image: imageUrl, // Storing the image URL
+      });
 
-      console.log("Creating job with data:", jobData);
+      // Save the job to the database
+      await newJob.save();
 
-      const job = await Job.create(jobData);
-      console.log("Job created successfully:", job);
+      res.status(201).json({ success: true, job: newJob });
+    } catch (error) {
+      console.error("Error creating job:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  })
+);
+
+// get all jobs
+router.get(
+  "/get-all-jobs",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const jobs = await Job.find().sort({ createdAt: -1 });
 
       res.status(201).json({
         success: true,
+        jobs,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error, 400));
+    }
+  })
+);
+
+// Get a job by ID
+router.get(
+  "/get-job/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const { id } = req.params;
+
+      // Find job by ID
+      const job = await Job.findById(id).populate("employer"); // Populates the employer field with the employer's details
+
+      if (!job) {
+        return next(new ErrorHandler("Job not found", 404));
+      }
+
+      res.status(200).json({
+        success: true,
         job,
       });
-      console.log("Response sent successfully");
     } catch (error) {
-      console.error("Error in job creation:", error.message);
-      return next(new ErrorHandler(error.message, 500));
+      return next(new ErrorHandler(error.message, 400));
     }
   })
 );

@@ -65,7 +65,7 @@ const WishlistSingle = ({ data }) => {
       <div className="w-full flex items-center">
         <RxCross1 className="w-full flex items-center" />
         <div className="pl-[5px]">
-          <h1>{data.name}</h1>
+          <h1>{data.title}</h1>
         </div>
       </div>
     </div>

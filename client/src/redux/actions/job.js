@@ -73,22 +73,22 @@ export const getAllJobsEmployer = (id) => async (dispatch) => {
 //   }
 // };
 
-// // get all products
-// export const getAllProducts = () => async (dispatch) => {
-//   try {
-//     dispatch({
-//       type: "getAllProductsRequest",
-//     });
+// get all Jobs
+export const getAllJobs = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: "getAllJobsRequest",
+    });
 
-//     const { data } = await axios.get(`${server}/product/get-all-products`);
-//     dispatch({
-//       type: "getAllProductsSuccess",
-//       payload: data.products,
-//     });
-//   } catch (error) {
-//     dispatch({
-//       type: "getAllProductsFailed",
-//       payload: error.response.data.message,
-//     });
-//   }
-// };
+    const { data } = await axios.get(`${server}/job/get-all-jobs`);
+    dispatch({
+      type: "getAllJobsSuccess",
+      payload: data.Jobs,
+    });
+  } catch (error) {
+    dispatch({
+      type: "getAllJobsFailed",
+      payload: error.response.data.message,
+    });
+  }
+};

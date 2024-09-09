@@ -3,46 +3,68 @@ const router = express.Router();
 const Event = require("../models/event");
 const { upload } = require("../multer");
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
-const ErrorHandler = require("../utils/errorHandler");
+const ErrorHandler = require("../utils/ErrorHandler");
 const Employer = require("../models/employer");
 const { isEmployerAuthenticated } = require("../middlewares/auth");
 
-// create event
 router.post(
   "/create-event",
-  upload.array("images"),
   catchAsyncErrors(async (req, res, next) => {
     try {
-      const companyId = req.body.companyId;
-      console.log("Received companyId:", companyId);
+      const {
+        name,
+        image,
+        eventStartDate,
+        eventEndDate,
+        description,
+        category,
+        theme,
+        tags,
+        originalPrice,
+        discountPrice,
+        location,
+        locationType,
+        totalSlots,
+        companyId,
+        eventType,
+      } = req.body;
 
-      const company = await Employer.findById(companyId);
-      console.log("Company found:", company);
+      // console.log("Received companyId:", companyId, image);
 
-      if (!company) {
-        console.log("Company not found");
-        return next(new ErrorHandler("Company not found", 404));
+      // Fetch the employer using the companyId
+      const employer = await Employer.findById(companyId);
+
+      if (!employer) {
+        return res.status(404).json({ message: "Employer not found" });
       }
 
-      const files = req.files;
-      const imageUrls = files.map((file) => file.filename); // Correct key used here
-      const eventData = req.body;
-      eventData.images = imageUrls.length > 0 ? imageUrls : [];
-      eventData.employer = company;
-
-      console.log("Creating event with data:", eventData);
-
-      const event = await Event.create(eventData);
-      console.log("event created successfully:", event);
-
-      res.status(201).json({
-        success: true,
-        event,
+      // Create a new event
+      const newEvent = new Event({
+        name,
+        image,
+        eventType,
+        eventStartDate,
+        eventEndDate,
+        description,
+        category,
+        theme,
+        tags,
+        originalPrice,
+        discountPrice,
+        location,
+        locationType,
+        totalSlots,
+        companyId,
+        employer: employer, // Embedding the employer object
       });
-      console.log("Response sent successfully");
+
+      // Save the event to the database
+      await newEvent.save();
+
+      res.status(201).json({ success: true, event: newEvent });
     } catch (error) {
-      console.error("Error in event creation:", error.message);
-      return next(new ErrorHandler(error.message, 500));
+      console.error("Error creating event:", error);
+      res.status(500).json({ message: "Internal server error" });
     }
   })
 );
@@ -56,6 +78,23 @@ router.get(
       res.status(200).json({
         success: true,
         events,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
+// Get all events
+router.get(
+  "/getAllEvents",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const events = await Event.find();
+      console.log(events);
+      res.status(200).json({
+        success: true,
+        events: events,
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));

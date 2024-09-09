@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 import styles from "../../../styles/styles";
 import { AiOutlineMessage } from "react-icons/ai";
+import { backend_API_endpoint } from "../../../server";
 
 const JobDetailsCard = ({ setOpen, data }) => {
   const [count, setCount] = useState(1);
@@ -23,17 +24,19 @@ const JobDetailsCard = ({ setOpen, data }) => {
 
             <div className="block w-full 800px:flex">
               <div className="w-full 800px:w-[50%]">
-                <img src={data.image_Url[0].url} alt="" />
+                {/* <img src={`${backend_API_endpoint}/${data.images[0]}`} alt="" /> */}
                 <div className="flex">
                   <img
-                    src={data.shop.shop_avatar.url}
+                    src={`${backend_API_endpoint}/${data.employer.avatar}`}
                     alt=""
                     className="w-[50px] h-[50px] rounded-full mr-2"
                   />
                   <div>
-                    <h3 className={`${styles.shop_name}`}>{data.shop.name}</h3>
+                    <h3 className={`${styles.shop_name}`}>
+                      {data.employer.companyName}
+                    </h3>
                     <h5 className="pb-3 text-[15px]">
-                      ({data.shop.ratings}) Ratings
+                      {/* ({data.shop.ratings}) Ratings */}
                     </h5>
                   </div>
                 </div>
@@ -52,7 +55,7 @@ const JobDetailsCard = ({ setOpen, data }) => {
 
               <div className="w-full 800px:w-[50%] pt-5 pl-[5px] pr-[5px]">
                 <h1 className={`${styles.productTitle} text-[20px]`}>
-                  {data.name}
+                  {data.title}
                 </h1>
                 <p>{data.description}</p>
               </div>

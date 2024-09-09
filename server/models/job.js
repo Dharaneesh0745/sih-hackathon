@@ -29,11 +29,10 @@ const jobSchema = new mongoose.Schema({
     type: Object,
     // required: true,
   },
-  images: [
-    {
-      type: String, // Correcting the typo from 'typr' to 'type'
-    },
-  ],
+  image: {
+    type: String,
+  },
+
   location: {
     type: String,
     // required: true,

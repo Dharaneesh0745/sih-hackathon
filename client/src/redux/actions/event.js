@@ -14,10 +14,11 @@ export const createevent = (data) => async (dispatch) => {
       payload: d.event,
     });
   } catch (error) {
-    dispatch({
-      type: "eventCreateFail",
-      payload: error.response.data.message,
-    });
+    // dispatch({
+    //   type: "eventCreateFail",
+    //   payload: error.response.data.message,
+    // });
+    console.log("Error in creating event");
   }
 };
 

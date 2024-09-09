@@ -7,10 +7,10 @@ const initialState = {
   //   error: null,
   // },
   isLoading: true,
-  jobs: [],
-  job: null,
+  events: [],
+  event: null,
   error: null,
-  success: true,
+  success: false,
   message: null,
 };
 

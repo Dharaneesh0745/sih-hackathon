@@ -54,7 +54,7 @@ const UserDetail = () => {
               <div className="w-[28%] m-3 absolute overflow-y-scroll rounded-lg h-[97vh]">
                 <div className="relative">
                   <img
-                    src={`${backend_API_endpoint}/${user.avatar}`}
+                    src={`${user.avatar}`}
                     alt="profile"
                     className="w-40 h-40 rounded-full m-5 mx-auto items-center"
                   />

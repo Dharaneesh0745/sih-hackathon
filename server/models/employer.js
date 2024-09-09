@@ -14,6 +14,7 @@ const employerSchema = new mongoose.Schema({
   employerEmail: {
     type: String,
     required: [true, "Please enter your employer email address"],
+    unique: true, // Ensure email uniqueness
   },
   employerPhone: {
     type: Number,
@@ -48,14 +49,7 @@ const employerSchema = new mongoose.Schema({
     type: Number,
   },
   avatar: {
-    // public_id: {
-    //   type: String,
-    //   // required: true,
-    // },
-    // url: {
-    type: String,
-    required: true,
-    // },
+    type: String, // Store the Cloudinary URL
   },
   industryType: {
     type: String,
@@ -73,10 +67,9 @@ const employerSchema = new mongoose.Schema({
   verificationProof: {
     type: String,
   },
-
   createdAt: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   },
   resetPasswordToken: String,
   resetPasswordTime: Date,
@@ -90,14 +83,14 @@ employerSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, 10);
 });
 
-// jwt token
+// JWT token
 employerSchema.methods.getJwtToken = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, {
     expiresIn: process.env.JWT_EXPIRES,
   });
 };
 
-// comapre password
+// Compare password
 employerSchema.methods.comparePassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
