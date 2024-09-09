@@ -75,7 +75,7 @@ const CompanyInfo = ({ isOwner }) => {
       </div>
       <div className="p-3">
         <h5 className="font-[600]">Employer Mobile Number</h5>
-        {/* <h4 className="text-[#000000a6]">{indEmployer.employerPhone}</h4> */}
+        <h4 className="text-[#000000a6]">{indEmployer.employerPhone}</h4>
       </div>
       <div className="p-3">
         <h5 className="font-[600]">Company Size</h5>
@@ -94,7 +94,7 @@ const CompanyInfo = ({ isOwner }) => {
       <div className="p-3 mb-3">
         <h5 className="font-[600]">Joined On</h5>
         <h4 className="text-[#000000a6]">
-          {/* {indEmployer.createdAt.slice(0, 10)} */}
+          {indEmployer.createdAt.slice(0, 10)}
         </h4>
       </div>
       {employer && (
