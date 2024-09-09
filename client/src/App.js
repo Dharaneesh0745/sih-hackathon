@@ -18,6 +18,7 @@ import {
   CoursesPage,
   UserDetailsPage,
   PreperationPage,
+  CommunityPage,
 } from "./routes/Routes.js";
 import {
   EmployerSignupPage,
@@ -45,6 +46,7 @@ import { ThemeProvider } from "styled-components";
 import axios from "axios";
 import styled from "styled-components";
 import { bot_API_endpoint, server } from "./server.js";
+import CourseDetails from "./components/Courses/CourseDetails.jsx";
 
 const CustomChatBotWrapper = styled.div`
   .rsc-container {
@@ -216,6 +218,7 @@ const App = () => {
             }
           />
           <Route path="/job/:id" element={<JobDetailsPage />} />
+          <Route path="/courses/course-view/:id" element={<CourseDetails />} />
 
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/job/:name" element={<JobDetailsPage />} />
@@ -229,6 +232,7 @@ const App = () => {
           />
           <Route path="/rank" element={<RankPage />} />
           <Route path="/courses" element={<CoursesPage />} />
+          <Route path="/community" element={<CommunityPage />} />
           <Route path="/preperation" element={<PreperationPage />} />
 
           {/* employer routes */}

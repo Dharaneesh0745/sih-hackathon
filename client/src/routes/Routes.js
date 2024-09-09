@@ -14,6 +14,7 @@ import TestPage from "../../src/pages/TestPage";
 import CoursesPage from "../../src/pages/CoursesPage";
 import UserDetailsPage from "../../src/pages/UserDetailsPage";
 import PreperationPage from "../../src/pages/PreperationPage";
+import CommunityPage from "../../src/pages/CommunityPage";
 
 export {
   LandingPage,
@@ -32,4 +33,5 @@ export {
   CoursesPage,
   UserDetailsPage,
   PreperationPage,
+  CommunityPage,
 };
