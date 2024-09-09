@@ -23,17 +23,15 @@ const JobDetail = ({ data }) => {
           <div className="block w-full 800px:flex">
             <div className="w-full 800px:w-[50%]">
               <div className="w-full flex">
-                <div
-                  className={`${select === 0 ? "border" : null} cursor-pointer`}
-                >
+                <div className={` cursor-pointer`}>
                   <img
-                    src={data.image_Url ? data.image_Url[0].url : ""}
+                    src={data ? data.image : ""}
                     alt=""
-                    className="h-[200px]"
+                    className="h-auto rounded-xl"
                     onClick={() => setSelect(0)}
                   />
                 </div>
-                <div
+                {/* <div
                   className={`${select === 1 ? "border" : null} cursor-pointer`}
                 >
                   <img
@@ -42,25 +40,29 @@ const JobDetail = ({ data }) => {
                     className="h-[200px]"
                     onClick={() => setSelect(1)}
                   />
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="w-full ml-10 800px:w-[50%] pt-5">
-              <div className="flex items-center py-8">
-                <img
-                  src={data.employer ? data.employer.logoUrl : ""}
-                  alt=""
-                  className="w-[50px] h-[50px] rounded-full mr-2"
-                />
-                <div>
-                  <h3 className={`${styles.shop_name} py-1`}>
-                    {data.employer ? data.employer.companyName : "Company Name"}
-                  </h3>
-                  <h5 className="pb-3 text-[15px]">
-                    {/* ({data.shop.ratings}) Ratings */}
-                  </h5>
+              <Link to={`/company/${data.employer._id}`}>
+                <div className="flex items-center py-8">
+                  <img
+                    src={data.employer ? data.employer.avatar : ""}
+                    alt=""
+                    className="w-[50px] h-[50px] rounded-full mr-2"
+                  />
+                  <div>
+                    <h3 className={`${styles.shop_name} py-1`}>
+                      {data.employer
+                        ? data.employer.companyName
+                        : "Company Name"}
+                    </h3>
+                    <h5 className="pb-3 text-[15px]">
+                      {/* ({data.shop.ratings}) Ratings */}
+                    </h5>
+                  </div>
                 </div>
-              </div>
+              </Link>
 
               <h1 className={`${styles.productTitle}`}>{data.title}</h1>
               <p>{data.description}</p>
@@ -157,12 +159,31 @@ const JobDetailsInfo = ({ data }) => {
           </div>
         </div>
         {active === 1 ? (
-          <>
-            <p className="py-2 text-[18px] leading-8 pb-10 whitespace-pre-line">
-              {data.details ? data.details : "No details available."}
-            </p>
-          </>
+          <div className="flex flex-wrap gap-7 py-2 text-[18px] leading-8 pb-10">
+            {[
+              { label: "Job Category", value: data.category },
+              { label: "Job Location", value: data.location },
+              { label: "Location Type", value: data.locationType },
+              { label: "Job Type", value: data.jobType },
+              { label: "Salary", value: data.salary },
+              { label: "Experience", value: data.experience },
+              { label: "Education", value: data.education },
+              { label: "Total Vacancy", value: data.vacancy },
+              { label: "Posted on", value: data.createdAt },
+              { label: "Deadline", value: data.date },
+            ].map((item, index) => (
+              <div key={index} className="flex-1 min-w-[200px]">
+                <div className="font-bold text-[#000] text-[18px] leading-5">
+                  {item.label} :{" "}
+                  <span className="font-normal">
+                    {item.value ? item.value : "No details available."}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
         ) : null}
+
         {active === 2 ? (
           <div className="w-full justify-center min-h-[40vh] flex items-center">
             <p>No Reviews Yet!!</p>
@@ -174,7 +195,7 @@ const JobDetailsInfo = ({ data }) => {
               <div className="w-full 800px:w-[50%]">
                 <div className="flex items-center">
                   <img
-                    src={data.employer ? data.employer.logoUrl : ""}
+                    src={data.employer ? data.employer.avatar : ""}
                     alt=""
                     className="w-[50px] h-[50px] rounded-full"
                   />
@@ -198,25 +219,25 @@ const JobDetailsInfo = ({ data }) => {
               <div className="w-full 800px:w-[50%] mt-5 800px:mt-0 800px:flex flex-col items-end">
                 <h5 className="font-[600]">
                   Joined on:{" "}
-                  <span className="font-[500]">
+                  <span className="font-[400]">
                     {data.employer
-                      ? data.employer.joinDate
+                      ? data.employer.createdAt
                       : "Date not available"}
                   </span>
                 </h5>
                 <h5 className="font-[600]">
                   Total Jobs posted:{" "}
-                  <span className="font-[500]">
-                    {data.employer ? data.employer.totalJobs : "N/A"}
+                  <span className="font-[400]">
+                    {/* {data.employer ? data.employer.totalJobs : "N/A"} */}10
                   </span>
                 </h5>
                 <h5 className="font-[600]">
                   Total Reviews:{" "}
-                  <span className="font-[500]">
+                  <span className="font-[400]">
                     {data.employer ? data.employer.totalReviews : "N/A"}
                   </span>
                 </h5>
-                <Link to="/home">
+                <Link to={`/company/${data.employer._id}`}>
                   <div
                     className={`${styles.button} rounded-lg h-[39.5px] mt-3`}
                   >

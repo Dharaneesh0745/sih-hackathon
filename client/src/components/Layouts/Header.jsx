@@ -37,7 +37,7 @@ const Header = ({ activeHeading }) => {
     const fetchJobs = async () => {
       try {
         const response = await axios.get(`${server}/job/get-all-jobs`);
-        console.log(response);
+        // console.log(response);
         setAllJobs(response.data.jobs); // Assuming the response contains a jobs array
       } catch (error) {
         console.error("Error fetching jobs:", error);
@@ -107,7 +107,7 @@ const Header = ({ activeHeading }) => {
                           >
                             <div className="w-full flex items-start py-3">
                               <img
-                                src={`${backend_API_endpoint}/${i.images[0]}`}
+                                src={`${i.image}`}
                                 alt=""
                                 className="w-[40px] h-[40px] mr-[10px]"
                               />

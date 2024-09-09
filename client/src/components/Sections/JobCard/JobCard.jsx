@@ -14,7 +14,7 @@ const JobCard = ({ data }) => {
   const { companyName = "No company name" } = employer;
 
   return (
-    <div className="w-full h-[370px] bg-[#fff] rounded-lg shadow-sm p-3 relative cursor-pointer">
+    <div className="w-full h-auto bg-[#fff] rounded-lg shadow-sm p-3 relative cursor-pointer">
       <div className="flex justify-end"></div>
       <Link to={`/job/${data._id}`}>
         <img
@@ -27,9 +27,10 @@ const JobCard = ({ data }) => {
         <h5 className={`${styles.shop_name}`}>{companyName}</h5>
       </Link>
       <Link to={`/job/${data._id}`}>
-        <h4 className="pb-3 font-[500]">
+        <h4 className="pb-3 font-[500] text-center">
           {title.length > 40 ? title.slice(0, 40) + "..." : title}
         </h4>
+        <div></div>
         <div className="py-2 flex items-center justify-between">
           <div className="flex">
             <span className="font-[400] text-[17px] text-green-500">

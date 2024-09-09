@@ -46,7 +46,7 @@ const JobDetailsPage = () => {
       ) : (
         <>
           <JobDetail data={data} />
-          {data && <SuggestedJobs data={data} />}
+          {/* {data && <SuggestedJobs data={data} />} */}
         </>
       )}
       <Footer />
