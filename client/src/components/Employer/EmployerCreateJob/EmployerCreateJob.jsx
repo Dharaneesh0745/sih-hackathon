@@ -5,6 +5,9 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import { categoriesData } from "../../../data/data";
 import { createJob } from "../../../redux/actions/job";
 import { toast } from "react-toastify";
+import { RxAvatar } from "react-icons/rx";
+import axios from "axios";
+import { server } from "../../../server";
 
 const EmployerCreateJob = () => {
   const { employer } = useSelector((state) => state.employer);
@@ -12,7 +15,7 @@ const EmployerCreateJob = () => {
   const dispatch = useDispatch();
   const { success, error } = useSelector((state) => state.job);
 
-  const [images, setImages] = useState([]);
+  const [imageUrl, setImageUrl] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [salary, setSalary] = useState("");
@@ -28,63 +31,123 @@ const EmployerCreateJob = () => {
   const [locationType, setLocationType] = useState("");
   const [errors, setErrors] = useState("");
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-    }
-    if (success) {
-      toast.success("Job Created Successfully");
-      navigate("/employer/allJobs");
-      window.location.reload(true);
-    }
-  }, [dispatch, error, success]);
+  const handleFileUpload = () => {
+    window.cloudinary.openUploadWidget(
+      { cloudName: "dzutfi16w", uploadPreset: "bjydfkpb" },
+      (error, result) => {
+        if (result && result.event === "success") {
+          setImageUrl(result.info.secure_url);
+        }
+      }
+    );
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (category === "") {
-      setErrors("Please select a location type.");
+    if (!imageUrl) {
+      alert("Please upload an image!");
+      return;
     }
-    if (jobType === "") {
-      setErrors("Please select a location type.");
-    }
-    if (locationType === "") {
-      setErrors("Please select a location type.");
-    } else {
+
+    try {
+      const res = await axios.post(`${server}/job/create-job`, {
+        title,
+        description,
+        salary,
+        location,
+        category,
+        experience,
+        skills,
+        jobType,
+        locationType,
+        education,
+        deadline,
+        vacancy,
+        tags,
+        companyId: employer._id,
+        imageUrl,
+      });
+      toast.success(res.data.message);
+      setImageUrl("");
+      setTitle("");
+      setDescription("");
+      setSalary("");
+      setLocation("");
+      setCategory("");
+      setExperience("");
+      setSkills("");
+      setJobType("");
+      setEducation("");
+      setDeadline("");
+      setVacancy("");
+      setTags("");
+      setLocationType("");
       setErrors("");
+
+      navigate("/employer/allJobs");
+    } catch (err) {
+      toast.error(err.response.data.message);
     }
-
-    const newForm = new FormData();
-
-    images.forEach((image) => {
-      newForm.append("images", image);
-    });
-
-    newForm.append("title", title);
-    newForm.append("description", description);
-    newForm.append("salary", salary);
-    newForm.append("location", location);
-    newForm.append("category", category);
-    newForm.append("experience", experience);
-    newForm.append("skills", skills);
-    newForm.append("jobType", jobType);
-    newForm.append("locationType", locationType);
-    newForm.append("education", education);
-    newForm.append("deadline", deadline);
-    newForm.append("vacancy", vacancy);
-    newForm.append("tags", tags);
-    newForm.append("companyId", employer._id);
-    newForm.append("companyName", employer.companyName);
-
-    dispatch(createJob(newForm));
   };
 
-  const handleImageChange = (e) => {
-    e.preventDefault();
+  // useEffect(() => {
+  //   if (error) {
+  //     toast.error(error);
+  //   }
+  //   if (success) {
+  //     toast.success("Job Created Successfully");
+  //     navigate("/employer/allJobs");
+  //     window.location.reload(true);
+  //   }
+  // }, [dispatch, error, success]);
 
-    let files = Array.from(e.target.files);
-    setImages((prevImages) => [...prevImages, ...files]);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   if (category === "") {
+  //     setErrors("Please select a location type.");
+  //   }
+  //   if (jobType === "") {
+  //     setErrors("Please select a location type.");
+  //   }
+  //   if (locationType === "") {
+  //     setErrors("Please select a location type.");
+  //   } else {
+  //     setErrors("");
+  //   }
+
+  //   const newForm = new FormData();
+
+  //   images.forEach((image) => {
+  //     newForm.append("images", image);
+  //   });
+
+  //   newForm.append("title", title);
+  //   newForm.append("description", description);
+  //   newForm.append("salary", salary);
+  //   newForm.append("location", location);
+  //   newForm.append("category", category);
+  //   newForm.append("experience", experience);
+  //   newForm.append("skills", skills);
+  //   newForm.append("jobType", jobType);
+  //   newForm.append("locationType", locationType);
+  //   newForm.append("education", education);
+  //   newForm.append("deadline", deadline);
+  //   newForm.append("vacancy", vacancy);
+  //   newForm.append("tags", tags);
+  //   newForm.append("companyId", employer._id);
+  //   newForm.append("companyName", employer.companyName);
+
+  //   dispatch(createJob(newForm));
+  // };
+
+  // const handleImageChange = (e) => {
+  //   e.preventDefault();
+
+  //   let files = Array.from(e.target.files);
+  //   setImages((prevImages) => [...prevImages, ...files]);
+  // };
 
   return (
     <>
@@ -295,43 +358,46 @@ const EmployerCreateJob = () => {
           </div>
           <br />
           <div>
-            <label className="pb-2">
-              Upload Images <span className="text-red-500">*</span>
+            <label
+              htmlFor="avatar"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Avatar
             </label>
-            <input
-              type="file"
-              name=""
-              id="upload"
-              className="hidden"
-              multiple
-              onChange={handleImageChange}
-            />
-            <div className="w-full flex items-center flex-wrap">
-              <label htmlFor="upload">
-                <AiOutlinePlusCircle
-                  size={30}
-                  className="mt-3 cursor-pointer"
-                  color="#555"
-                />
-              </label>
-              {images &&
-                images.map((i) => (
+            <div className="mt-2 flex items-center">
+              <span className="inline-block cursor-pointer h-8 w-8 rounded-full overflow-hidden">
+                {imageUrl ? (
                   <img
-                    src={URL.createObjectURL(i)}
-                    alt=""
-                    key={i}
-                    className="w-[100px] mr-2 h-[100px] object-cover"
+                    src={imageUrl}
+                    alt="avatar"
+                    className="h-full w-full object-cover rounded-full"
                   />
-                ))}
+                ) : (
+                  <RxAvatar className="h-8 w-8" />
+                )}
+              </span>
+              <label
+                htmlFor="file-input"
+                className="ml-5 flex items-center cursor-pointer justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+              >
+                <span>Upload company logo</span>
+                <button
+                  type="button"
+                  onClick={handleFileUpload}
+                  className="ml-3 bg-blue-600 text-white px-4 py-2 rounded-md"
+                >
+                  Upload
+                </button>
+              </label>
             </div>
-            <br />
-            <div>
-              <input
-                type="submit"
-                value="Create"
-                className="mt-2 cursor-pointer appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 sm:text-sm"
-              />
-            </div>
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+            >
+              Submit
+            </button>
           </div>
         </form>
       </div>

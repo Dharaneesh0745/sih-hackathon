@@ -47,12 +47,15 @@ const eventSchema = new mongoose.Schema({
     type: Object,
     // required: true,
   },
-  images: [
-    {
-      type: String, // Correcting the typo from 'typr' to 'type'
-    },
-  ],
+  image: {
+    type: String, // Correcting the typo from 'typr' to 'type'
+  },
+
   locationType: {
+    type: String,
+    // required: true,
+  },
+  eventType: {
     type: String,
     // required: true,
   },

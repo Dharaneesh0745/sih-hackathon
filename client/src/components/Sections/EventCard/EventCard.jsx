@@ -8,12 +8,12 @@ const EventCard = ({ data, active }) => {
     <div
       className={`${
         active ? "unset" : "mb-12"
-      } w-full block bg-white rounded-xl lg:flex p-2 mb-12`}
+      } w-full block bg-white my-10 rounded-xl lg:flex p-2 mb-12`}
     >
       <div className="w-full lg:-w[50%] m-auto">
         <img
           src={
-            data.images[0] ||
+            data.image ||
             "https://img.freepik.com/free-vector/web-development-isometric-concept-composition-illustration_1284-55922.jpg"
           }
           alt={data.name || "Event Image"}

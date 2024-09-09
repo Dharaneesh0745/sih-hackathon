@@ -31,7 +31,7 @@ const CountDown = ({ data }) => {
       return null;
     }
     return (
-      <div className="text-[25px] text-[#475ad2]">
+      <div className="text-[25px] inline-block mr-5 text-[#475ad2]">
         {timeLeft[interval]} {interval}{" "}
       </div>
     );

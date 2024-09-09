@@ -9,7 +9,7 @@ const JobCard = ({ data }) => {
   const [click, setClick] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const { _id, images = [], employer = {}, title = "No title" } = data;
+  const { _id, employer = {}, title = "No title" } = data;
   // console.log(data._id);
   const { companyName = "No company name" } = employer;
 
@@ -18,11 +18,7 @@ const JobCard = ({ data }) => {
       <div className="flex justify-end"></div>
       <Link to={`/job/${data._id}`}>
         <img
-          src={
-            images.length > 0
-              ? `${backend_API_endpoint}/${images[0]}`
-              : "/placeholder-image.png"
-          }
+          src={`${data.image}`}
           alt={title}
           className="w-full h-[170px] object-contain"
         />
