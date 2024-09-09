@@ -3,7 +3,7 @@ const router = express.Router();
 const Event = require("../models/event");
 const { upload } = require("../multer");
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
-const ErrorHandler = require("../utils/ErrorHandler");
+const ErrorHandler = require("../utils/errorHandler");
 const Employer = require("../models/employer");
 const { isEmployerAuthenticated } = require("../middlewares/auth");
 

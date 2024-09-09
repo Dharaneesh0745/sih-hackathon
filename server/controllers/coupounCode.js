@@ -1,7 +1,7 @@
 const express = require("express");
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 const Employer = require("../models/employer");
-const ErrorHandler = require("../utils/ErrorHandler");
+const ErrorHandler = require("../utils/errorHandler");
 const { isEmployerAuthenticated } = require("../middlewares/auth");
 const CoupounCode = require("../models/coupounCode");
 const router = express.Router();
