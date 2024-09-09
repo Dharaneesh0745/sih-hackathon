@@ -65,9 +65,8 @@ const EmployerAllJobs = () => {
       headerName: "Preview",
       sortable: false,
       renderCell: (params) => {
-        const job_title = params.row.title.replace(/\s+/g, "-");
         return (
-          <Link to={`/job/${job_title}`}>
+          <Link to={`/job/${params.id}`}>
             <Button>
               <AiOutlineEye size={20} />
             </Button>

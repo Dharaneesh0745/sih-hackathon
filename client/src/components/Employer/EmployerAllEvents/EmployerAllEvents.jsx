@@ -53,6 +53,8 @@ const EmployerAllEvents = () => {
     fetchJobs();
   }, []);
 
+  // console.log(jobs);
+
   const columns = [
     { field: "id", headerName: "Event Id", minWidth: 150, flex: 0.7 },
     { field: "name", headerName: "Name", minWidth: 150, flex: 1 },
@@ -65,9 +67,9 @@ const EmployerAllEvents = () => {
       headerName: "Preview",
       sortable: false,
       renderCell: (params) => {
-        const job_title = params.row.name.replace(/\s+/g, "-");
+        // console.log("params: ", params.id);
         return (
-          <Link to={`/job/${job_title}`}>
+          <Link to={`/event/${params.id}`}>
             <Button>
               <AiOutlineEye size={20} />
             </Button>

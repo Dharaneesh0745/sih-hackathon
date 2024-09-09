@@ -317,9 +317,8 @@ const EmployerCreateEvent = () => {
               required
             >
               <option value="">-- Select Location Type --</option>
-              <option value="On-Site">On-Site</option>
-              <option value="Hybrid">Hybrid</option>
-              <option value="Remote">Remote</option>
+              <option value="Online">Online</option>
+              <option value="Offline">Offline</option>
             </select>
             {errors && <p className="text-red-500">{errors}</p>}
           </div>
@@ -336,8 +335,9 @@ const EmployerCreateEvent = () => {
               required
             >
               <option value="">-- Select Event Type --</option>
-              <option value="Online">Online</option>
-              <option value="Offline">Offline</option>
+              <option value="Webinars">Webinars</option>
+              <option value="Training Program">Training Program</option>
+              <option value="Workshop">Workshop</option>
             </select>
             {errors && <p className="text-red-500">{errors}</p>}
           </div>
