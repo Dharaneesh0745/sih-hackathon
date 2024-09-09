@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "../Layouts/Header";
-import Footer from "../Layouts/Footer";
-import CourseViewDetails from "../CourseViewDetails/CourseViewDetails";
+import Header from "../components/Layouts/Header";
+import Footer from "../components/Layouts/Footer";
+import CourseViewDetails from "../components/CourseViewDetails/CourseViewDetails";
 
 const CourseDetails = () => {
   return (

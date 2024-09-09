@@ -46,7 +46,7 @@ import { ThemeProvider } from "styled-components";
 import axios from "axios";
 import styled from "styled-components";
 import { bot_API_endpoint, server } from "./server.js";
-import CourseDetails from "./components/Courses/CourseDetails.jsx";
+import CourseDetails from "./pages/CourseDetails.jsx";
 
 const CustomChatBotWrapper = styled.div`
   .rsc-container {
