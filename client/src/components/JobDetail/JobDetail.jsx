@@ -4,15 +4,47 @@ import styles from "../../styles/styles";
 import { IoExit } from "react-icons/io5";
 import { BiSolidMessageDetail } from "react-icons/bi";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import axios from "axios";
+import { server } from "../../server";
+import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import { debounce } from "@mui/material";
 
 const JobDetail = ({ data }) => {
   const [click, setClick] = useState(false);
   const [select, setSelect] = useState(0);
   const navigate = useNavigate();
 
+  const { user } = useSelector((state) => state.user);
+
   const handleMessageSubmit = () => {
     navigate("/inbox?conversation=kngwkenrgmnd387yjaer");
   };
+
+  const handleApplyJob = debounce((id) => {
+    // console.log(id);
+    // console.log(user._id);
+    try {
+      axios
+        .post(`${server}/job/applyJobs/${id}`, {
+          user_id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          phone: user.phoneNumber,
+          resume: user.resume,
+        })
+        .then((res) => {
+          toast.success(res.data.message);
+          navigate("/profile", { state: { activeTab: 5 } });
+        })
+        .catch((err) => {
+          toast.error(err.message);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }, 300);
 
   if (!data) return null; // Add early return if data is not available
 
@@ -73,6 +105,7 @@ const JobDetail = ({ data }) => {
               <div className="flex flex-row gap-5">
                 <div
                   className={`${styles.button} mt-6 rounded h-11 flex items-center`}
+                  onClick={() => handleApplyJob(data._id)}
                 >
                   <span className="text-[#fff] flex flex-row gap-3">
                     Apply

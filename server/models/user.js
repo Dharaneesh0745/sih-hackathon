@@ -76,6 +76,94 @@ const userSchema = new mongoose.Schema({
   technicalSkills: {
     type: String,
   },
+  education: [
+    {
+      degree: {
+        type: String,
+      },
+      universityName: {
+        type: String,
+      },
+      fieldOfStudy: {
+        type: String,
+      },
+      graduationYear: {
+        type: Number,
+      },
+    },
+  ],
+  experience: [
+    {
+      companyName: {
+        type: String,
+      },
+      role: {
+        type: String,
+      },
+      duration: {
+        type: String, // You might want to use a more specific type like an object with start and end dates
+      },
+      learnedSkills: {
+        type: String,
+      },
+      description: {
+        type: String,
+      },
+    },
+  ],
+  achievements: [
+    {
+      certificateUrl: {
+        type: String, // This will store the URL of the uploaded certificate
+      },
+      certificateName: {
+        type: String,
+      },
+      issueDate: {
+        type: Date,
+      },
+      skillsAcquired: {
+        type: String,
+      },
+      duration: {
+        type: String, // You might want to use a more specific type like an object with start and end dates
+      },
+    },
+  ],
+  projects: [
+    {
+      name: {
+        type: String,
+      },
+      theme: {
+        type: String,
+      },
+      domain: {
+        type: String,
+      },
+      startDate: {
+        type: Date,
+      },
+      endDate: {
+        type: Date,
+      },
+      currentlyWorking: {
+        type: Boolean,
+        default: false,
+      },
+      skillsAcquired: {
+        type: String,
+      },
+      description: {
+        type: String,
+      },
+      images: [
+        {
+          type: String, // Stores the URL of the uploaded project images
+        },
+      ],
+    },
+  ],
   nonTechnicalSkills: {
     type: String,
   },
@@ -109,6 +197,28 @@ const userSchema = new mongoose.Schema({
   employmentType: {
     type: String,
   },
+  appliedJobs: [
+    {
+      id: {
+        type: String,
+      },
+      jobTitle: {
+        type: String,
+      },
+      companyName: {
+        type: String,
+      },
+      appliedOn: {
+        type: Date,
+        default: Date.now(),
+      },
+    },
+  ],
+  appliedEvents: [
+    {
+      type: String,
+    },
+  ],
   competencyScore: {
     type: Number,
   },

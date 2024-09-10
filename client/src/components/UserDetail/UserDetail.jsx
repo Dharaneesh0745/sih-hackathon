@@ -13,9 +13,8 @@ const UserDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [allData, setAllData] = useState(null);
-  // console.log(id);
+
   useEffect(() => {
-    // Function to fetch user data
     const fetchUserData = async () => {
       try {
         const response = await fetch(`${server}/user/view-user/${id}`);
@@ -97,7 +96,7 @@ const UserDetail = () => {
                     <span className="bg-green-500 h-1 p-2 -top-1 left-0 rounded-full"></span>
                     <span className="bg-green-500 h-1 p-2 -top-1 left-0 rounded-full"></span>
                     <span className="bg-green-500 h-1 p-2 -top-1 left-0 rounded-full"></span>
-                    <span className="bg-green-500 h-1 p-2 -top-1 -right-1 rounded-full  "></span>
+                    <span className="bg-green-500 h-1 p-2 -top-1 -right-1 rounded-full"></span>
                   </div>
                   <div className="flex flex-row  text-sm justify-between absolute gap-[55px] mx-5 top-5">
                     <span className="">1000</span>
@@ -109,7 +108,72 @@ const UserDetail = () => {
                 </div>
                 <div className="bg-red-300 h-20 mt-16 mx-5 rounded-lg"></div>
               </div>
-              <div className="w-[67%] absolute rounded-lg right-5 bg-white h-[97vh] m-3"></div>
+              <div className="w-[67%] absolute rounded-lg right-5 bg-white h-[97vh] m-3 p-6 overflow-y-scroll">
+                {/* <h1 className="text-2xl font-bold mb-6">User Details</h1> */}
+
+                {/* Technical Skills */}
+                <div className="mb-8">
+                  <h2 className="text-xl font-bold mb-4">Technical Skills</h2>
+                  <div className="flex flex-wrap">
+                    {user.technicalSkills.split(",").map((skill, index) => (
+                      <span
+                        key={index}
+                        className="flex items-center bg-gray-200 rounded-md p-2 mr-2 mb-2"
+                      >
+                        {skill.trim()}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Non-Technical Skills */}
+                <div className="mb-8">
+                  <h2 className="text-xl font-bold mb-4">
+                    Non-Technical Skills
+                  </h2>
+                  <div className="flex flex-wrap">
+                    {user.nonTechnicalSkills.split(",").map((skill, index) => (
+                      <span
+                        key={index}
+                        className="flex items-center bg-gray-200 rounded-md p-2 mr-2 mb-2"
+                      >
+                        {skill.trim()}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Education Details */}
+                <div className="mb-8">
+                  <h2 className="text-xl font-bold mb-4">Education</h2>
+                  <ul>
+                    {user.education.map((edu, index) => (
+                      <li key={index} className="mb-4">
+                        <h3 className="text-lg font-semibold">{edu.degree}</h3>
+                        <p>
+                          {edu.institution} - {edu.year}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Experience */}
+                <div className="mb-8">
+                  <h2 className="text-xl font-bold mb-4">Experience</h2>
+                  <ul>
+                    {user.experience.map((exp, index) => (
+                      <li key={index} className="mb-4">
+                        <h3 className="text-lg font-semibold">{exp.role}</h3>
+                        <p>
+                          {exp.company} - {exp.duration}
+                        </p>
+                        <p>{exp.description}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </>

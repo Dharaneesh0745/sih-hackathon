@@ -10,6 +10,8 @@ import { toast } from "react-toastify";
 import { RiSparkling2Fill } from "react-icons/ri";
 import "../../styles/Roadmap.css";
 import { categoriesData } from "../../data/data";
+import { DataGrid } from "@mui/x-data-grid";
+import { useLocation } from "react-router-dom";
 
 // // Function to format the response text dynamically
 // const formatResponse = (text) => {
@@ -126,7 +128,246 @@ const ProfileContent = ({ active }) => {
   const [zipCode, setZipCode] = useState(user && user.zipCode);
   const [addressType, setAddressType] = useState(user && user.addressType);
 
+  const location = useLocation();
+  const [activee, setActivee] = useState(location.state?.activeTab || 0);
+
   const [userQuery, setUserQuery] = useState("");
+
+  const [allAppliedJobs, setAllAppliedJobs] = useState([]);
+
+  const [education, setEducation] = useState(user?.education || []);
+
+  const [achievements, setAchievements] = useState(user?.achievements || []);
+
+  const handleAddAchievement = () => {
+    setAchievements([
+      ...achievements,
+      {
+        certificateUrl: "",
+        certificateName: "",
+        issueDate: "",
+        skillsAcquired: "",
+        duration: "",
+      },
+    ]);
+  };
+
+  const handleAchievementChange = (index, field, value) => {
+    const updatedAchievements = achievements.map((ach, i) =>
+      i === index ? { ...ach, [field]: value } : ach
+    );
+    setAchievements(updatedAchievements);
+  };
+
+  const handleRemoveAchievement = (index) => {
+    const updatedAchievements = achievements.filter((_, i) => i !== index);
+    setAchievements(updatedAchievements);
+  };
+
+  const handleFileUpload = (index) => {
+    window.cloudinary.openUploadWidget(
+      { cloudName: "dzutfi16w", uploadPreset: "bjydfkpb" },
+      (error, result) => {
+        if (result && result.event === "success") {
+          handleAchievementChange(
+            index,
+            "certificateUrl",
+            result.info.secure_url
+          );
+        }
+      }
+    );
+  };
+
+  const handleAchievementsSubmit = async () => {
+    try {
+      await axios.post(`${server}/user/update-achievements/${user._id}`, {
+        achievements,
+      });
+      toast.success("Achievements updated successfully");
+    } catch (error) {
+      console.error("Error updating achievements:", error);
+    }
+  };
+
+  const [projects, setProjects] = useState(user?.projects || []);
+
+  const handleAddProject = () => {
+    setProjects([
+      ...projects,
+      {
+        name: "",
+        theme: "",
+        domain: "",
+        startDate: "",
+        endDate: "",
+        currentlyWorking: false,
+        skillsAcquired: "",
+        description: "",
+        images: [],
+      },
+    ]);
+  };
+
+  const handleProjectChange = (index, field, value) => {
+    const updatedProjects = projects.map((proj, i) =>
+      i === index ? { ...proj, [field]: value } : proj
+    );
+    setProjects(updatedProjects);
+  };
+
+  const handleToggleCurrentlyWorking = (index) => {
+    const updatedProjects = projects.map((proj, i) =>
+      i === index ? { ...proj, currentlyWorking: !proj.currentlyWorking } : proj
+    );
+    setProjects(updatedProjects);
+  };
+
+  const handleRemoveProject = (index) => {
+    const updatedProjects = projects.filter((_, i) => i !== index);
+    setProjects(updatedProjects);
+  };
+
+  const handleProjectFileUpload = (index) => {
+    window.cloudinary.openUploadWidget(
+      { cloudName: "dzutfi16w", uploadPreset: "bjydfkpb" },
+      (error, result) => {
+        if (result && result.event === "success") {
+          handleProjectChange(index, "images", [
+            ...projects[index].images,
+            result.info.secure_url,
+          ]);
+        }
+      }
+    );
+  };
+
+  const handleProjectSubmit = async () => {
+    try {
+      await axios.post(`${server}/user/update-projects/${user._id}`, {
+        projects,
+      });
+      alert("Projects updated successfully");
+    } catch (error) {
+      console.error("Error updating projects:", error);
+    }
+  };
+
+  // const [resumeData, setResumeData] = useState([]);
+
+  // // Format the response data
+  // const formatResponseResume = (data) => {
+  //   if (typeof data === "string") {
+  //     return data
+  //       .split("\n")
+  //       .map((line, index) => ({
+  //         id: index,
+  //         text: line.trim(),
+  //       }))
+  //       .filter((step) => step.text !== "");
+  //   } else if (Array.isArray(data)) {
+  //     return data.map((item, index) => ({
+  //       id: index,
+  //       text: item,
+  //     }));
+  //   } else if (typeof data === "object") {
+  //     return Object.entries(data).map(([key, value], index) => ({
+  //       id: index,
+  //       text: `${key}: ${value}`,
+  //     }));
+  //   } else {
+  //     return []; // Return an empty array if the data is not in a recognized format
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.post(`${bot_API_endpoint}/bot/chatBot`, {
+  //         prompt: `Generate resume data ${JSON.stringify(user)}`,
+  //       });
+  //       const formattedData = formatResponseResume(response.data);
+  //       setResumeData(formattedData);
+  //     } catch (error) {
+  //       console.error("Error fetching resume data:", error);
+  //       setResumeData([]); // Ensure resumeData is always an array
+  //     }
+  //   };
+
+  //   if (active === 3) {
+  //     fetchData();
+  //   }
+  // }, [active, user]); // Ensure user is included in the dependency array
+
+  // if (active !== 3) return null;
+
+  const handleAddEducation = () => {
+    setEducation([
+      ...education,
+      { degree: "", universityName: "", fieldOfStudy: "", graduationYear: "" },
+    ]);
+  };
+
+  const handleEducationChange = (index, field, value) => {
+    const updatedEducation = education.map((edu, i) =>
+      i === index ? { ...edu, [field]: value } : edu
+    );
+    setEducation(updatedEducation);
+  };
+
+  const handleRemoveEducation = (index) => {
+    const updatedEducation = education.filter((_, i) => i !== index);
+    setEducation(updatedEducation);
+  };
+
+  const handleEducationSubmit = async () => {
+    try {
+      await axios.post(`${server}/user/update-education/${user._id}`, {
+        education,
+      });
+      toast.success("Education details updated successfully");
+    } catch (error) {
+      console.error("Error updating education details:", error);
+    }
+  };
+
+  const [experience, setExperience] = useState(user?.experience || []);
+
+  const handleAddExperience = () => {
+    setExperience([
+      ...experience,
+      {
+        companyName: "",
+        role: "",
+        duration: "",
+        learnedSkills: "",
+        description: "",
+      },
+    ]);
+  };
+
+  const handleExperienceChange = (index, field, value) => {
+    const updatedExperience = experience.map((exp, i) =>
+      i === index ? { ...exp, [field]: value } : exp
+    );
+    setExperience(updatedExperience);
+  };
+
+  const handleRemoveExperience = (index) => {
+    const updatedExperience = experience.filter((_, i) => i !== index);
+    setExperience(updatedExperience);
+  };
+
+  const handleExperienceSubmit = async () => {
+    try {
+      await axios.post(`${server}/user/update-experience/${user._id}`, {
+        experience,
+      });
+      toast.success("Experience details updated successfully");
+    } catch (error) {
+      console.error("Error updating experience details:", error);
+    }
+  };
 
   const primaryDetailsSubmit = async (e) => {
     e.preventDefault();
@@ -794,21 +1035,6 @@ const ProfileContent = ({ active }) => {
 
     return (
       <div className="roadmap-container">
-        {/* {dataSteps.length > 0 ? (
-          dataSteps.map((step, index) => (
-            <div key={index} className="roadmap-step">
-              <div className="step-content">
-                <div className="step-number">{index + 1}</div>
-                <div className="step-text">{step.text}</div>
-              </div>
-              {index !== dataSteps.length - 1 && (
-                <div className="connector"></div>
-              )}
-            </div>
-          ))
-        ) : (
-          <p>No roadmap data available.</p>
-        )} */}
         {dataSteps.length > 0 &&
           dataSteps.map((step, index) => (
             <div key={step.id} className="roadmap-step">
@@ -1198,6 +1424,408 @@ const ProfileContent = ({ active }) => {
                 </div>
               )}
             </div>
+
+            <br />
+            <br />
+
+            {/* education */}
+            <div className="w-full pr-8 bg-slate-300 mr-5 py-8 rounded-xl mx-8">
+              <h1 className="mb-4 text-center mx-auto ml-7 text-black font-bold text-[30px]">
+                Education
+              </h1>
+              <div className="ml-7 text-black text-lg">
+                {education.map((edu, index) => (
+                  <div key={index} className="mb-4">
+                    <input
+                      type="text"
+                      placeholder="Degree"
+                      value={edu.degree}
+                      onChange={(e) =>
+                        handleEducationChange(index, "degree", e.target.value)
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                    />
+                    <input
+                      type="text"
+                      placeholder="University Name"
+                      value={edu.universityName}
+                      onChange={(e) =>
+                        handleEducationChange(
+                          index,
+                          "universityName",
+                          e.target.value
+                        )
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Field of Study"
+                      value={edu.fieldOfStudy}
+                      onChange={(e) =>
+                        handleEducationChange(
+                          index,
+                          "fieldOfStudy",
+                          e.target.value
+                        )
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                    />
+                    <input
+                      type="number"
+                      placeholder="Graduation Year"
+                      value={edu.graduationYear}
+                      onChange={(e) =>
+                        handleEducationChange(
+                          index,
+                          "graduationYear",
+                          e.target.value
+                        )
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                    />
+                    <button
+                      onClick={() => handleRemoveEducation(index)}
+                      className="text-red-500 hover:text-red-700"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+                <button
+                  onClick={handleAddEducation}
+                  className="bg-blue-500 text-white p-2 rounded-md"
+                >
+                  Add Education
+                </button>
+                <button
+                  onClick={handleEducationSubmit}
+                  className="bg-green-500 text-white p-2 rounded-md mt-4"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </div>
+
+            <br />
+            <br />
+            {/* experience */}
+            <div className="w-full pr-8 bg-slate-300 mr-5 py-8 rounded-xl mx-8">
+              <h1 className="mb-4 text-center mx-auto ml-7 text-black font-bold text-[30px]">
+                Experience
+              </h1>
+              <div className="ml-7 text-black text-lg">
+                {experience.map((exp, index) => (
+                  <div key={index} className="mb-4">
+                    <input
+                      type="text"
+                      placeholder="Company Name"
+                      value={exp.companyName}
+                      onChange={(e) =>
+                        handleExperienceChange(
+                          index,
+                          "companyName",
+                          e.target.value
+                        )
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Role"
+                      value={exp.role}
+                      onChange={(e) =>
+                        handleExperienceChange(index, "role", e.target.value)
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Duration"
+                      value={exp.duration}
+                      onChange={(e) =>
+                        handleExperienceChange(
+                          index,
+                          "duration",
+                          e.target.value
+                        )
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Learned Skills"
+                      value={exp.learnedSkills}
+                      onChange={(e) =>
+                        handleExperienceChange(
+                          index,
+                          "learnedSkills",
+                          e.target.value
+                        )
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                    />
+                    <textarea
+                      placeholder="Description of Work"
+                      value={exp.description}
+                      onChange={(e) =>
+                        handleExperienceChange(
+                          index,
+                          "description",
+                          e.target.value
+                        )
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                    />
+                    <button
+                      onClick={() => handleRemoveExperience(index)}
+                      className="text-red-500 hover:text-red-700"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+                <button
+                  onClick={handleAddExperience}
+                  className="bg-blue-500 text-white p-2 rounded-md"
+                >
+                  Add Experience
+                </button>
+                <button
+                  onClick={handleExperienceSubmit}
+                  className="bg-green-500 text-white p-2 rounded-md mt-4"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </div>
+
+            <br />
+            <br />
+            {/* achievements */}
+            <div className="w-full pr-8 bg-slate-300 mr-5 py-8 rounded-xl mx-8">
+              <h1 className="mb-4 text-center mx-auto ml-7 text-black font-bold text-[30px]">
+                Achievements
+              </h1>
+              <div className="ml-7 text-black text-lg">
+                {achievements.map((ach, index) => (
+                  <div key={index} className="mb-4">
+                    <button
+                      onClick={() => handleFileUpload(index)}
+                      className="bg-blue-500 text-white p-2 rounded-md mb-2"
+                    >
+                      Upload Certificate
+                    </button>
+                    {ach.certificateUrl && (
+                      <img
+                        src={ach.certificateUrl}
+                        alt="Certificate"
+                        className="block w-full mb-2 rounded-md"
+                      />
+                    )}
+                    <input
+                      type="text"
+                      placeholder="Certificate Name"
+                      value={ach.certificateName}
+                      onChange={(e) =>
+                        handleAchievementChange(
+                          index,
+                          "certificateName",
+                          e.target.value
+                        )
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                    />
+                    <input
+                      type="date"
+                      placeholder="Issue Date"
+                      value={ach.issueDate}
+                      onChange={(e) =>
+                        handleAchievementChange(
+                          index,
+                          "issueDate",
+                          e.target.value
+                        )
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Skills Acquired"
+                      value={ach.skillsAcquired}
+                      onChange={(e) =>
+                        handleAchievementChange(
+                          index,
+                          "skillsAcquired",
+                          e.target.value
+                        )
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Duration"
+                      value={ach.duration}
+                      onChange={(e) =>
+                        handleAchievementChange(
+                          index,
+                          "duration",
+                          e.target.value
+                        )
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                    />
+                    <button
+                      onClick={() => handleRemoveAchievement(index)}
+                      className="text-red-500 hover:text-red-700"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+                <button
+                  onClick={handleAddAchievement}
+                  className="bg-blue-500 text-white p-2 rounded-md"
+                >
+                  Add Achievement
+                </button>
+                <button
+                  onClick={handleAchievementsSubmit}
+                  className="bg-green-500 text-white p-2 rounded-md mt-4"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </div>
+
+            <br />
+            <br />
+            {/* projects */}
+            <div className="w-full pr-8 bg-slate-300 mr-5 py-8 rounded-xl mx-8">
+              <h1 className="mb-4 text-center mx-auto ml-7 text-black font-bold text-[30px]">
+                Projects
+              </h1>
+              <div className="ml-7 text-black text-lg">
+                {projects.map((proj, index) => (
+                  <div key={index} className="mb-4">
+                    <input
+                      type="text"
+                      placeholder="Project Name"
+                      value={proj.name}
+                      onChange={(e) =>
+                        handleProjectChange(index, "name", e.target.value)
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Theme"
+                      value={proj.theme}
+                      onChange={(e) =>
+                        handleProjectChange(index, "theme", e.target.value)
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Domain"
+                      value={proj.domain}
+                      onChange={(e) =>
+                        handleProjectChange(index, "domain", e.target.value)
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                    />
+                    <input
+                      type="date"
+                      placeholder="Start Date"
+                      value={proj.startDate}
+                      onChange={(e) =>
+                        handleProjectChange(index, "startDate", e.target.value)
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                    />
+                    <input
+                      type="date"
+                      placeholder="End Date"
+                      value={proj.endDate}
+                      onChange={(e) =>
+                        handleProjectChange(index, "endDate", e.target.value)
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                      disabled={proj.currentlyWorking}
+                    />
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={proj.currentlyWorking}
+                        onChange={() => handleToggleCurrentlyWorking(index)}
+                      />
+                      Currently Working On It
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Skills Acquired"
+                      value={proj.skillsAcquired}
+                      onChange={(e) =>
+                        handleProjectChange(
+                          index,
+                          "skillsAcquired",
+                          e.target.value
+                        )
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                    />
+                    <textarea
+                      placeholder="Project Description"
+                      value={proj.description}
+                      onChange={(e) =>
+                        handleProjectChange(
+                          index,
+                          "description",
+                          e.target.value
+                        )
+                      }
+                      className="block w-full mb-2 p-2 rounded-md"
+                    />
+                    <button
+                      onClick={() => handleProjectFileUpload(index)}
+                      className="bg-blue-500 text-white p-2 rounded-md mb-2"
+                    >
+                      Upload Project Images
+                    </button>
+                    <div>
+                      {/* Render projects */}
+                      {projects && projects.length > 0 ? (
+                        projects.map((proj, index) => (
+                          <div key={index}>{/* Render project details */}</div>
+                        ))
+                      ) : (
+                        <p>No projects available</p>
+                      )}
+                    </div>
+                    <button
+                      onClick={() => handleRemoveProject(index)}
+                      className="text-red-500 hover:text-red-700"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+                <button
+                  onClick={handleAddProject}
+                  className="bg-blue-500 text-white p-2 rounded-md"
+                >
+                  Add Project
+                </button>
+                <button
+                  onClick={handleProjectSubmit}
+                  className="bg-green-500 text-white p-2 rounded-md mt-4"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </div>
+
             <br />
             <br />
             <br />
@@ -1223,8 +1851,195 @@ const ProfileContent = ({ active }) => {
           </div>
         )}
 
+        {/* Resume Generator */}
+        {/* {active === 3 && (
+          <div className="w-full p-8 bg-gray-100 rounded-lg shadow-lg">
+            <h1 className="text-3xl font-bold text-center mb-6">My Resume</h1>
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <section className="mb-6">
+                <h2 className="text-2xl font-semibold">Personal Information</h2>
+                <p className="text-lg mt-2">
+                  {
+                    resumeData.find((item) =>
+                      item.text.includes("Full Stack Developer")
+                    )?.text
+                  }
+                </p>
+                <p className="text-lg mt-2">
+                  {
+                    resumeData.find((item) =>
+                      item.text.includes("dharaneesh5577@gmail.com")
+                    )?.text
+                  }
+                </p>
+                <p className="text-lg mt-2">
+                  {
+                    resumeData.find((item) =>
+                      item.text.includes("+91 59883009")
+                    )?.text
+                  }
+                </p>
+                <p className="text-lg mt-2">
+                  {
+                    resumeData.find((item) =>
+                      item.text.includes("Coimbatore, India")
+                    )?.text
+                  }
+                </p>
+              </section>
+
+              <section className="mb-6">
+                <h2 className="text-2xl font-semibold">Summary</h2>
+                <p className="text-lg mt-2">
+                  {
+                    resumeData.find((item) =>
+                      item.text.includes("Highly motivated")
+                    )?.text
+                  }
+                </p>
+              </section>
+
+              <section className="mb-6">
+                <h2 className="text-2xl font-semibold">Skills</h2>
+                <div className="mt-2">
+                  <h3 className="text-xl font-semibold">Technical:</h3>
+                  <ul className="list-disc ml-6">
+                    {resumeData
+                      .filter(
+                        (item) =>
+                          item.text.includes("Frontend") ||
+                          item.text.includes("Backend") ||
+                          item.text.includes("Database") ||
+                          item.text.includes("Version Control") ||
+                          item.text.includes("Cloud") ||
+                          item.text.includes("Other")
+                      )
+                      .map((item) => (
+                        <li key={item.id} className="text-lg">
+                          {item.text}
+                        </li>
+                      ))}
+                  </ul>
+                  <h3 className="text-xl font-semibold mt-4">Non-Technical:</h3>
+                  <ul className="list-disc ml-6">
+                    {resumeData
+                      .filter(
+                        (item) =>
+                          item.text.includes("Project Management") ||
+                          item.text.includes("Team Collaboration") ||
+                          item.text.includes("Problem Solving")
+                      )
+                      .map((item) => (
+                        <li key={item.id} className="text-lg">
+                          {item.text}
+                        </li>
+                      ))}
+                  </ul>
+                </div>
+              </section>
+
+              <section className="mb-6">
+                <h2 className="text-2xl font-semibold">Experience</h2>
+                <div className="mt-2">
+                  {resumeData
+                    .filter(
+                      (item) =>
+                        item.text.includes("Full Stack Developer") ||
+                        item.text.includes("CharacterXYZ")
+                    )
+                    .map((item) => (
+                      <p key={item.id} className="text-lg mb-2">
+                        {item.text}
+                      </p>
+                    ))}
+                </div>
+              </section>
+
+              <section className="mb-6">
+                <h2 className="text-2xl font-semibold">Education</h2>
+                <div className="mt-2">
+                  {resumeData
+                    .filter(
+                      (item) =>
+                        item.text.includes("BTech") ||
+                        item.text.includes("SIET")
+                    )
+                    .map((item) => (
+                      <p key={item.id} className="text-lg mb-2">
+                        {item.text}
+                      </p>
+                    ))}
+                </div>
+              </section>
+
+              <section className="mb-6">
+                <h2 className="text-2xl font-semibold">Projects</h2>
+                <div className="mt-2">
+                  {resumeData
+                    .filter(
+                      (item) =>
+                        item.text.includes("Reward and Referral System") ||
+                        item.text.includes("Personal Portfolio Website")
+                    )
+                    .map((item) => (
+                      <p key={item.id} className="text-lg mb-2">
+                        {item.text}
+                      </p>
+                    ))}
+                </div>
+              </section>
+
+              <section className="mb-6">
+                <h2 className="text-2xl font-semibold">Roadmap</h2>
+                <div className="mt-2">
+                  {resumeData
+                    .filter(
+                      (item) =>
+                        item.text.includes("Frontend") ||
+                        item.text.includes("Backend") ||
+                        item.text.includes("Full Stack")
+                    )
+                    .map((item) => (
+                      <p key={item.id} className="text-lg mb-2">
+                        {item.text}
+                      </p>
+                    ))}
+                </div>
+              </section>
+
+              <section>
+                <h2 className="text-2xl font-semibold">Links</h2>
+                <p className="text-lg mt-2">
+                  GitHub:{" "}
+                  <a
+                    href="[Your GitHub Profile Link]"
+                    className="text-blue-600"
+                  >
+                    {
+                      resumeData.find((item) => item.text.includes("GitHub"))
+                        ?.text
+                    }
+                  </a>
+                </p>
+                <p className="text-lg mt-2">
+                  LinkedIn:{" "}
+                  <a
+                    href="[Your LinkedIn Profile Link]"
+                    className="text-blue-600"
+                  >
+                    {
+                      resumeData.find((item) => item.text.includes("LinkedIn"))
+                        ?.text
+                    }
+                  </a>
+                </p>
+              </section>
+            </div>
+          </div>
+        )} */}
+
         {/* applied jobs */}
-        {active === 4 && (
+        {(active === activee || active === 5) && (
           <div>
             <AppliedJobs />
           </div>
@@ -1313,13 +2128,13 @@ const AppliedJobs = () => {
 
   return (
     <div className="pl-9 pt-1">
-      {/* <DataGrid
+      <DataGrid
         rows={row}
         columns={columns}
         pageSize={10}
         disableSelectionOnClick
         autoHeight
-      /> */}
+      />
     </div>
   );
 };
