@@ -157,11 +157,9 @@ const userSchema = new mongoose.Schema({
       description: {
         type: String,
       },
-      images: [
-        {
-          type: String, // Stores the URL of the uploaded project images
-        },
-      ],
+      images: {
+        type: String, // Stores the URL of the uploaded project images
+      },
     },
   ],
   nonTechnicalSkills: {

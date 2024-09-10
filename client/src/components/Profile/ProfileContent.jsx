@@ -204,7 +204,7 @@ const ProfileContent = ({ active }) => {
         currentlyWorking: false,
         skillsAcquired: "",
         description: "",
-        images: [],
+        images: "",
       },
     ]);
   };
@@ -233,10 +233,13 @@ const ProfileContent = ({ active }) => {
       { cloudName: "dzutfi16w", uploadPreset: "bjydfkpb" },
       (error, result) => {
         if (result && result.event === "success") {
-          handleProjectChange(index, "images", [
-            ...projects[index].images,
-            result.info.secure_url,
-          ]);
+          const uploadedImageUrl = result.info.secure_url;
+          const updatedProjects = projects.map((proj, i) =>
+            i === index ? { ...proj, image: uploadedImageUrl } : proj
+          );
+          setProjects(updatedProjects);
+        } else if (error) {
+          console.error("Upload error:", error);
         }
       }
     );
@@ -247,7 +250,8 @@ const ProfileContent = ({ active }) => {
       await axios.post(`${server}/user/update-projects/${user._id}`, {
         projects,
       });
-      alert("Projects updated successfully");
+      toast.success("Projects updated successfully");
+      console.log(projects);
     } catch (error) {
       console.error("Error updating projects:", error);
     }
@@ -1793,16 +1797,13 @@ const ProfileContent = ({ active }) => {
                     >
                       Upload Project Images
                     </button>
-                    <div>
-                      {/* Render projects */}
-                      {projects && projects.length > 0 ? (
-                        projects.map((proj, index) => (
-                          <div key={index}>{/* Render project details */}</div>
-                        ))
-                      ) : (
-                        <p>No projects available</p>
-                      )}
-                    </div>
+                    {proj.image && (
+                      <img
+                        src={proj.image}
+                        alt="Uploaded"
+                        style={{ maxWidth: "100%", height: "auto" }}
+                      />
+                    )}
                     <button
                       onClick={() => handleRemoveProject(index)}
                       className="text-red-500 hover:text-red-700"
