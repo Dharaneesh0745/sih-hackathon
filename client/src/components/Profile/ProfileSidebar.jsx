@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import styles from "../../styles/styles";
 import { useSelector } from "react-redux";
 import { RiRoadMapFill } from "react-icons/ri";
+import { FaFileInvoiceDollar } from "react-icons/fa6";
 
 const ProfileSidebar = ({ active, setActive }) => {
   const navigate = useNavigate();
@@ -80,7 +81,7 @@ const ProfileSidebar = ({ active, setActive }) => {
           className="flex items-center cursor-pointer w-full mb-8"
           onClick={() => setActive(3)}
         >
-          <BsFillCollectionPlayFill
+          <FaFileInvoiceDollar
             size={20}
             color={active === 3 ? "text-pink-500" : ""}
           />
@@ -89,17 +90,34 @@ const ProfileSidebar = ({ active, setActive }) => {
               active === 3 ? "text-pink-500" : ""
             } 800px:block hidden`}
           >
+            My Resume
+          </span>
+        </div>
+
+        <div
+          className="flex items-center cursor-pointer w-full mb-8"
+          onClick={() => setActive(4)}
+        >
+          <BsFillCollectionPlayFill
+            size={20}
+            color={active === 4 ? "text-pink-500" : ""}
+          />
+          <span
+            className={`pl-3 ${
+              active === 4 ? "text-pink-500" : ""
+            } 800px:block hidden`}
+          >
             Enrolled Courses
           </span>
         </div>
         <div
           className="flex items-center cursor-pointer w-full mb-8"
-          onClick={() => setActive(4)}
+          onClick={() => setActive(5)}
         >
-          <PiExamFill size={20} color={active === 4 ? "text-pink-500" : ""} />
+          <PiExamFill size={20} color={active === 5 ? "text-pink-500" : ""} />
           <span
             className={`pl-3 ${
-              active === 4 ? "text-pink-500" : ""
+              active === 5 ? "text-pink-500" : ""
             } 800px:block hidden`}
           >
             Tests Taken
@@ -107,12 +125,12 @@ const ProfileSidebar = ({ active, setActive }) => {
         </div>
         <div
           className="flex items-center cursor-pointer w-full mb-8"
-          onClick={() => setActive(5)}
+          onClick={() => setActive(6)}
         >
-          <IoDocuments size={20} color={active === 5 ? "text-pink-500" : ""} />
+          <IoDocuments size={20} color={active === 6 ? "text-pink-500" : ""} />
           <span
             className={`pl-3 ${
-              active === 5 ? "text-pink-500" : ""
+              active === 6 ? "text-pink-500" : ""
             } 800px:block hidden`}
           >
             Applied Jobs
@@ -120,12 +138,12 @@ const ProfileSidebar = ({ active, setActive }) => {
         </div>
         <div
           className="flex items-center cursor-pointer w-full mb-4"
-          onClick={() => setActive(6) || logoutHandler()}
+          onClick={() => setActive(7) || logoutHandler()}
         >
-          <IoLogOut size={20} color={active === 6 ? "text-pink-500" : ""} />
+          <IoLogOut size={20} color={active === 7 ? "text-pink-500" : ""} />
           <span
             className={`pl-3 ${
-              active === 6 ? "text-pink-500" : ""
+              active === 7 ? "text-pink-500" : ""
             } 800px:block hidden`}
           >
             Logout

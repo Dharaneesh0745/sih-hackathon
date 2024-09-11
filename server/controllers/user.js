@@ -9,6 +9,7 @@ const jwt = require("jsonwebtoken");
 const sendMail = require("../utils/sendMail");
 const sendToken = require("../utils/jwtToken");
 const { isAuthenticated } = require("../middlewares/auth");
+const Job = require("../models/job");
 
 router.post("/create-user", async (req, res, next) => {
   try {
@@ -52,13 +53,6 @@ router.post("/create-user", async (req, res, next) => {
     return next(new ErrorHandler(error.message, 400));
   }
 });
-
-// // create activation token
-// const createActivationToken = (user) => {
-//   return jwt.sign(user, process.env.ACTIVATION_SECRET, {
-//     expiresIn: "5m",
-//   });
-// };
 
 // Activation Route
 router.post(
@@ -196,6 +190,120 @@ router.post(
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
     }
+  })
+);
+
+// Update Education
+router.post(
+  "/update-education/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    const { id } = req.params;
+    const { education } = req.body;
+
+    if (!education || !Array.isArray(education)) {
+      return res.status(400).json({ message: "Invalid education data" });
+    }
+
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    user.education = education;
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Education details updated successfully",
+      education: user.education,
+    });
+  })
+);
+
+// Update Experience
+router.post(
+  "/update-experience/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    const { id } = req.params;
+    const { experience } = req.body;
+
+    if (!experience || !Array.isArray(experience)) {
+      return res.status(400).json({ message: "Invalid experience data" });
+    }
+
+    // Find user and update experience details
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Update experience details
+    user.experience = experience;
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Experience details updated successfully",
+      experience: user.experience,
+    });
+  })
+);
+
+// Update Achievements
+router.post(
+  "/update-achievements/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    const { id } = req.params;
+    const { achievements } = req.body;
+
+    if (!achievements || !Array.isArray(achievements)) {
+      return res.status(400).json({ message: "Invalid achievements data" });
+    }
+
+    // Find user and update achievements details
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Update achievements details
+    user.achievements = achievements;
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Achievements updated successfully",
+      achievements: user.achievements,
+    });
+  })
+);
+
+// Update Projects
+router.post(
+  "/update-projects/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    const { id } = req.params;
+    const { projects } = req.body;
+
+    if (!projects || !Array.isArray(projects)) {
+      return res.status(400).json({ message: "Invalid projects data" });
+    }
+
+    // Find user and update projects details
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Update projects details
+    user.projects = projects;
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Projects updated successfully",
+      projects: user.projects,
+    });
   })
 );
 
