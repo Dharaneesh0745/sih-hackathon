@@ -20,6 +20,8 @@ router.post("/chatBot", async (req, res) => {
 
     const generatedText = result.response.text().trim();
 
+    console.log(generatedText);
+
     return res.status(200).json({ text: generatedText });
   } catch (error) {
     console.error("Error generating text:", error);

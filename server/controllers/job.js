@@ -6,6 +6,7 @@ const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 const ErrorHandler = require("../utils/errorHandler");
 const Employer = require("../models/employer");
 const { isEmployerAuthenticated } = require("../middlewares/auth");
+const User = require("../models/user");
 
 router.post(
   "/create-job",
@@ -93,8 +94,7 @@ router.get(
     try {
       const { id } = req.params;
 
-      // Find job by ID
-      const job = await Job.findById(id).populate("employer"); // Populates the employer field with the employer's details
+      const job = await Job.findById(id).populate("employer");
 
       if (!job) {
         return next(new ErrorHandler("Job not found", 404));
@@ -106,6 +106,48 @@ router.get(
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 400));
+    }
+  })
+);
+
+// apply jobs
+router.post(
+  "/applyJobs/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const job_id = req.params.id;
+
+      const { user_id, firstName, lastName, email, phone, resume } = req.body;
+
+      const user = await User.findById(user_id);
+      const job = await Job.findById(job_id);
+
+      if (!job) {
+        return next(new ErrorHandler("Job not found!", 404));
+      }
+      if (!user) {
+        return next(new ErrorHandler("User not found!", 404));
+      }
+
+      if (job.appliedUsers.includes(user_id)) {
+        res.status(200).json({
+          success: true,
+          message: "Already Applied to this Job! Check Applied Jobs",
+        });
+      }
+
+      job.appliedUsers.push(user_id);
+      user.appliedJobs.push(job_id);
+
+      await job.save();
+      await user.save();
+
+      res.status(200).json({
+        success: true,
+        message: "Job Applied Successfully!",
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
     }
   })
 );

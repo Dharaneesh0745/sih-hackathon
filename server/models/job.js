@@ -41,6 +41,36 @@ const jobSchema = new mongoose.Schema({
     type: String,
     // required: true,
   },
+  appliedUsers: [
+    {
+      id: {
+        type: String,
+      },
+      firstName: {
+        type: String,
+      },
+      lastName: {
+        type: String,
+      },
+      email: {
+        type: String,
+      },
+      phone: {
+        type: String,
+      },
+      resume: {
+        type: String,
+      },
+      appliedDate: {
+        type: Date,
+        default: Date.now(),
+      },
+      applicationStatus: {
+        type: String,
+        default: "Pending",
+      },
+    },
+  ],
   skills: {
     type: String,
     // required: true,
