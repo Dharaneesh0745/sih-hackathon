@@ -51,10 +51,17 @@ const Community = () => {
     <>
     <style>{`
       .content-container {
-        padding-top: 80px; /* Adjust this value to add enough space below the fixed icons */
+        padding-top: 40px; /* Adjust this value to add enough space below the fixed icons */
+      }
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;  
       }
     `}</style>
-    <div className="min-h-screen bg-gray-200 text-white flex">
+    <div className="sticky overflow-y-auto min-h-screen bg-gray-200 text-white flex">
       {/* Left Sidebar */}
       {/* Hidden by default on small screens, visible on md and above */}
       <aside 
@@ -73,8 +80,8 @@ const Community = () => {
           md:w-1/5 
           transition-transform 
           duration-300 
-          ease-in-out 
-          z-30
+          ease-in-out
+          z-100
         `}
       >
         {/* Close button visible only on small screens */}
@@ -165,8 +172,8 @@ const Community = () => {
       {/* Main content area */}
       <main 
         className={`
-          flex-1 
-          p-6 
+          flex-1
+          p-6  
           transition-all 
           duration-300 
           ml-0 
@@ -186,7 +193,7 @@ const Community = () => {
 
         {/* Posts */}
         {/* Post 1 */}
-        <div className="content-container mt-8 p-4">
+        <div className="overflow-y-scroll h-screen hide-scrollbar">
         <div className="bg-white text-gray-800 shadow-md rounded-lg p-6 mb-6 transform hover:scale-105 transition-transform duration-300 hover:shadow-xl">
           <h3 className="text-2xl font-semibold mb-4">Australian NRI moving to Hyderabad</h3>
           <p className="text-gray-600">Little about myself - I’ve recently turned 23, graduating with BE in December 2024...</p>
@@ -236,6 +243,105 @@ const Community = () => {
             </span>
           </div>
         </div>
+        <div className="bg-white text-gray-800 shadow-md rounded-lg p-6 mb-6 transform hover:scale-105 transition-transform duration-300 hover:shadow-xl">
+          <h3 className="text-2xl font-semibold mb-4">What are the latest sustainable building materials in Civil Engineering?</h3>
+          <p className="text-gray-600">Sustainable materials like bamboo and recycled steel are gaining traction. What’s your take?</p>
+          <div className="flex items-center space-x-4 mt-4 text-gray-500">
+            <span onClick={() => handleUpvote(1)} className="cursor-pointer flex items-center">
+              <FaThumbsUp className="mr-2" /> {upvotes[1]} Upvotes
+            </span>
+            <span onClick={() => handleComment(1)} className="cursor-pointer flex items-center">
+              <FaComment className="mr-2" /> {comments[1]} Comments
+            </span>
+            <span onClick={() => handleShare(1)} className="cursor-pointer flex items-center">
+              <FaShare className="mr-2" /> Share
+            </span>
+          </div>
+        </div>
+
+
+        <div className="bg-white text-gray-800 shadow-md rounded-lg p-6 mb-6 transform hover:scale-105 transition-transform duration-300 hover:shadow-xl">
+          <h3 className="text-2xl font-semibold mb-4">How can 3D printing revolutionize the automotive industry?</h3>
+          <p className="text-gray-600">With 3D printing, automotive parts are being created more efficiently. Is this the future?</p>
+          <div className="flex items-center space-x-4 mt-4 text-gray-500">
+            <span onClick={() => handleUpvote(2)} className="cursor-pointer flex items-center">
+              <FaThumbsUp className="mr-2" /> {upvotes[2]} Upvotes
+            </span>
+            <span onClick={() => handleComment(2)} className="cursor-pointer flex items-center">
+              <FaComment className="mr-2" /> {comments[2]} Comments
+            </span>
+            <span onClick={() => handleShare(2)} className="cursor-pointer flex items-center">
+              <FaShare className="mr-2" /> Share
+            </span>
+          </div>
+        </div>
+
+        <div className="bg-white text-gray-800 shadow-md rounded-lg p-6 mb-6 transform hover:scale-105 transition-transform duration-300 hover:shadow-xl">
+          <h3 className="text-2xl font-semibold mb-4">What are the advancements in renewable energy for electrical grids?</h3>
+          <p className="text-gray-600">Electrical grids are becoming smarter and more efficient with renewable energy integration. Thoughts?</p>
+          <div className="flex items-center space-x-4 mt-4 text-gray-500">
+            <span onClick={() => handleUpvote(3)} className="cursor-pointer flex items-center">
+              <FaThumbsUp className="mr-2" /> {upvotes[3]} Upvotes
+            </span>
+            <span onClick={() => handleComment(3)} className="cursor-pointer flex items-center">
+              <FaComment className="mr-2" /> {comments[3]} Comments
+            </span>
+            <span onClick={() => handleShare(3)} className="cursor-pointer flex items-center">
+              <FaShare className="mr-2" /> Share
+            </span>
+          </div>
+        </div>
+
+
+        <div className="bg-white text-gray-800 shadow-md rounded-lg p-6 mb-6 transform hover:scale-105 transition-transform duration-300 hover:shadow-xl">
+          <h3 className="text-2xl font-semibold mb-4">Will AI completely replace software engineers?</h3>
+          <p className="text-gray-600">With AI tools becoming more sophisticated, is the role of a software engineer at risk?</p>
+          <div className="flex items-center space-x-4 mt-4 text-gray-500">
+            <span onClick={() => handleUpvote(4)} className="cursor-pointer flex items-center">
+              <FaThumbsUp className="mr-2" /> {upvotes[4]} Upvotes
+            </span>
+            <span onClick={() => handleComment(4)} className="cursor-pointer flex items-center">
+              <FaComment className="mr-2" /> {comments[4]} Comments
+            </span>
+            <span onClick={() => handleShare(4)} className="cursor-pointer flex items-center">
+              <FaShare className="mr-2" /> Share
+            </span>
+          </div>
+        </div>
+
+        <div className="bg-white text-gray-800 shadow-md rounded-lg p-6 mb-6 transform hover:scale-105 transition-transform duration-300 hover:shadow-xl">
+          <h3 className="text-2xl font-semibold mb-4">How is 5G impacting aviation communication systems?</h3>
+          <p className="text-gray-600">5G networks could change aviation systems. How do you see its impact on air traffic control?</p>
+          <div className="flex items-center space-x-4 mt-4 text-gray-500">
+            <span onClick={() => handleUpvote(5)} className="cursor-pointer flex items-center">
+              <FaThumbsUp className="mr-2" /> {upvotes[5]} Upvotes
+            </span>
+            <span onClick={() => handleComment(5)} className="cursor-pointer flex items-center">
+              <FaComment className="mr-2" /> {comments[5]} Comments
+            </span>
+            <span onClick={() => handleShare(5)} className="cursor-pointer flex items-center">
+              <FaShare className="mr-2" /> Share
+            </span>
+          </div>
+        </div>
+
+
+        <div className="bg-white text-gray-800 shadow-md rounded-lg p-6 mb-6 transform hover:scale-105 transition-transform duration-300 hover:shadow-xl">
+          <h3 className="text-2xl font-semibold mb-4">What are the latest trends in green chemistry?</h3>
+          <p className="text-gray-600">Green chemistry focuses on reducing hazardous substances. Which innovations do you find most exciting?</p>
+          <div className="flex items-center space-x-4 mt-4 text-gray-500">
+            <span onClick={() => handleUpvote(6)} className="cursor-pointer flex items-center">
+              <FaThumbsUp className="mr-2" /> {upvotes[6]} Upvotes
+            </span>
+            <span onClick={() => handleComment(6)} className="cursor-pointer flex items-center">
+              <FaComment className="mr-2" /> {comments[6]} Comments
+            </span>
+            <span onClick={() => handleShare(6)} className="cursor-pointer flex items-center">
+              <FaShare className="mr-2" /> Share
+            </span>
+          </div>
+        </div>
+
         </div>
       </main>
 
@@ -243,6 +349,9 @@ const Community = () => {
       {/* Hidden by default on small screens, visible on md and above */}
       <aside 
         className={`
+          sticky
+          overflow-y-auto
+          h-screen
           bg-white text-gray-800 
           w-64 
           p-6 
@@ -258,7 +367,7 @@ const Community = () => {
           transition-transform 
           duration-300 
           ease-in-out 
-          z-30
+          z-100
         `}
       >
         {/* Close button visible only on small screens */}
