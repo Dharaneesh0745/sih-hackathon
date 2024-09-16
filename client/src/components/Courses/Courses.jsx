@@ -99,7 +99,7 @@ const Courses = () => {
                   </p>
                   <p className="text-gray-600">
                     <MdPlayLesson className="inline-block mr-1 text-gray-500" />
-                    <span className="font-bold">{course.Lessons}</span> Lessons
+                    <span className="font-bold">{course.Chapters}</span> Lessons
                   </p>
                 </div>
               </div>

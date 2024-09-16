@@ -47,6 +47,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { bot_API_endpoint, server } from "./server.js";
 import CourseDetails from "./pages/CourseDetails.jsx";
+import CourseLesson from "./pages/CourseLesson.jsx";
 
 const CustomChatBotWrapper = styled.div`
   .rsc-container {
@@ -219,6 +220,7 @@ const App = () => {
           />
           <Route path="/job/:id" element={<JobDetailsPage />} />
           <Route path="/courses/course-view/:id" element={<CourseDetails />} />
+          <Route path="/courses/course-lesson/:id" element={<CourseLesson />} />
 
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/job/:name" element={<JobDetailsPage />} />
