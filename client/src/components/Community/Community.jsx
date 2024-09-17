@@ -50,7 +50,14 @@ const Community = () => {
     <>
       <style>{`
       .content-container {
-        padding-top: 80px; /* Adjust this value to add enough space below the fixed icons */
+        padding-top: 40px; /* Adjust this value to add enough space below the fixed icons */
+      }
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;  
       }
     `}</style>
       <div className="min-h-screen bg-gray-200 text-white flex">
@@ -72,8 +79,8 @@ const Community = () => {
           md:w-1/5 
           transition-transform 
           duration-300 
-          ease-in-out 
-          z-30
+          ease-in-out
+          z-100
         `}
         >
           {/* Close button visible only on small screens */}
@@ -209,7 +216,7 @@ const Community = () => {
             onClick={toggleLeftSidebar}
           ></div>
         )}
-
+        
         {/* Main content area */}
         <main
           className={`
@@ -423,6 +430,7 @@ const Community = () => {
               </div>
             </div>
           </div>
+
         </main>
 
         {/* Right Sidebar */}
@@ -444,7 +452,7 @@ const Community = () => {
           transition-transform 
           duration-300 
           ease-in-out 
-          z-30
+          z-100
         `}
         >
           {/* Close button visible only on small screens */}
