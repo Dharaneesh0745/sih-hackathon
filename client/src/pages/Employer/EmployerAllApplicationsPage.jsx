@@ -7,11 +7,11 @@ const EmployerAllApplicationsPage = () => {
   return (
     <>
       <DashboardHeader />
-      <div className="flex items-center justify-between w-full">
+      <div className="flex w-full">
         <div className="800px:w-[250px] w-[60px]">
           <DashboardSidebar active={2} />
         </div>
-        <div className="w-full justify-center flex">
+        <div className="w-full flex">
           <EmployerAllApplications />
         </div>
       </div>

@@ -49,6 +49,7 @@ const JobDetail = ({ data }) => {
             toast.warning(
               `${err.response.data.message || "Something went wrong!"}`
             );
+            // navigate("/profile");
             console.log(err.response.data);
           } else {
             toast.error("Request failed. Please try again.");

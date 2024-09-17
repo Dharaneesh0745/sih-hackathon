@@ -172,6 +172,47 @@ router.post(
   })
 );
 
+// Route to update application status
+router.post(
+  "/update-application-status/:id",
+  catchAsyncErrors(async (req, res) => {
+    const { id } = req.params; // Job ID
+    const { applicantId, status } = req.body; // Expecting { applicantId: 'userId', status: 'newStatus' }
+
+    try {
+      // Find the job by ID
+      const job = await Job.findOne({
+        "appliedUsers.id": applicantId,
+        _id: id,
+      });
+
+      if (!job) {
+        return res.status(404).json({ message: "Job or applicant not found" });
+      }
+
+      // Find the applicant in the job's appliedUsers array
+      const applicantIndex = job.appliedUsers.findIndex(
+        (user) => user.id === applicantId
+      );
+
+      if (applicantIndex === -1) {
+        return res.status(404).json({ message: "Applicant not found" });
+      }
+
+      // Update the applicant's status
+      job.appliedUsers[applicantIndex].applicationStatus = status;
+
+      // Save the job document
+      await job.save();
+
+      res.status(200).json(job.appliedUsers[applicantIndex]);
+    } catch (error) {
+      console.error("Error updating status:", error);
+      res.status(500).json({ message: "Server error" });
+    }
+  })
+);
+
 // get all jobs of a shop
 router.get(
   "/getAllJobs/:id",

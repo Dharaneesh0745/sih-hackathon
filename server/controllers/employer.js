@@ -17,6 +17,7 @@ const {
 const Employer = require("../models/employer");
 const sendEmployerToken = require("../utils/employerToken");
 const Job = require("../models/job");
+const mongoose = require("mongoose");
 
 router.post("/create-employer", async (req, res, next) => {
   try {
@@ -74,7 +75,10 @@ router.get(
       const { employerId } = req.params;
       console.log(employerId);
 
-      const jobs = await Job.find({ "employer._id": employerId });
+      // Convert employerId to ObjectId
+      const employerObjectId = new mongoose.Types.ObjectId(employerId);
+
+      const jobs = await Job.find({ "employer._id": employerObjectId });
       console.log(jobs);
 
       if (!jobs || jobs.length === 0) {
