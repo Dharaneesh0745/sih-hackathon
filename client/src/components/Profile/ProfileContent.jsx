@@ -1802,6 +1802,7 @@ const ProfileContent = ({ active }) => {
                         src={proj.image}
                         alt="Uploaded"
                         style={{ maxWidth: "100%", height: "auto" }}
+                        className="rounded-md"
                       />
                     )}
                     <button
@@ -2040,9 +2041,9 @@ const ProfileContent = ({ active }) => {
         )} */}
 
         {/* applied jobs */}
-        {(active === activee || active === 5) && (
+        {(active === activee || active === 6) && (
           <div>
-            <AppliedJobs />
+            <AppliedJobs id={user._id} />
           </div>
         )}
       </div>
@@ -2050,19 +2051,25 @@ const ProfileContent = ({ active }) => {
   );
 };
 
-const AppliedJobs = () => {
-  const applied = [
-    {
-      _id: "7463hvbfbhfbrtr28820221",
-      totalApplied: [
-        {
-          title: "Full-Stack Developer",
-        },
-      ],
-      appliedDate: "07-04-2005",
-      applicationStatus: "Interview",
-    },
-  ];
+export const AppliedJobs = ({ id }) => {
+  const [appliedJobs, setAppliedJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAppliedJobs = async () => {
+      try {
+        const { data } = await axios.get(`${server}/user/myApplications/${id}`);
+        console.log(data);
+        setAppliedJobs(data.jobs);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching applied jobs:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchAppliedJobs();
+  }, [id]);
 
   const columns = [
     {
@@ -2071,35 +2078,31 @@ const AppliedJobs = () => {
       minWidth: 150,
       flex: 0.7,
     },
-
     {
       field: "title",
       headerName: "Job Title",
       minWidth: 150,
       flex: 0.7,
     },
-
     {
       field: "status",
       headerName: "Status",
       minWidth: 130,
       flex: 0.7,
-      cellClassNamme: (params) => {
-        return params.getValue(params.id, "status") === "Applied"
+      cellClassName: (params) => {
+        return params.row.status === "Applied"
           ? "text-blue-500"
-          : params.getValue(params.id, "status") === "Interview"
+          : params.row.status === "Interview"
           ? "text-yellow-500"
           : "text-green-500";
       },
     },
-
     {
       field: "date",
       headerName: "Applied Date",
       minWidth: 150,
       flex: 0.7,
     },
-
     {
       field: "action",
       headerName: "Action",
@@ -2115,22 +2118,21 @@ const AppliedJobs = () => {
     },
   ];
 
-  const row = [];
+  const rows = appliedJobs.map((job) => ({
+    id: job._id, // Job application ID
+    title: job.title, // Job title
+    status: job.appliedUsers[0].applicationStatus, // Status from the first appliedUser
+    date: new Date(job.appliedUsers[0].appliedDate).toLocaleDateString(), // Applied date
+  }));
 
-  applied &&
-    applied.forEach((item) => {
-      row.push({
-        id: item._id,
-        title: item.totalApplied[0].title,
-        status: item.applicationStatus,
-        date: item.appliedDate,
-      });
-    });
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="pl-9 pt-1">
       <DataGrid
-        rows={row}
+        rows={rows}
         columns={columns}
         pageSize={10}
         disableSelectionOnClick

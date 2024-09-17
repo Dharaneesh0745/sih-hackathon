@@ -30,7 +30,7 @@ const DashboardSidebar = ({ active }) => {
 
         <div className="w-full flex items-center p-4">
           <Link
-            to={"/employer/applications"}
+            to={"/employer/all-applications"}
             className="w-full flex items-center"
           >
             <GoFileSubmodule size={30} color="#555" />

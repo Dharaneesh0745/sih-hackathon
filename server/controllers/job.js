@@ -122,6 +122,8 @@ router.post(
       const user = await User.findById(user_id);
       const job = await Job.findById(job_id);
 
+      console.log(user);
+
       if (!job) {
         return next(new ErrorHandler("Job not found!", 404));
       }
@@ -129,11 +131,29 @@ router.post(
         return next(new ErrorHandler("User not found!", 404));
       }
 
-      if (job.appliedUsers.includes(user_id)) {
-        res.status(200).json({
-          success: true,
-          message: "Already Applied to this Job! Check Applied Jobs",
-        });
+      // if (job.appliedUsers.includes(user_id)) {
+      //   console.log("yes");
+      //   // res.status(400).json({
+      //   //   success: fail,
+      //   //   message: "Already Applied to this Job! Check Applied Jobs",
+      //   // });
+      //   // return;
+      //   return next(
+      //     new ErrorHandler(
+      //       "Already Applied to this Job! Check Applied Jobs",
+      //       400
+      //     )
+      //   );
+      // }
+
+      if (job.appliedUsers.some((user) => user._id.equals(user_id))) {
+        console.log("yes");
+        return next(
+          new ErrorHandler(
+            "Already Applied to this Job! Check Applied Jobs",
+            400
+          )
+        );
       }
 
       job.appliedUsers.push(user_id);
