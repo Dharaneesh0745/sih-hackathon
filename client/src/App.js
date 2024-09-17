@@ -31,6 +31,7 @@ import {
   EmployerCreateEventPage,
   EmployerAllEventsPage,
   EmployerAllCoupounsPage,
+  EmployerAllApplicationsPage,
 } from "./routes/EmployerRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -263,6 +264,14 @@ const App = () => {
             element={
               <EmployerProtectedRoute>
                 <EmployerDashboardPage />
+              </EmployerProtectedRoute>
+            }
+          />
+          <Route
+            path="/employer/all-applications"
+            element={
+              <EmployerProtectedRoute>
+                <EmployerAllApplicationsPage />
               </EmployerProtectedRoute>
             }
           />

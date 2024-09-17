@@ -307,6 +307,33 @@ router.post(
   })
 );
 
+router.get(
+  "/myApplications/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const userId = req.params.id;
+
+      console.log(userId);
+
+      // Find jobs where the user has applied
+      const jobs = await Job.find({
+        "appliedUsers._id": userId, // Matches the user ID inside the appliedUsers array
+      });
+
+      if (!jobs || jobs.length === 0) {
+        return next(new ErrorHandler("No jobs found for this user", 404));
+      }
+
+      res.status(200).json({
+        success: true,
+        jobs,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
 // update primary data
 router.post(
   "/update-primary-details/:id",

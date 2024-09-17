@@ -2,17 +2,32 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { server } from "../../server";
 import styles from "../../styles/styles";
-import { FaCoins } from "react-icons/fa6";
+import { FaCoins, FaShareFromSquare } from "react-icons/fa6";
 import { MdAdd } from "react-icons/md";
 import { BiMessageDetail } from "react-icons/bi";
 import Loader from "../Layouts/Loader";
 import html2pdf from "html2pdf.js";
+import { toast } from "react-toastify";
 
 const UserDetail = () => {
   const { id } = useParams();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const handleShare = () => {
+    const pageUrl = window.location.href;
+
+    navigator.clipboard
+      .writeText(pageUrl)
+      .then(() => {
+        toast.success("Link copied to clipboard!");
+      })
+      .catch((err) => {
+        toast.error("Failed to copy URL!");
+        console.error("Error copying text: ", err);
+      });
+  };
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -81,6 +96,7 @@ const UserDetail = () => {
                     >
                       Download Resume
                     </button>
+
                     <img
                       src={`${user.avatar}`}
                       alt="profile"
@@ -98,12 +114,19 @@ const UserDetail = () => {
                       Full-Stack Developer | ML Engineer
                     </p>
                     <p className="text-sm">Coimbatore, India</p>
-                    <div className="flex flex-row">
+                    <div className="flex flex-row gap-3">
                       <button className={`${styles.button} text-white mx-auto`}>
                         Follow &nbsp; <MdAdd className="mt-0.5" />
                       </button>
                       <button className={`${styles.button} text-white mx-auto`}>
                         Message &nbsp; <BiMessageDetail className="mt-1" />
+                      </button>
+                      <button
+                        onClick={handleShare}
+                        className={`${styles.button} text-white mx-auto mb-4`}
+                      >
+                        Share
+                        <FaShareFromSquare className="ml-2" />
                       </button>
                     </div>
                     <button

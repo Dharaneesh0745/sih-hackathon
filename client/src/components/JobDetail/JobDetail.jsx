@@ -22,8 +22,15 @@ const JobDetail = ({ data }) => {
   };
 
   const handleApplyJob = debounce((id) => {
-    // console.log(id);
-    // console.log(user._id);
+    console.log({
+      user_id: user._id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      phone: user.phoneNumber,
+      resume: user.resume,
+    });
+
     try {
       axios
         .post(`${server}/job/applyJobs/${id}`, {
@@ -35,16 +42,22 @@ const JobDetail = ({ data }) => {
           resume: user.resume,
         })
         .then((res) => {
-          toast.success(res.data.message);
-          navigate("/profile", { state: { activeTab: 5 } });
+          toast.success("Application submitted successfully!");
         })
         .catch((err) => {
-          toast.error(err.message);
+          if (err.response) {
+            toast.warning(
+              `${err.response.data.message || "Something went wrong!"}`
+            );
+            console.log(err.response.data);
+          } else {
+            toast.error("Request failed. Please try again.");
+          }
         });
     } catch (error) {
       console.log(error);
     }
-  }, 300);
+  });
 
   if (!data) return null; // Add early return if data is not available
 

@@ -16,6 +16,7 @@ const {
 } = require("../middlewares/auth");
 const Employer = require("../models/employer");
 const sendEmployerToken = require("../utils/employerToken");
+const Job = require("../models/job");
 
 router.post("/create-employer", async (req, res, next) => {
   try {
@@ -65,6 +66,38 @@ router.post("/create-employer", async (req, res, next) => {
     return next(new ErrorHandler(error.message, 400));
   }
 });
+
+router.get(
+  "/applied-users/:employerId",
+  catchAsyncErrors(async (req, res) => {
+    try {
+      const { employerId } = req.params;
+      console.log(employerId);
+
+      const jobs = await Job.find({ "employer._id": employerId });
+      console.log(jobs);
+
+      if (!jobs || jobs.length === 0) {
+        return res
+          .status(404)
+          .json({ message: "No jobs found for this employer." });
+      }
+
+      const appliedUsers = jobs.map((job) => {
+        return {
+          jobId: job._id,
+          jobTitle: job.title,
+          appliedUsers: job.appliedUsers,
+        };
+      });
+
+      return res.status(200).json({ jobs: appliedUsers });
+    } catch (error) {
+      console.error("Error fetching applied users:", error);
+      return res.status(500).json({ message: "Internal server error." });
+    }
+  })
+);
 
 // Activation Route
 router.post(
