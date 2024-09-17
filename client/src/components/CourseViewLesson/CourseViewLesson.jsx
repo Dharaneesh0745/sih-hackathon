@@ -41,7 +41,7 @@ const CourseViewLesson = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row-reverse h-screen">
+    <div className="flex flex-col lg:flex-row-reverse mt-5 h-screen">
       {/* Sidebar with Course Chapters on the right side */}
       <div
         className={`${
@@ -50,7 +50,11 @@ const CourseViewLesson = () => {
         style={{ overflowX: "hidden" }}
       >
         <div className="flex justify-between items-center mb-4">
-          <h1 className={`text-xl font-bold transition-all duration-300 ${isSidebarOpen ? "block" : "hidden"}`}>
+          <h1
+            className={`text-xl font-bold transition-all duration-300 ${
+              isSidebarOpen ? "block" : "hidden"
+            }`}
+          >
             {course.name}
           </h1>
           {/* Sidebar Toggle Button next to course name */}
@@ -126,7 +130,9 @@ const CourseViewLesson = () => {
 
         {/* Feedback Form */}
         <div className="mt-6 w-full lg:w-3/4 bg-white p-4 rounded-lg shadow-md">
-          <h3 className="text-lg font-semibold mb-2">Leave a Review or Feedback</h3>
+          <h3 className="text-lg font-semibold mb-2">
+            Leave a Review or Feedback
+          </h3>
           <form
             onSubmit={(e) => {
               e.preventDefault();
