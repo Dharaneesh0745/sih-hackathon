@@ -68,7 +68,9 @@ const CourseViewLesson = () => {
 
         {isSidebarOpen && (
           <>
-            <h2 className="text-lg font-semibold mb-2">Course Contents</h2>
+            <h2 className="text-lg -mt-10 font-semibold mb-2">
+              Course Contents
+            </h2>
             {course.Lessons.map((lesson, index) => (
               <div key={index}>
                 <button
@@ -129,7 +131,7 @@ const CourseViewLesson = () => {
         )}
 
         {/* Feedback Form */}
-        <div className="mt-6 w-full lg:w-3/4 bg-white p-4 rounded-lg shadow-md">
+        <div className="mt-6 w-full lg:w-3/4 bg-white p-4 mb-10 rounded-lg shadow-md">
           <h3 className="text-lg font-semibold mb-2">
             Leave a Review or Feedback
           </h3>
