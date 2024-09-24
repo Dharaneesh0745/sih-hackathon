@@ -41,7 +41,7 @@ const CourseViewLesson = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row-reverse mt-5 h-screen">
+    <div className="flex flex-col lg:flex-row-reverse h-screen">
       {/* Sidebar with Course Chapters on the right side */}
       <div
         className={`${
@@ -68,9 +68,7 @@ const CourseViewLesson = () => {
 
         {isSidebarOpen && (
           <>
-            <h2 className="text-lg -mt-10 font-semibold mb-2">
-              Course Contents
-            </h2>
+            <h2 className="text-lg font-semibold mb-2">Course Contents</h2>
             {course.Lessons.map((lesson, index) => (
               <div key={index}>
                 <button
@@ -113,8 +111,10 @@ const CourseViewLesson = () => {
         }`}
       >
         <h2 className="text-2xl font-bold mb-4 text-gray-800">
-          Now Playing: {course.Lessons[selectedChapter].chapter} -{" "}
-          {selectedVideoTitle}
+          {/* Now Playing: {course.Lessons[selectedChapter].chapter} -{" "}
+          {selectedVideoTitle} */}
+          <br />
+          <br />
         </h2>
         {selectedVideo ? (
           <div className="w-full max-w-4xl h-auto transition-all duration-300">

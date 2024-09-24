@@ -78,11 +78,12 @@ const Header = ({ activeHeading }) => {
             <div className="hidden 800px:h-[50px] 800px:my-[20px] 800px:flex items-center justify-between">
               <div>
                 <Link to="/home">
-                  <img
+                  {/* <img
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2MM3d3wXnnH-eA0UrWsYyXCfBLIPSOY-WAQ&s"
                     alt=""
                     className="h-10"
-                  />
+                  /> */}
+                  <h1 className="text-2xl font-bold">Dream Lander</h1>
                 </Link>
               </div>
               {/* search box */}
@@ -264,11 +265,12 @@ const Header = ({ activeHeading }) => {
               </div>
               <div>
                 <Link to="/home">
-                  <img
+                  {/* <img
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2MM3d3wXnnH-eA0UrWsYyXCfBLIPSOY-WAQ&s"
                     alt=""
                     className="h-10 mt-4"
-                  />
+                  /> */}
+                  Grow Up
                 </Link>
               </div>
               <div>

@@ -36,10 +36,11 @@ const Footer = () => {
       </div>
       <div className="grid grid-cols-1 sm:gird-cols-3 lg:grid-cols-4 gap-6 sm:px-8 px-5 py-16 sm:text-center">
         <ul className="px-5 text-center sm:text-start flex sm:block flex-col items-center">
-          <img
+          {/* <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2MM3d3wXnnH-eA0UrWsYyXCfBLIPSOY-WAQ&s"
             alt=""
-          />
+          /> */}
+          <h1 className="text-2xl font-bold">Dream Lander</h1>
           <br />
           <p>The skills and techniques needeed to get a high package jobs.</p>
           <div className="flex items-center mt-[15px]">

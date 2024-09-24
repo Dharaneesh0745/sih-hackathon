@@ -149,7 +149,7 @@ const Community = () => {
                       alt="favicon"
                       className="w-5 h-5"
                     />
-                    <span>r/agedlikemilk</span>
+                    <span>r/reactjs</span>
                   </a>
                 </li>
                 <li>
@@ -162,7 +162,7 @@ const Community = () => {
                       alt="favicon"
                       className="w-5 h-5"
                     />
-                    <span>r/ahmedabad</span>
+                    <span>r/django</span>
                   </a>
                 </li>
                 <li>
@@ -175,7 +175,7 @@ const Community = () => {
                       alt="favicon"
                       className="w-5 h-5"
                     />
-                    <span>r/aiArt</span>
+                    <span>r/springboot</span>
                   </a>
                 </li>
                 <li>
@@ -188,7 +188,7 @@ const Community = () => {
                       alt="favicon"
                       className="w-5 h-5"
                     />
-                    <span>r/AnimeMirchi</span>
+                    <span>r/mernstack</span>
                   </a>
                 </li>
                 <li>
@@ -201,7 +201,7 @@ const Community = () => {
                       alt="favicon"
                       className="w-5 h-5"
                     />
-                    <span>r/announcements</span>
+                    <span>r/golang</span>
                   </a>
                 </li>
               </ul>
@@ -216,7 +216,7 @@ const Community = () => {
             onClick={toggleLeftSidebar}
           ></div>
         )}
-        
+
         {/* Main content area */}
         <main
           className={`
@@ -252,11 +252,14 @@ const Community = () => {
           <div className="content-container mt-8 p-4">
             <div className="bg-white text-gray-800 shadow-md rounded-lg p-6 mb-6 transform hover:scale-105 transition-transform duration-300 hover:shadow-xl">
               <h3 className="text-2xl font-semibold mb-4">
-                Australian NRI moving to Hyderabad
+                JavaScript Enthusiast Learning React
               </h3>
               <p className="text-gray-600">
-                Little about myself - I’ve recently turned 23, graduating with
-                BE in December 2024...
+                I’m a 23-year-old programmer with a passion for JavaScript.
+                Currently deep-diving into React.js, I’m focusing on building
+                dynamic, responsive web applications. My goal is to master
+                front-end development and enhance my skills in state management
+                with Redux.
               </p>
               <div className="flex items-center space-x-4 mt-4 text-gray-500">
                 <span
@@ -281,11 +284,13 @@ const Community = () => {
             </div>
             <div className="bg-white text-gray-800 shadow-md rounded-lg p-6 mb-6 transform hover:scale-105 transition-transform duration-300 hover:shadow-xl">
               <h3 className="text-2xl font-semibold mb-4">
-                Australian NRI moving to Hyderabad
+                TypeScript Explorer Expanding Skills in Angular
               </h3>
               <p className="text-gray-600">
-                Little about myself - I’ve recently turned 23, graduating with
-                BE in December 2024...
+                Graduating with a BE in December 2024, I’m diving into the world
+                of TypeScript and specializing in Angular development. I enjoy
+                creating scalable and modular web applications that offer great
+                user experiences while maintaining performance and code quality.
               </p>
               <div className="flex items-center space-x-4 mt-4 text-gray-500">
                 <span
@@ -310,11 +315,13 @@ const Community = () => {
             </div>
             <div className="bg-white text-gray-800 shadow-md rounded-lg p-6 mb-6 transform hover:scale-105 transition-transform duration-300 hover:shadow-xl">
               <h3 className="text-2xl font-semibold mb-4">
-                Australian NRI moving to Hyderabad
+                Python Developer Exploring Django for Full-Stack Apps
               </h3>
               <p className="text-gray-600">
-                Little about myself - I’ve recently turned 23, graduating with
-                BE in December 2024...
+                As a Python enthusiast, I’ve been learning Django to build
+                full-stack web applications. I’m focused on using Python’s
+                simplicity to create scalable backends while leveraging REST
+                APIs to connect with modern frontend frameworks like React.
               </p>
               <div className="flex items-center space-x-4 mt-4 text-gray-500">
                 <span
@@ -339,11 +346,14 @@ const Community = () => {
             </div>
             <div className="bg-white text-gray-800 shadow-md rounded-lg p-6 mb-6 transform hover:scale-105 transition-transform duration-300 hover:shadow-xl">
               <h3 className="text-2xl font-semibold mb-4">
-                Australian NRI moving to Hyderabad
+                Node.js Backend Developer with Express Proficiency
               </h3>
               <p className="text-gray-600">
-                Little about myself - I’ve recently turned 23, graduating with
-                BE in December 2024...
+                With a growing interest in backend development, I’m specializing
+                in Node.js and Express to create efficient and scalable
+                server-side applications. My focus is on creating RESTful APIs,
+                handling asynchronous operations, and managing real-time data
+                with WebSockets.
               </p>
               <div className="flex items-center space-x-4 mt-4 text-gray-500">
                 <span
@@ -370,12 +380,14 @@ const Community = () => {
             {/* Post 2 */}
             <div className="bg-white text-gray-800 shadow-md rounded-lg p-6 mb-6 transform hover:scale-105 transition-transform duration-300 hover:shadow-xl">
               <h3 className="text-2xl font-semibold mb-4">
-                Is it wrong for a woman to look for a well-settled guy in an
-                arranged marriage?
+                Aspiring Mobile Developer Using React Native
               </h3>
               <p className="text-gray-600">
-                Hi guys, So I (25F) had an argument with my partner, about girls
-                demanding...
+                As a developer excited about mobile platforms, I’m currently
+                mastering React Native to build cross-platform mobile
+                applications. My goal is to create seamless, performant apps
+                that offer a native-like experience on both Android and iOS
+                devices.
               </p>
               <div className="flex items-center space-x-4 mt-4 text-gray-500">
                 <span
@@ -402,11 +414,15 @@ const Community = () => {
             {/* Post 3 */}
             <div className="bg-white text-gray-800 shadow-md rounded-lg p-6 mb-6 transform hover:scale-105 transition-transform duration-300 hover:shadow-xl">
               <h3 className="text-2xl font-semibold mb-4">
-                How to manage career growth while working in AI/ML?
+                C++ and Data Structures Enthusiast Exploring Competitive
+                Programming
               </h3>
               <p className="text-gray-600">
-                With the rise of AI and ML, it has become essential for
-                professionals...
+                My interest lies in problem-solving and data structures using
+                C++. I’m constantly participating in coding challenges and
+                exploring competitive programming platforms to sharpen my
+                algorithmic thinking and improve efficiency in real-world
+                problem-solving.
               </p>
               <div className="flex items-center space-x-4 mt-4 text-gray-500">
                 <span
@@ -430,7 +446,6 @@ const Community = () => {
               </div>
             </div>
           </div>
-
         </main>
 
         {/* Right Sidebar */}
@@ -471,7 +486,7 @@ const Community = () => {
                 className="flex items-center space-x-3 hover:underline hover:text-red-500 transition-colors"
               >
                 <FaFire />
-                <span>Australian NRI moving to Hyderabad</span>
+                <span>Front-End Developer with React Expertise</span>
               </a>
             </li>
             <li>
@@ -480,10 +495,7 @@ const Community = () => {
                 className="flex items-center space-x-3 hover:underline hover:text-red-500 transition-colors"
               >
                 <FaFire />
-                <span>
-                  Is it wrong for a woman to look for a well-settled guy in an
-                  arranged marriage?
-                </span>
+                <span>Data Scientist Specializing in AI/ML</span>
               </a>
             </li>
             <li>
@@ -492,7 +504,7 @@ const Community = () => {
                 className="flex items-center space-x-3 hover:underline hover:text-red-500 transition-colors"
               >
                 <FaFire />
-                <span>How to manage career growth while working in AI/ML?</span>
+                <span>Cloud Engineer with AWS Certification</span>
               </a>
             </li>
           </ul>

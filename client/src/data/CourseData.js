@@ -14,16 +14,17 @@ export const CourseDetailsCard = [
         chapter: "Introduction to JavaScript",
         content: [
           {
-            id: "js-intro-1", 
+            id: "js-intro-1",
             title: "What is JavaScript?",
-            video_url: "https://www.youtube.com/embed/yRpLlJmRo2w?list=PLfqMhTWNBTe3LtFWcvwpqTkUSlB32kJop"
+            video_url:
+              "https://www.youtube.com/embed/lfmg-EJ8gm4?si=AZoWVaCqLwCz0gLB",
           },
           {
             id: "js-intro-2",
             title: "Setting up Development Environment",
-            video_url: "https://www.youtube.com/embed/RgOEKdA2mlw"
-          }
-        ]
+            video_url: "https://www.youtube.com/embed/RgOEKdA2mlw",
+          },
+        ],
       },
       {
         chapter: "JavaScript Variables",
@@ -31,15 +32,15 @@ export const CourseDetailsCard = [
           {
             id: "js-var-1",
             title: "Declaring Variables",
-            video_url: "https://www.youtube.com/embed/A3mc4Ql5OBE"
+            video_url: "https://www.youtube.com/embed/A3mc4Ql5OBE",
           },
           {
             id: "js-var-2",
             title: "Types of Variables",
-            video_url: "https://www.youtube.com/embed/kbvHM2S2_bk"
-          }
-        ]
-      }
+            video_url: "https://www.youtube.com/embed/kbvHM2S2_bk",
+          },
+        ],
+      },
     ],
     image:
       "https://cdn.sanity.io/images/3do82whm/next/a69e3ba2441d35dd1a7945e826064708f30c10a9-1000x667.jpg?w=720&h=480&fit=clip&auto=format",

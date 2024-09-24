@@ -11,11 +11,12 @@ const DashboardHeader = () => {
     <div className="w-full h-[80px] bg-white shadow sticky top-0 left-0 z-30 flex items-center justify-between px-4">
       <div>
         <Link to="/employer/dashboard">
-          <img
+          {/* <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2MM3d3wXnnH-eA0UrWsYyXCfBLIPSOY-WAQ&s"
             alt=""
             className="h-10"
-          />
+          /> */}
+          <h1 className="text-2xl font-bold">Dream Lander</h1>
         </Link>
       </div>
       <div className="flex items-center">

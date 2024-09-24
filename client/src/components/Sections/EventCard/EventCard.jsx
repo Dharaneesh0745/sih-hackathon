@@ -16,22 +16,24 @@ const EventCard = ({ data, active }) => {
             data.image ||
             "https://img.freepik.com/free-vector/web-development-isometric-concept-composition-illustration_1284-55922.jpg"
           }
+          className="rounded-lg"
           alt={data.name || "Event Image"}
         />
       </div>
-      <div className="w-full lg:[w-50%] flex flex-col justify-center">
+      <div className="w-full lg:[w-50%] ml-3 flex flex-col justify-center">
         <h2 className={`${styles.productTitle}`}>
           {data.name || "Default Event Title"}
         </h2>
         <p>{data.description || "Default event description."}</p>
         <div className="flex py-2 justify-between">
           <div className="pr-3 font-[400] text-[17px] text-[#44a55e]">
-            {data.registered || "0"} Registered
+            {data.registered || "10"} Registered
           </div>
         </div>
         <div className="w-full">
           <CountDown data={data} />
         </div>
+        <div className={`${styles.button} text-white`}>Register Now</div>
       </div>
     </div>
   );
