@@ -126,7 +126,7 @@ const Landing = () => {
               to={"/getstarted"}
               className="text-2xl font-bold text-blue-600 transform hover:scale-110 transition duration-300"
             >
-              Linkedin
+              Dream Lander
             </Link>
             <div className="md:hidden">
               <button
