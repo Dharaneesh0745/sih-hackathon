@@ -340,6 +340,7 @@ const App = () => {
                 floating={true}
                 botDelay={3000}
                 headerTitle={"LinkedIn"}
+                headerTitle={"Dream Lander"}
               />
             </ThemeProvider>
           )}
@@ -350,3 +351,4 @@ const App = () => {
 };
 
 export default App;
+
