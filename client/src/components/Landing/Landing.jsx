@@ -241,7 +241,7 @@ const Landing = () => {
           <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
             <div className="text-center md:text-left md:w-1/2 space-y-6 animate-fade-in-left">
               <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-wide">
-                AI-Powered Job Matching Platform
+                Twitter
               </h1>
               <p className="text-lg md:text-xl font-medium text-gray-200">
                 Receive personalized job matches and skill development paths
@@ -433,3 +433,8 @@ const Landing = () => {
 };
 
 export default Landing;
+
+
+
+
+
